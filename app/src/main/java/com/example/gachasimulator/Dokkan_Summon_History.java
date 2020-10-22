@@ -73,7 +73,7 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setFlexWrap(FlexWrap.WRAP);
         layoutManager.setJustifyContent(JustifyContent.FLEX_START);
-        layoutManager.setAlignItems(AlignItems.FLEX_START);
+        layoutManager.setAlignItems(AlignItems.STRETCH);
 
         recyclerView = findViewById(R.id.recycler_dokkan);
         recyclerView.setLayoutManager(layoutManager);

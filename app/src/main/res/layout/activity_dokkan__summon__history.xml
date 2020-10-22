@@ -60,11 +60,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_dokkan"
-        android:layout_width="0dp"
-        android:layout_height="605dp"
+        android:layout_width="391dp"
+        android:layout_height="607dp"
         android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
