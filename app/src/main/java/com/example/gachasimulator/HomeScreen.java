@@ -2,6 +2,7 @@ package com.example.gachasimulator;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.GestureDetector;
@@ -115,13 +116,32 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             background_audio.release();
             state = false;
             startActivity(i);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();
-        } else if (view == app_logo && selection == 0) {
-            String packageName = "com.bandainamcogames.dbzdokkanww";
-            Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
-            if (intent != null) {
-                startActivity(intent);
+        } else if (view == app_logo) {
+            String appPackageName;
+            switch (selection) {
+                case 0:
+                    appPackageName = "com.bandainamcogames.dbzdokkanww";
+                    break;
+                case 1:
+                    appPackageName = "com.bandainamcoent.dblegends_ww";
+                    break;
+                case 2:
+                    appPackageName = "com.miHoYo.GenshinImpact";
+                    break;
+                case 3:
+                    appPackageName = "com.netmarble.nanagb";
+                    break;
+                default:
+                    appPackageName = "null";
+                    break;
             }
+            Intent open = getPackageManager().getLaunchIntentForPackage(appPackageName);
+            if (open != null)
+                startActivity(open);
+            else
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
         }
     }
 

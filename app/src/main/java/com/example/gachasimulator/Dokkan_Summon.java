@@ -170,7 +170,6 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             state = false;
             Intent i = new Intent(Dokkan_Summon.this, HomeScreen.class);
             startActivity(i);
-            finish();
         } else if (view == multi_summon) {
             Card[] results = banners[bannerChoice].multiSummon();
             for (int i = 0; i < 10; i++) {
@@ -226,7 +225,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             startActivity(i);
             state = false;
             Dokkan_Summon_History.setLists(cardsPulled, cardsPulledHash);
-            finish();
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         } else if (view == stats) {
             statsSlots[0].setText(String.valueOf(ssrsPulled));
             if (ssrsPulled != 0)
@@ -288,6 +287,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             }, 500);
         }
     }
+
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {

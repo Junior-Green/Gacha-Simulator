@@ -97,6 +97,7 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
             background_audio3.release();
             Intent i = new Intent(Dokkan_Summon_History.this, Dokkan_Summon.class);
             startActivity(i);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             state = false;
             finish();
         } else if (view == home_button) {
@@ -105,7 +106,6 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
             startActivity(i);
             state = false;
             finish();
-
         }
 
     }
