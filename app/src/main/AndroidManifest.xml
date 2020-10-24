@@ -9,9 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewHolderLayout"></activity>
-        <activity android:name=".Dokkan_Summon_History" />
-        <activity android:name=".Dokkan_Summon" />
+        <activity
+            android:name=".ViewHolderLayout"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dokkan_Summon_History"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dokkan_Summon"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HomeScreen"
             android:screenOrientation="portrait">

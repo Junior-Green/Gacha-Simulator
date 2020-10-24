@@ -2,18 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dokkan_summon_root"
+    android:id="@+id/dokkan_summon_ani_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dokkan_summon_background"
+    android:isScrollContainer="false"
     tools:context=".Dokkan_Summon"
-    android:configChanges="keyboardHidden"
-    android:screenOrientation="portrait">
+    tools:ignore="MissingDefaultResource">
 
     <ImageView
         android:id="@+id/slot1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/slot2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -36,9 +36,9 @@
 
     <ImageView
         android:id="@+id/slot3"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
@@ -48,8 +48,8 @@
 
     <ImageView
         android:id="@+id/slot4"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -60,8 +60,8 @@
 
     <ImageView
         android:id="@+id/slot5"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -72,8 +72,8 @@
 
     <ImageView
         android:id="@+id/slot6"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -84,8 +84,8 @@
 
     <ImageView
         android:id="@+id/slot7"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -96,8 +96,8 @@
 
     <ImageView
         android:id="@+id/slot8"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginTop="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -108,8 +108,8 @@
 
     <ImageView
         android:id="@+id/slot9"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -120,8 +120,8 @@
 
     <ImageView
         android:id="@+id/slot10"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -132,8 +132,8 @@
 
     <ImageView
         android:id="@+id/banner_image"
-        android:layout_width="516dp"
-        android:layout_height="318dp"
+        android:layout_width="371dp"
+        android:layout_height="223dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
@@ -145,8 +145,8 @@
 
     <ImageButton
         android:id="@+id/single_button"
-        android:layout_width="207dp"
-        android:layout_height="79dp"
+        android:layout_width="159dp"
+        android:layout_height="55dp"
         android:layout_marginTop="25dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
@@ -161,23 +161,23 @@
 
     <ImageButton
         android:id="@+id/multi_button"
-        android:layout_width="207dp"
-        android:layout_height="79dp"
+        android:layout_width="159dp"
+        android:layout_height="55dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/single_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/single_button"
         app:srcCompat="@drawable/dokkan_multi_summon" />
 
     <ImageView
         android:id="@+id/dragonStoneIcon"
-        android:layout_width="42dp"
-        android:layout_height="59dp"
+        android:layout_width="37dp"
+        android:layout_height="42dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
         android:adjustViewBounds="true"
@@ -198,9 +198,24 @@
         android:fontFamily="@font/archivo_black"
         android:text="Reset"
         android:textColor="#FF0000"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/stats_dokkan2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:text="Stats"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slot8" />
 
     <TextView
         android:id="@+id/summon_history_dokkan"
@@ -210,29 +225,12 @@
         android:fontFamily="@font/archivo_black"
         android:text="Summon History"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/home_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slot8"
-        app:layout_constraintVertical_bias="0.6" />
-
-    <TextView
-        android:id="@+id/stats_dokkan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@android:string/untitled"
-        android:fontFamily="@font/archivo_black"
-        android:text="Stats"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/home_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slot8"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintTop_toBottomOf="@+id/slot8" />
 
     <TextView
         android:id="@+id/stones_used"
@@ -248,7 +246,7 @@
         android:textAlignment="center"
         android:textColor="#F4F4F4"
         android:textColorLink="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:autoSizeMinTextSize="5sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/dragonStoneIcon"
@@ -263,7 +261,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="@string/SwipePrompt"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/banner_image"
         app:layout_constraintEnd_toEndOf="@+id/banner_image"
@@ -271,8 +269,8 @@
 
     <ImageButton
         android:id="@+id/volume_control"
-        android:layout_width="67dp"
-        android:layout_height="52dp"
+        android:layout_width="37dp"
+        android:layout_height="29dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:adjustViewBounds="true"
@@ -285,8 +283,8 @@
 
     <ImageButton
         android:id="@+id/home_button"
-        android:layout_width="115dp"
-        android:layout_height="90dp"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="10dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
@@ -296,17 +294,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_home_button" />
-
-    <View
-        android:id="@+id/slider_backdrop_dokkan"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#c7c7cc"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <eightbitlab.com.blurview.BlurView
         android:id="@+id/blurView1"
@@ -336,7 +323,7 @@
 
     <ImageButton
         android:id="@+id/cancel_button_d"
-        android:layout_width="55dp"
+        android:layout_width="65dp"
         android:layout_height="51dp"
         android:layout_marginBottom="72dp"
         android:adjustViewBounds="true"
@@ -346,7 +333,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/anchor2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_close_button" />
 
@@ -359,7 +346,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.32" />
 
     <TextView
         android:id="@+id/anchor2"
@@ -370,7 +357,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.23" />
 
     <TextView
         android:id="@+id/stats_label"

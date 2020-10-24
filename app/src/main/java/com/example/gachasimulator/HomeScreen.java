@@ -49,6 +49,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         left_arrow = findViewById(R.id.leftArrow);
         main = findViewById(R.id.background);
         app_logo = findViewById((R.id.app));
+        app_logo.setOnClickListener(this);
 
         play.setOnClickListener(this);
         play_button.setOnClickListener(this);
@@ -115,6 +116,12 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             state = false;
             startActivity(i);
             finish();
+        } else if (view == app_logo && selection == 0) {
+            String packageName = "com.bandainamcogames.dbzdokkanww";
+            Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
+            if (intent != null) {
+                startActivity(intent);
+            }
         }
     }
 

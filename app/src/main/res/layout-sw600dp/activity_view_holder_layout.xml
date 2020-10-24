@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageHolder"
-        android:layout_width="59dp"
-        android:layout_height="59dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
         android:text="7"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/imageHolder"
         app:layout_constraintStart_toStartOf="@+id/imageHolder"
