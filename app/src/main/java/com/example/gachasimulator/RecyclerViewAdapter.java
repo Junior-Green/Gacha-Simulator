@@ -21,7 +21,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         imageNames = frequencies;
         cards = images;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +38,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return imageNames.size();
     }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView cardImage;
         TextView cardCount;

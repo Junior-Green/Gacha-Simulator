@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.ChangeBounds;
@@ -22,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -152,6 +154,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             background_audio2.start();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onClick(View view) {
@@ -180,6 +183,12 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                         featuredPulled++;
                 }
                 unitsSlots[i].setImageResource(results[i].getCardImage());
+                if (DokkanBanner.DOKKANFESTPOOL.contains(results[i]))
+                    unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                else if (DokkanBanner.SUMMONABLELRPOOL.contains(results[i]))
+                    unitsSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                else
+                    unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
             }
             cardsPulled.addAll(Arrays.asList(results));
             cardsPulledHash.addAll(Arrays.asList(results));
