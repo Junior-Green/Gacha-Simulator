@@ -208,7 +208,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
         android:fontFamily="@font/archivo_black"
-        android:text="Summon History"
+        android:text="History"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/home_button"

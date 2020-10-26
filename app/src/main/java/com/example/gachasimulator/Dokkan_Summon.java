@@ -22,6 +22,7 @@ import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +37,7 @@ import java.util.Locale;
 import eightbitlab.com.blurview.BlurView;
 import eightbitlab.com.blurview.RenderScriptBlur;
 
-public class Dokkan_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener {
+public class Dokkan_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener, BudgetDialog.BudgetDialogListener {
     MediaPlayer background_audio2;
     ImageButton mute_button, home_button, multi_summon, single_summon, cancel_button;
     ImageView bannerImage;
@@ -47,7 +48,9 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
     ConstraintSet constraintSet2 = new ConstraintSet();
     Transition transition = new ChangeBounds();
     BlurView blurView;
+    Toast stoneWarning;
     Boolean state = true;
+    private static Boolean budgetEnabled = false;
     View backDrop;
     static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled = new ArrayList<>();
@@ -81,6 +84,10 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         background_audio2 = MediaPlayer.create(Dokkan_Summon.this, R.raw.dokkan_summon_theme_audio);
         background_audio2.setLooping(true);
         background_audio2.start();
+
+        stoneWarning = new Toast(this);
+        stoneWarning.setText("Insufficient Dragonstones. Reset or set new budget");
+        stoneWarning.setDuration(Toast.LENGTH_SHORT);
 
         resetButton = findViewById(R.id.reset);
         resetButton.setOnClickListener(this);
@@ -124,6 +131,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
 
         stoneCount = findViewById(R.id.stones_used);
         stoneCount.setText(Integer.toString(stonesUsed));
+        stoneCount.setOnClickListener(this);
 
         unitsSlots = new ImageView[]{findViewById(R.id.slot1), findViewById(R.id.slot2), findViewById(R.id.slot3), findViewById(R.id.slot4), findViewById(R.id.slot5),
                 findViewById(R.id.slot6), findViewById(R.id.slot7), findViewById(R.id.slot8), findViewById(R.id.slot9), findViewById(R.id.slot10),};
@@ -173,47 +181,73 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             state = false;
             Intent i = new Intent(Dokkan_Summon.this, HomeScreen.class);
             startActivity(i);
+            finish();
         } else if (view == multi_summon) {
-            Card[] results = banners[bannerChoice].multiSummon();
-            for (int i = 0; i < 10; i++) {
-                if (results[i] != DokkanBanner.SR && results[i] != DokkanBanner.RARE) {
-                    multiSSRs++;
-                    ssrsPulled++;
+            if (!budgetEnabled || stonesUsed >= 50) {
+                Card[] results = banners[bannerChoice].multiSummon();
+                for (int i = 0; i < 10; i++) {
+                    if (results[i] != DokkanBanner.SR && results[i] != DokkanBanner.RARE) {
+                        multiSSRs++;
+                        ssrsPulled++;
+                        if (banners[bannerChoice].featured.contains(results[i]))
+                            featuredPulled++;
+                    }
+                    unitsSlots[i].setImageResource(results[i].getCardImage());
                     if (banners[bannerChoice].featured.contains(results[i]))
+                        unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                    else if (DokkanBanner.SUMMONABLELRPOOL.contains(results[i]))
+                        unitsSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                    else
+                        unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
+                }
+                cardsPulled.addAll(Arrays.asList(results));
+                cardsPulledHash.addAll(Arrays.asList(results));
+                multiCount++;
+                unitsPulled += 10;
+                if (!budgetEnabled)
+                    stonesUsed += 50;
+                else
+                    stonesUsed -= 50;
+                stoneCount.setText(Integer.toString(stonesUsed));
+            } else {
+                stoneWarning.show();
+            }
+        } else if (view == single_summon) {
+            if (!budgetEnabled || stonesUsed >= 5) {
+                for (ImageView views : unitsSlots) {
+                    views.setImageResource(android.R.color.transparent);
+                    views.setForeground(getDrawable(R.drawable.blank));
+                }
+                Card result = banners[bannerChoice].singleSummon();
+                if (result != DokkanBanner.SR && result != DokkanBanner.RARE) {
+                    singleSSRs++;
+                    ssrsPulled++;
+                    if (banners[bannerChoice].featured.contains(result))
                         featuredPulled++;
                 }
-                unitsSlots[i].setImageResource(results[i].getCardImage());
-                if (DokkanBanner.DOKKANFESTPOOL.contains(results[i]))
-                    unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
-                else if (DokkanBanner.SUMMONABLELRPOOL.contains(results[i]))
-                    unitsSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
-                else
-                    unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
-            }
-            cardsPulled.addAll(Arrays.asList(results));
-            cardsPulledHash.addAll(Arrays.asList(results));
-            multiCount++;
-            unitsPulled += 10;
-            stonesUsed += 50;
-            stoneCount.setText(Integer.toString(stonesUsed));
-        } else if (view == single_summon) {
-            for (ImageView views : unitsSlots)
-                views.setImageResource(android.R.color.transparent);
-            Card result = banners[bannerChoice].singleSummon();
-            if (result != DokkanBanner.SR && result != DokkanBanner.RARE) {
-                singleSSRs++;
-                ssrsPulled++;
                 if (banners[bannerChoice].featured.contains(result))
-                    featuredPulled++;
+                    unitsSlots[0].setForeground(getDrawable(R.drawable.red_border));
+                else if (DokkanBanner.SUMMONABLELRPOOL.contains(result))
+                    unitsSlots[0].setForeground(getDrawable(R.drawable.yellow_border));
+                else
+                    unitsSlots[0].setForeground(getDrawable(R.drawable.blank));
+
+                unitsSlots[0].setImageResource(result.getCardImage());
+                cardsPulled.add(result);
+                cardsPulledHash.add(result);
+                singleCount++;
+                unitsPulled++;
+                if (!budgetEnabled)
+                    stonesUsed += 5;
+                else
+                    stonesUsed -= 5;
+                stoneCount.setText(Integer.toString(stonesUsed));
+            } else {
+                stoneWarning.show();
             }
-            unitsSlots[0].setImageResource(result.getCardImage());
-            cardsPulled.add(result);
-            cardsPulledHash.add(result);
-            singleCount++;
-            unitsPulled++;
-            stonesUsed += 5;
-            stoneCount.setText(Integer.toString(stonesUsed));
         } else if (view == resetButton) {
+            if (budgetEnabled)
+                budgetEnabled = false;
             stonesUsed = 0;
             ssrsPulled = 0;
             unitsPulled = 0;
@@ -224,8 +258,10 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             singleCount = 0;
             cardsPulledHash.clear();
             cardsPulled.clear();
-            for (ImageView views : unitsSlots)
+            for (ImageView views : unitsSlots) {
+                views.setForeground(getDrawable(R.drawable.blank));
                 views.setImageResource(android.R.color.transparent);
+            }
 
             stoneCount.setText(Integer.toString(stonesUsed));
         } else if (view == summonHistoryButton) {
@@ -274,14 +310,18 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             TransitionManager.beginDelayedTransition(constraintLayout, transition);
             constraintSet2.applyTo(constraintLayout);
         } else if (view == cancel_button) {
-            multi_summon.setEnabled(true);
-            single_summon.setEnabled(true);
-            resetButton.setEnabled(true);
-            home_button.setEnabled(true);
-            mute_button.setEnabled(true);
-            stats.setEnabled(true);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    multi_summon.setEnabled(true);
+                    single_summon.setEnabled(true);
+                    resetButton.setEnabled(true);
+                    home_button.setEnabled(true);
+                    mute_button.setEnabled(true);
+                    stats.setEnabled(true);
+                }
+            }, 1000);
             view.setEnabled(false);
-
             backDrop.setAlpha(1f);
             Animation fadeOut = new AlphaAnimation(0.3f, 0);
             fadeOut.setDuration(2000);
@@ -294,7 +334,14 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                     blurView.setBlurEnabled(false);
                 }
             }, 500);
+        } else if (view == stoneCount) {
+            openDialog();
         }
+    }
+
+    private void openDialog() {
+        BudgetDialog budgetDialog = new BudgetDialog();
+        budgetDialog.show(getSupportFragmentManager(), "Set Budget Dialog");
     }
 
 
@@ -330,6 +377,15 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    public void onBackPressed() {
+        background_audio2.release();
+        state = false;
+        Intent i = new Intent(Dokkan_Summon.this, HomeScreen.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
     public boolean onFling(MotionEvent motionDown, MotionEvent motionEnd, float vX, float v1) {
         if (Math.abs(motionDown.getX() - motionEnd.getX()) >= 100 && Math.abs(vX) >= 750) {
             if (motionDown.getX() - motionEnd.getX() < 0) {
@@ -347,5 +403,19 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             }
         }
         return true;
+    }
+
+    @Override
+    public void getBudget(int budget) {
+        resetButton.performClick();
+        budgetEnabled = true;
+        if (budget > 9999) {
+            stonesUsed = 9999;
+            stoneCount.setText(String.valueOf(9999));
+        } else {
+            stonesUsed = budget;
+            stoneCount.setText(String.valueOf(budget));
+        }
+
     }
 }

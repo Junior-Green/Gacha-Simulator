@@ -55,7 +55,6 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
         mute_button.setOnClickListener(this);
 
         home_button = findViewById(R.id.home_button2);
-        home_button.setOnClickListener(this);
 
         if (!Dokkan_Summon.volume_state) {
             mute_button.setImageResource(R.drawable.ic_mute_icon);
@@ -100,14 +99,7 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             state = false;
             finish();
-        } else if (view == home_button) {
-            background_audio3.release();
-            Intent i = new Intent(Dokkan_Summon_History.this, HomeScreen.class);
-            startActivity(i);
-            state = false;
-            finish();
         }
-
     }
 
     public static void setLists(ArrayList<Card> list, HashSet<Card> list2) {
@@ -116,6 +108,16 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
         cardsHash = new ArrayList<>();
         cardsHash.addAll(list2);
         cardsHash.removeAll(Arrays.asList(DokkanBanner.RARE, DokkanBanner.SR));
+    }
+
+    @Override
+    public void onBackPressed() {
+        background_audio3.release();
+        Intent i = new Intent(Dokkan_Summon_History.this, Dokkan_Summon.class);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        state = false;
+        finish();
     }
 
     public void onPause() {

@@ -223,7 +223,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
         android:fontFamily="@font/archivo_black"
-        android:text="Summon History"
+        android:text="History"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/home_button"
@@ -346,7 +346,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintVertical_bias="0.22000003" />
 
     <TextView
         android:id="@+id/anchor2"

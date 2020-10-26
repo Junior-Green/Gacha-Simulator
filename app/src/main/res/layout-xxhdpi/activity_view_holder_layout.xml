@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageHolder"
-        android:layout_width="59dp"
-        android:layout_height="59dp"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
