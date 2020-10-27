@@ -85,9 +85,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         background_audio2.setLooping(true);
         background_audio2.start();
 
-        stoneWarning = new Toast(this);
-        stoneWarning.setText("Insufficient Dragonstones. Reset or set new budget");
-        stoneWarning.setDuration(Toast.LENGTH_SHORT);
+        stoneWarning = Toast.makeText(this, "Insufficient Dragonstones. Reset or set new budget", Toast.LENGTH_SHORT);
 
         resetButton = findViewById(R.id.reset);
         resetButton.setOnClickListener(this);
