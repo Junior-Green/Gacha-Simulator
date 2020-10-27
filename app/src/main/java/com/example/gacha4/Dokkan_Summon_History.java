@@ -1,4 +1,4 @@
-package com.example.gachasimulator;
+package com.example.gacha4;
 
 import android.content.Intent;
 import android.media.MediaPlayer;

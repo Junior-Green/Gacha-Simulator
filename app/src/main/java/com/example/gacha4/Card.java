@@ -1,4 +1,4 @@
-package com.example.gachasimulator;
+package com.example.gacha4;
 
 public class Card {
     int id, image;

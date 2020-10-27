@@ -1,4 +1,4 @@
-package com.example.gachasimulator;
+package com.example.gacha4;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -37,7 +37,7 @@ public class BudgetDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String result = budget.getText().toString();
-                        if (!result.isEmpty())
+                        if (!result.isEmpty() && result.length() < 9)
                             listener.getBudget(Integer.parseInt(result));
                     }
                 });

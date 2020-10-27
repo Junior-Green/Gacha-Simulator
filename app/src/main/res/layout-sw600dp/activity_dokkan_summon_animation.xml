@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/slot1"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/slot2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -36,9 +36,9 @@
 
     <ImageView
         android:id="@+id/slot3"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="60dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
@@ -48,8 +48,8 @@
 
     <ImageView
         android:id="@+id/slot4"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -60,8 +60,8 @@
 
     <ImageView
         android:id="@+id/slot5"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -72,8 +72,8 @@
 
     <ImageView
         android:id="@+id/slot6"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -84,8 +84,8 @@
 
     <ImageView
         android:id="@+id/slot7"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -96,8 +96,8 @@
 
     <ImageView
         android:id="@+id/slot8"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginTop="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -108,8 +108,8 @@
 
     <ImageView
         android:id="@+id/slot9"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -120,8 +120,8 @@
 
     <ImageView
         android:id="@+id/slot10"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -132,8 +132,8 @@
 
     <ImageView
         android:id="@+id/banner_image"
-        android:layout_width="516dp"
-        android:layout_height="318dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
@@ -141,38 +141,123 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175" />
+        app:layout_constraintVertical_bias="0.175"
+        tools:srcCompat="@drawable/dokkan_festival_8428" />
 
     <ImageButton
         android:id="@+id/single_button"
-        android:layout_width="207dp"
-        android:layout_height="79dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="250dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="385dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner_image"
+        app:layout_constraintTop_toTopOf="@+id/banner_image"
         app:srcCompat="@drawable/dokkan_single_summon" />
 
     <ImageButton
         android:id="@+id/multi_button"
-        android:layout_width="207dp"
-        android:layout_height="79dp"
+        android:layout_width="250dp"
+        android:layout_height="90dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/single_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/single_button"
         app:srcCompat="@drawable/dokkan_multi_summon" />
+
+    <ImageView
+        android:id="@+id/dragonStoneIcon2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="80dp"
+        android:adjustViewBounds="true"
+        android:background="#000000"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="@+id/multi_button"
+        app:layout_constraintTop_toBottomOf="@+id/multi_button"
+        app:srcCompat="@drawable/dragon_stone" />
+
+    <TextView
+        android:id="@+id/multi_prompt_dokkan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:fontFamily="@font/archivo_black"
+        android:paddingStart="5dp"
+        android:text="x"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dragonStoneIcon2"
+        app:layout_constraintStart_toEndOf="@+id/dragonStoneIcon2"
+        app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon2" />
+
+    <TextView
+        android:id="@+id/multi_prompt_dokkan_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:fontFamily="@font/archivo_black"
+        android:paddingStart="20dp"
+        android:text="50"
+        android:textColor="#FF9800"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dragonStoneIcon2"
+        app:layout_constraintStart_toEndOf="@+id/multi_prompt_dokkan"
+        app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon2" />
+
+    <ImageView
+        android:id="@+id/dragonStoneIcon3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="80dp"
+        android:adjustViewBounds="true"
+        android:background="#000000"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="@+id/single_button"
+        app:layout_constraintTop_toBottomOf="@+id/single_button"
+        app:srcCompat="@drawable/dragon_stone" />
+
+    <TextView
+        android:id="@+id/single_prompt_dokkan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:fontFamily="@font/archivo_black"
+        android:paddingStart="5dp"
+        android:text="x"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dragonStoneIcon3"
+        app:layout_constraintStart_toEndOf="@+id/dragonStoneIcon3"
+        app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon3" />
+
+    <TextView
+        android:id="@+id/single_prompt_dokkan2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:fontFamily="@font/archivo_black"
+        android:paddingStart="20dp"
+        android:text="5"
+        android:textColor="#FF9800"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dragonStoneIcon3"
+        app:layout_constraintStart_toEndOf="@+id/single_prompt_dokkan"
+        app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon3" />
 
     <ImageView
         android:id="@+id/dragonStoneIcon"
@@ -348,7 +433,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26999998" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/anchor2"
@@ -359,13 +444,13 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19999999" />
+        app:layout_constraintVertical_bias="0.18" />
 
     <TextView
         android:id="@+id/stats_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/archivo_black"
         android:text="Stats"
         android:textColor="#FFFFFF"
@@ -379,7 +464,7 @@
         android:id="@+id/stat_1A_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/archivo_black"
         android:text="1"
@@ -392,7 +477,7 @@
         android:id="@+id/stat_2A_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/archivo_black"
         android:text="2"
@@ -405,7 +490,7 @@
         android:id="@+id/stat_3A_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/archivo_black"
         android:text="3"
@@ -418,7 +503,7 @@
         android:id="@+id/stat_4A_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/archivo_black"
         android:text="4"
@@ -432,7 +517,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="70dp"
+        android:layout_marginRight="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="5"
         android:textAlignment="textEnd"
@@ -446,7 +531,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="70dp"
+        android:layout_marginRight="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="6"
         android:textAlignment="textEnd"
@@ -460,7 +545,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="70dp"
+        android:layout_marginRight="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="7"
         android:textAlignment="textEnd"
@@ -474,7 +559,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="70dp"
+        android:layout_marginRight="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="8"
         android:textAlignment="textEnd"
@@ -487,7 +572,7 @@
         android:id="@+id/stat_1_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/archivo_black"
         android:text="SSRs Pulled"
@@ -500,7 +585,7 @@
         android:id="@+id/stat_2_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/archivo_black"
         android:text="Stones/SSR"
@@ -513,7 +598,7 @@
         android:id="@+id/stat_3_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/archivo_black"
         android:text="SSR Rate"
@@ -526,7 +611,7 @@
         android:id="@+id/stat_4_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/archivo_black"
         android:text="Ft. SSR Rate"
@@ -540,7 +625,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="Units Pulled"
         android:textColor="#FFFFFF"
@@ -553,7 +638,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="Ft. Units Pulled"
         android:textColor="#FFFFFF"
@@ -566,7 +651,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="SSRs/Multi"
         android:textColor="#FFFFFF"
@@ -579,7 +664,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="SSRs/Single"
         android:textColor="#FFFFFF"

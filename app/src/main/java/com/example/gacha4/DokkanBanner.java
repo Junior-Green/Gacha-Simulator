@@ -1,4 +1,4 @@
-package com.example.gachasimulator;
+package com.example.gacha4;
 
 import java.util.ArrayList;
 import java.util.Arrays;

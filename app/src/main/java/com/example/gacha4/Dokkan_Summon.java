@@ -1,4 +1,4 @@
-package com.example.gachasimulator;
+package com.example.gacha4;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
