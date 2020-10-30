@@ -19,7 +19,6 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnticipateOvershootInterpolator;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +27,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+
+import com.skydoves.elasticviews.ElasticImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +40,7 @@ import eightbitlab.com.blurview.RenderScriptBlur;
 
 public class Dokkan_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener, BudgetDialog.BudgetDialogListener {
     MediaPlayer background_audio2;
-    ImageButton mute_button, home_button, multi_summon, single_summon, cancel_button;
+    ElasticImageView single_summon, multi_summon, mute_button, home_button, cancel_button;
     ImageView bannerImage;
     TextView stoneCount, resetButton, summonHistoryButton, stats;
     TextView[] statsSlots;
@@ -136,7 +137,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         mute_button = findViewById(R.id.volume_control);
         mute_button.setOnClickListener(this);
 
-        constraintLayout = findViewById(R.id.dokkan_summon_root);
+        constraintLayout = findViewById(R.id.dbl_summon_root);
 
         transition.setInterpolator(new AnticipateOvershootInterpolator(1.0f));
         transition.setDuration(1000);

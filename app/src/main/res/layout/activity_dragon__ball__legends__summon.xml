@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dbl_summon_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dbl_summon_background"
+    android:configChanges="keyboardHidden"
+    android:screenOrientation="portrait"
+    tools:context=".Dokkan_Summon">
+
+    <ImageView
+        android:id="@+id/dbl_bck"
+        android:layout_width="398dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="150dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.25"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/banner_image"
+        app:srcCompat="@drawable/dbl_legends_summonbck" />
+
+    <ImageView
+        android:id="@+id/slot1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot3"
+        app:layout_constraintEnd_toStartOf="@+id/slot2"
+        app:layout_constraintTop_toTopOf="@+id/slot3"
+        tools:srcCompat="@drawable/dbl01_04s" />
+
+    <ImageView
+        android:id="@+id/slot2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot3"
+        app:layout_constraintEnd_toStartOf="@+id/slot3"
+        app:layout_constraintTop_toTopOf="@+id/slot3" />
+
+    <ImageView
+        android:id="@+id/slot3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/single_button" />
+
+    <ImageView
+        android:id="@+id/slot4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot3"
+        app:layout_constraintStart_toEndOf="@+id/slot3"
+        app:layout_constraintTop_toTopOf="@+id/slot3" />
+
+    <ImageView
+        android:id="@+id/slot5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot3"
+        app:layout_constraintStart_toEndOf="@+id/slot4"
+        app:layout_constraintTop_toTopOf="@+id/slot3" />
+
+    <ImageView
+        android:id="@+id/slot6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot8"
+        app:layout_constraintEnd_toStartOf="@+id/slot7"
+        app:layout_constraintTop_toTopOf="@+id/slot8" />
+
+    <ImageView
+        android:id="@+id/slot7"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot8"
+        app:layout_constraintEnd_toStartOf="@+id/slot8"
+        app:layout_constraintTop_toTopOf="@+id/slot8" />
+
+    <ImageView
+        android:id="@+id/slot8"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/slot3"
+        app:layout_constraintStart_toStartOf="@+id/slot3"
+        app:layout_constraintTop_toBottomOf="@+id/slot3" />
+
+    <ImageView
+        android:id="@+id/slot9"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot8"
+        app:layout_constraintStart_toEndOf="@+id/slot8"
+        app:layout_constraintTop_toTopOf="@+id/slot8" />
+
+    <ImageView
+        android:id="@+id/slot10"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/slot8"
+        app:layout_constraintStart_toEndOf="@+id/slot9"
+        app:layout_constraintTop_toTopOf="@+id/slot8" />
+
+    <ImageView
+        android:id="@+id/banner_image"
+        android:layout_width="0dp"
+        android:layout_height="244dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175"
+        app:srcCompat="@drawable/legends_justice_against_evil" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/single_button"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/banner_image"
+        app:srcCompat="@drawable/dbl_single_summon" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/multi_button"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintBottom_toBottomOf="@+id/single_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/single_button"
+        app:srcCompat="@drawable/dbl_multi_summon" />
+
+    <ImageView
+        android:id="@+id/chronoCrystalIcon"
+        android:layout_width="37dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/dbl_chrono_crystal" />
+
+    <TextView
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:text="Reset"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/summon_history_dokkan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:text="History"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slot8" />
+
+    <TextView
+        android:id="@+id/stats_dokkan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:text="Stats"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/home_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slot8" />
+
+    <TextView
+        android:id="@+id/stones_used"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="center"
+        android:maxWidth="100dp"
+        android:maxLines="1"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#F4F4F4"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/chronoCrystalIcon"
+        app:layout_constraintStart_toEndOf="@+id/chronoCrystalIcon"
+        app:layout_constraintTop_toTopOf="@+id/chronoCrystalIcon" />
+
+    <TextView
+        android:id="@+id/dokkan_summon_swipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="@string/SwipePrompt"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/banner_image"
+        app:layout_constraintEnd_toEndOf="@+id/banner_image"
+        app:layout_constraintStart_toStartOf="@+id/banner_image" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/volume_control"
+        android:layout_width="46dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/no_mute" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/home_button"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_home_button" />
+
+    <View
+        android:id="@+id/slider_backdrop_dokkan"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#c7c7cc"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </eightbitlab.com.blurview.BlurView>
+
+    <ImageView
+        android:id="@+id/stat_slider"
+        android:layout_width="407dp"
+        android:layout_height="410dp"
+        android:layout_marginTop="68dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.5"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/anchor"
+        app:srcCompat="@drawable/ic_stats_slider" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/cancel_button_d"
+        android:layout_width="55dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="72dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.5"
+        android:background="#00FFFFFF"
+        android:contentDescription="TODO"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintBottom_toTopOf="@+id/anchor2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_close_button" />
+
+    <TextView
+        android:id="@+id/anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/anchor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/stats_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Stats"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/stat_slider" />
+
+    <TextView
+        android:id="@+id/stat_1A_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="1"
+        android:textColor="#c7c7cc"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_1_d" />
+
+    <TextView
+        android:id="@+id/stat_2A_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="2"
+        android:textColor="#c7c7cc"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_2_d" />
+
+    <TextView
+        android:id="@+id/stat_3A_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="3"
+        android:textColor="#c7c7cc"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_3_d" />
+
+    <TextView
+        android:id="@+id/stat_4A_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="4"
+        android:textColor="#c7c7cc"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_4_d" />
+
+    <TextView
+        android:id="@+id/stat_5A_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="45dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="5"
+        android:textAlignment="textEnd"
+        android:textColor="#c7c7cc"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="@id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_5_d" />
+
+    <TextView
+        android:id="@+id/stat_6A_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="45dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="6"
+        android:textAlignment="textEnd"
+        android:textColor="#c7c7cc"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="@id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_6_d" />
+
+    <TextView
+        android:id="@+id/stat_7A_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="45dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="7"
+        android:textAlignment="textEnd"
+        android:textColor="#c7c7cc"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="@id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@id/stat_7_d" />
+
+    <TextView
+        android:id="@+id/stat_8A_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="45dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="8"
+        android:textAlignment="textEnd"
+        android:textColor="#c7c7cc"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="@id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@id/stat_8_d" />
+
+    <TextView
+        android:id="@+id/stat_1_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="SSRs Pulled"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stats_label" />
+
+    <TextView
+        android:id="@+id/stat_2_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Stones/SSR"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_1A_d" />
+
+    <TextView
+        android:id="@+id/stat_3_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="SSR Rate"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_2A_d" />
+
+    <TextView
+        android:id="@+id/stat_4_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Ft. SSR Rate"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stat_3A_d" />
+
+    <TextView
+        android:id="@+id/stat_5_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="45dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Units Pulled"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@+id/stats_label" />
+
+    <TextView
+        android:id="@+id/stat_6_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="45dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Ft. Units Pulled"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@id/stat_5A_d" />
+
+    <TextView
+        android:id="@+id/stat_7_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="45dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="SSRs/Multi"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@id/stat_6A_d" />
+
+    <TextView
+        android:id="@+id/stat_8_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="45dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="SSRs/Single"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/stat_slider"
+        app:layout_constraintTop_toBottomOf="@id/stat_7A_d" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

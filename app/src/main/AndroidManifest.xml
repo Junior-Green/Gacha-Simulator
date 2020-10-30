@@ -9,17 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Dragon_Ball_Legends_Summon"></activity>
         <activity
-            android:name="com.example.gacha4.ViewHolderLayout"
+            android:name=".ViewHolderLayout"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.gacha4.Dokkan_Summon_History"
+            android:name=".Dokkan_Summon_History"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.gacha4.Dokkan_Summon"
+            android:name=".Dokkan_Summon"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.gacha4.HomeScreen"
+            android:name=".HomeScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.gacha4.splashScreen"
+            android:name=".splashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

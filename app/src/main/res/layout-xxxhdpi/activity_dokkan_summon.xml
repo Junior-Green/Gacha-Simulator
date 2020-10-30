@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dokkan_summon_root"
+    android:id="@+id/dbl_summon_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dokkan_summon_background"
@@ -144,7 +144,7 @@
         app:layout_constraintVertical_bias="0.175"
         tools:srcCompat="@drawable/dokkan_festival_8428" />
 
-    <ImageButton
+    <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/single_button"
         android:layout_width="145dp"
         android:layout_height="50dp"
@@ -154,13 +154,15 @@
         android:contentDescription="@android:string/untitled"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/banner_image"
         app:srcCompat="@drawable/dokkan_single_summon" />
 
-    <ImageButton
+    <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/multi_button"
         android:layout_width="145dp"
         android:layout_height="50dp"
@@ -168,6 +170,8 @@
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
         app:layout_constraintBottom_toBottomOf="@+id/single_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.855"
@@ -256,7 +260,7 @@
         app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon3" />
 
     <ImageView
-        android:id="@+id/dragonStoneIcon"
+        android:id="@+id/chronoCrystalIcon"
         android:layout_width="37dp"
         android:layout_height="42dp"
         android:layout_marginStart="10dp"
@@ -330,9 +334,9 @@
         android:textSize="24sp"
         app:autoSizeMinTextSize="5sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/dragonStoneIcon"
-        app:layout_constraintStart_toEndOf="@+id/dragonStoneIcon"
-        app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon" />
+        app:layout_constraintBottom_toBottomOf="@+id/chronoCrystalIcon"
+        app:layout_constraintStart_toEndOf="@+id/chronoCrystalIcon"
+        app:layout_constraintTop_toTopOf="@+id/chronoCrystalIcon" />
 
     <TextView
         android:id="@+id/dokkan_summon_swipe"
@@ -348,7 +352,7 @@
         app:layout_constraintEnd_toEndOf="@+id/banner_image"
         app:layout_constraintStart_toStartOf="@+id/banner_image" />
 
-    <ImageButton
+    <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/volume_control"
         android:layout_width="37dp"
         android:layout_height="29dp"
@@ -358,11 +362,13 @@
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/no_mute" />
 
-    <ImageButton
+    <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/home_button"
         android:layout_width="80dp"
         android:layout_height="50dp"
@@ -371,6 +377,8 @@
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -413,7 +421,7 @@
         app:layout_constraintTop_toBottomOf="@+id/anchor"
         app:srcCompat="@drawable/ic_stats_slider" />
 
-    <ImageButton
+    <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/cancel_button_d"
         android:layout_width="55dp"
         android:layout_height="51dp"
@@ -423,6 +431,8 @@
         android:background="#00FFFFFF"
         android:contentDescription="TODO"
         android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
         app:layout_constraintBottom_toTopOf="@+id/anchor2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
