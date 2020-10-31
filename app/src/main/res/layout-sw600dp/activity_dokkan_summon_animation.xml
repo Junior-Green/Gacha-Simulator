@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dbl_summon_root"
+    android:id="@+id/dokkan_summon_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dokkan_summon_background"
@@ -260,7 +260,7 @@
         app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon3" />
 
     <ImageView
-        android:id="@+id/chronoCrystalIcon"
+        android:id="@+id/dragonStoneIcon"
         android:layout_width="42dp"
         android:layout_height="59dp"
         android:layout_marginStart="10dp"
@@ -336,9 +336,9 @@
         android:textSize="30sp"
         app:autoSizeMinTextSize="5sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/chronoCrystalIcon"
-        app:layout_constraintStart_toEndOf="@+id/chronoCrystalIcon"
-        app:layout_constraintTop_toTopOf="@+id/chronoCrystalIcon" />
+        app:layout_constraintBottom_toBottomOf="@+id/dragonStoneIcon"
+        app:layout_constraintStart_toEndOf="@+id/dragonStoneIcon"
+        app:layout_constraintTop_toTopOf="@+id/dragonStoneIcon" />
 
     <TextView
         android:id="@+id/dokkan_summon_swipe"

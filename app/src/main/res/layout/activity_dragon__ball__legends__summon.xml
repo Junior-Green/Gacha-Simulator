@@ -222,7 +222,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/summon_history_dokkan"
+        android:id="@+id/summon_history_dbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
@@ -237,7 +237,7 @@
         app:layout_constraintTop_toBottomOf="@+id/slot8" />
 
     <TextView
-        android:id="@+id/stats_dokkan"
+        android:id="@+id/stats_dbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
@@ -252,10 +252,9 @@
         app:layout_constraintTop_toBottomOf="@+id/slot8" />
 
     <TextView
-        android:id="@+id/stones_used"
+        android:id="@+id/crystals_used"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:contentDescription="@android:string/untitled"
         android:fontFamily="@font/archivo_black"
         android:gravity="center"
@@ -271,20 +270,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/chronoCrystalIcon"
         app:layout_constraintStart_toEndOf="@+id/chronoCrystalIcon"
         app:layout_constraintTop_toTopOf="@+id/chronoCrystalIcon" />
-
-    <TextView
-        android:id="@+id/dokkan_summon_swipe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/archivo_black"
-        android:text="@string/SwipePrompt"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/banner_image"
-        app:layout_constraintEnd_toEndOf="@+id/banner_image"
-        app:layout_constraintStart_toStartOf="@+id/banner_image" />
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/volume_control"
@@ -318,8 +303,86 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_home_button" />
 
+    <ImageView
+        android:id="@+id/chronoCyrstalIcon2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="@+id/multi_button"
+        app:layout_constraintTop_toBottomOf="@+id/multi_button"
+        app:srcCompat="@drawable/dbl_chrono_crystal" />
+
+    <TextView
+        android:id="@+id/multi_prompt_dbl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_black"
+        android:paddingStart="5dp"
+        android:text="x"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon2"
+        app:layout_constraintStart_toEndOf="@+id/chronoCyrstalIcon2"
+        app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon2" />
+
+    <TextView
+        android:id="@+id/multi_prompt_dbl_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_black"
+        android:paddingStart="20dp"
+        android:text="1000"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon2"
+        app:layout_constraintStart_toEndOf="@+id/multi_prompt_dbl2"
+        app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon2" />
+
+    <ImageView
+        android:id="@+id/chronoCyrstalIcon3"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="20dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="@+id/single_button"
+        app:layout_constraintTop_toBottomOf="@+id/single_button"
+        app:srcCompat="@drawable/dbl_chrono_crystal" />
+
+    <TextView
+        android:id="@+id/single_prompt_dbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_black"
+        android:paddingStart="5dp"
+        android:text="x"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon3"
+        app:layout_constraintStart_toEndOf="@+id/chronoCyrstalIcon3"
+        app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon3" />
+
+    <TextView
+        android:id="@+id/single_prompt_dbl_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_black"
+        android:paddingStart="20dp"
+        android:text="100"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon3"
+        app:layout_constraintStart_toEndOf="@+id/single_prompt_dbl"
+        app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon3" />
+
     <View
-        android:id="@+id/slider_backdrop_dokkan"
+        android:id="@+id/slider_backdrop_dbl"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#c7c7cc"

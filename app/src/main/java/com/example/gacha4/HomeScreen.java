@@ -112,12 +112,26 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View view) {
         if (view == play || view == play_button) {
-            Intent i = new Intent(HomeScreen.this, Dokkan_Summon.class);
-            background_audio.release();
-            state = false;
-            startActivity(i);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            finish();
+            Intent i;
+            switch (selection) {
+                case 0:
+                    i = new Intent(HomeScreen.this, Dokkan_Summon.class);
+                    background_audio.release();
+                    state = false;
+                    startActivity(i);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    finish();
+                    break;
+                case 1:
+                    i = new Intent(HomeScreen.this, Dragon_Ball_Legends_Summon.class);
+                    background_audio.release();
+                    state = false;
+                    startActivity(i);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    finish();
+                    break;
+                default:
+            }
         } else if (view == app_logo) {
             String appPackageName;
             switch (selection) {
@@ -180,15 +194,16 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
     public boolean onFling(MotionEvent motionDown, MotionEvent motionEnd, float vX, float vY) {
         if (Math.abs(motionDown.getX() - motionEnd.getX()) >= 150 && Math.abs(vX) >= 750) {
             if (motionDown.getX() - motionEnd.getX() < 0) {
-                if (selection == 3)
-                    selection = 0;
-                else
-                    selection++;
-            } else if (motionDown.getX() - motionEnd.getX() > 0) {
                 if (selection == 0)
                     selection = 3;
                 else
                     selection--;
+            } else if (motionDown.getX() - motionEnd.getX() > 0) {
+
+                if (selection == 3)
+                    selection = 0;
+                else
+                    selection++;
             }
             setMedia();
             app_logo.setImageResource(app_icon_id[selection]);

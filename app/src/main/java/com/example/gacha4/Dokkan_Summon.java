@@ -137,7 +137,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         mute_button = findViewById(R.id.volume_control);
         mute_button.setOnClickListener(this);
 
-        constraintLayout = findViewById(R.id.dbl_summon_root);
+        constraintLayout = findViewById(R.id.dokkan_summon_root);
 
         transition.setInterpolator(new AnticipateOvershootInterpolator(1.0f));
         transition.setDuration(1000);
