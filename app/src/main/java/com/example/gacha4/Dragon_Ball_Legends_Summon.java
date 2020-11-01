@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
-import android.transition.ChangeBounds;
-import android.transition.Transition;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +33,6 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     ConstraintLayout constraintLayout;
     ConstraintSet constraintSet1 = new ConstraintSet();
     ConstraintSet constraintSet2 = new ConstraintSet();
-    Transition transition = new ChangeBounds();
     Toast stoneWarning;
     Boolean state = true;
     private static Boolean budgetEnabled = false;
@@ -45,7 +41,8 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     static HashSet<Card> cardsPulledHash = new HashSet<>();
     static ImageView[] unitsSlots;
     static int bannerChoice = 0, stonesUsed = 0, ssrsPulled = 0, unitsPulled = 0, featuredPulled = 0, multiSSRs = 0, singleSSRs = 0, multiCount = 0, singleCount = 0;
-    DokkanBanner[] banners;
+    DokkanBanner[] normalBanners;
+    DBLBanner[] zenkaiBanners;
     GestureDetector detector;
 
     @Override
@@ -64,7 +61,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         DokkanBanner ls_8456 = new DokkanBanner(R.drawable.legendary_summon_8460, DokkanBanner.findCardsById(new ArrayList<>(Arrays.asList(1020200, 1018670, 1018570, 1015090, 1013180, 1013170, 1010150, 1008140, 1002460, 1001970, 1001940, 1001930))),
                 DokkanBanner.customizePool(new ArrayList<>(Arrays.asList(1018670, 1018570, 1015090, 1013180, 1013170, 1008140, 1002460, 1001970, 1001940, 1001930)), null, DokkanBanner.NORMALPOOL, new ArrayList<>(Arrays.asList(1020200, 1010150)), null, DokkanBanner.SUMMONABLELRPOOL), "Top Legendary Summon");
 
-        banners = new DokkanBanner[]{df_8442, ls_8456};
+        normalBanners = new DokkanBanner[]{df_8442, ls_8456};
 
         background_audio3 = MediaPlayer.create(Dragon_Ball_Legends_Summon.this, R.raw.dbl_summon_theme_audio);
         background_audio3.setLooping(true);
@@ -82,7 +79,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         single_summon.setOnClickListener(this);
 
         bannerImage = findViewById(R.id.banner_image);
-        bannerImage.setImageResource(banners[bannerChoice].getImage());
+        bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
         bannerImage.setOnTouchListener(this);
 
         summonHistoryButton = findViewById(R.id.summon_history_dbl);
@@ -104,8 +101,6 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
 
         constraintLayout = findViewById(R.id.dbl_summon_root);
 
-        transition.setInterpolator(new AnticipateOvershootInterpolator(1.0f));
-        transition.setDuration(1000);
 
         if (!volume_state) {
             background_audio3.setVolume(0f, 0f);
@@ -148,16 +143,16 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             finish();
         } else if (view == multi_summon) {
             if (!budgetEnabled || stonesUsed >= 50) {
-                Card[] results = banners[bannerChoice].multiSummon();
+                Card[] results = normalBanners[bannerChoice].multiSummon();
                 for (int i = 0; i < 10; i++) {
                     if (results[i] != DokkanBanner.SR && results[i] != DokkanBanner.RARE) {
                         multiSSRs++;
                         ssrsPulled++;
-                        if (banners[bannerChoice].featured.contains(results[i]))
+                        if (normalBanners[bannerChoice].featured.contains(results[i]))
                             featuredPulled++;
                     }
                     unitsSlots[i].setImageResource(results[i].getCardImage());
-                    if (banners[bannerChoice].featured.contains(results[i]))
+                    if (normalBanners[bannerChoice].featured.contains(results[i]))
                         unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
                     else if (DokkanBanner.SUMMONABLELRPOOL.contains(results[i]))
                         unitsSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
@@ -182,14 +177,14 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                     views.setImageResource(android.R.color.transparent);
                     views.setForeground(getDrawable(R.drawable.blank));
                 }
-                Card result = banners[bannerChoice].singleSummon();
+                Card result = normalBanners[bannerChoice].singleSummon();
                 if (result != DokkanBanner.SR && result != DokkanBanner.RARE) {
                     singleSSRs++;
                     ssrsPulled++;
-                    if (banners[bannerChoice].featured.contains(result))
+                    if (normalBanners[bannerChoice].featured.contains(result))
                         featuredPulled++;
                 }
-                if (banners[bannerChoice].featured.contains(result))
+                if (normalBanners[bannerChoice].featured.contains(result))
                     unitsSlots[0].setForeground(getDrawable(R.drawable.red_border));
                 else if (DokkanBanner.SUMMONABLELRPOOL.contains(result))
                     unitsSlots[0].setForeground(getDrawable(R.drawable.yellow_border));
@@ -291,16 +286,16 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         if (Math.abs(motionDown.getX() - motionEnd.getX()) >= 100 && Math.abs(vX) >= 750) {
             if (motionDown.getX() - motionEnd.getX() < 0) {
                 bannerChoice++;
-                if (bannerChoice > banners.length - 1)
+                if (bannerChoice > normalBanners.length - 1)
                     bannerChoice = 0;
 
-                bannerImage.setImageResource(banners[bannerChoice].getImage());
+                bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
             } else if (motionDown.getX() - motionEnd.getX() > 0) {
                 bannerChoice--;
                 if (bannerChoice < 0)
-                    bannerChoice = banners.length - 1;
+                    bannerChoice = normalBanners.length - 1;
 
-                bannerImage.setImageResource(banners[bannerChoice].getImage());
+                bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
             }
         }
         return true;

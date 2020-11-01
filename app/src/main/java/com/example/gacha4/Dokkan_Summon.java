@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,10 +31,12 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.skydoves.elasticviews.ElasticImageView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Random;
 
 import eightbitlab.com.blurview.BlurView;
 import eightbitlab.com.blurview.RenderScriptBlur;
@@ -212,6 +215,16 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                 stoneWarning.show();
             }
         } else if (view == single_summon) {
+            DecimalFormat df = new DecimalFormat("#.##");
+            while (true) {
+                Random rng = new Random();
+                float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                if (num >= 0 && num <= 27.65) {
+                    Log.d("Random Test", String.valueOf(num));
+                    break;
+                }
+            }
+
             if (!budgetEnabled || stonesUsed >= 5) {
                 for (ImageView views : unitsSlots) {
                     views.setImageResource(android.R.color.transparent);
