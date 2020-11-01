@@ -288,6 +288,7 @@
         android:contentDescription="@android:string/untitled"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
+        android:visibility="invisible"
         app:imageview_duration="200"
         app:imageview_scale="0.9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -308,7 +309,6 @@
         app:imageview_scale="0.9"
         app:layout_constraintBottom_toBottomOf="@+id/single_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/single_button"
         app:srcCompat="@drawable/dbl_multi_summon" />
@@ -380,7 +380,7 @@
         android:text="STEP:"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/banner_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -511,6 +511,7 @@
         android:contentDescription="@android:string/untitled"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/single_button"
         app:layout_constraintTop_toBottomOf="@+id/single_button"
         app:srcCompat="@drawable/dbl_chrono_crystal" />
@@ -524,6 +525,7 @@
         android:text="x"
         android:textColor="#FFFFFF"
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon3"
         app:layout_constraintStart_toEndOf="@+id/chronoCyrstalIcon3"
         app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon3" />
@@ -537,6 +539,7 @@
         android:text="100"
         android:textColor="#FFFFFF"
         android:textSize="10sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon3"
         app:layout_constraintStart_toEndOf="@+id/single_prompt_dbl"
         app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon3" />

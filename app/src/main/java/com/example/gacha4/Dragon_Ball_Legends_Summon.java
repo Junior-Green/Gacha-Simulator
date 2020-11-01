@@ -2,22 +2,16 @@ package com.example.gacha4;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
-import android.transition.TransitionManager;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,26 +27,19 @@ import com.skydoves.elasticviews.ElasticImageView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Locale;
-
-import eightbitlab.com.blurview.BlurView;
-import eightbitlab.com.blurview.RenderScriptBlur;
 
 public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener, BudgetDialog.BudgetDialogListener {
     MediaPlayer background_audio3;
-    ElasticImageView single_summon, multi_summon, mute_button, home_button, cancel_button;
+    ElasticImageView single_summon, multi_summon, mute_button, home_button;
     ImageView bannerImage;
     TextView stoneCount, resetButton, summonHistoryButton, stats;
-    TextView[] statsSlots;
     ConstraintLayout constraintLayout;
     ConstraintSet constraintSet1 = new ConstraintSet();
     ConstraintSet constraintSet2 = new ConstraintSet();
     Transition transition = new ChangeBounds();
-    BlurView blurView;
     Toast stoneWarning;
     Boolean state = true;
     private static Boolean budgetEnabled = false;
-    View backDrop;
     static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled = new ArrayList<>();
     static HashSet<Card> cardsPulledHash = new HashSet<>();
@@ -79,9 +66,6 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
 
         banners = new DokkanBanner[]{df_8442, ls_8456};
 
-        statsSlots = new TextView[]{findViewById(R.id.stat_1A_d), findViewById(R.id.stat_2A_d), findViewById(R.id.stat_3A_d), findViewById(R.id.stat_4A_d),
-                findViewById(R.id.stat_5A_d), findViewById(R.id.stat_6A_d), findViewById(R.id.stat_7A_d), findViewById(R.id.stat_8A_d)};
-
         background_audio3 = MediaPlayer.create(Dragon_Ball_Legends_Summon.this, R.raw.dbl_summon_theme_audio);
         background_audio3.setLooping(true);
         background_audio3.start();
@@ -96,25 +80,6 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
 
         single_summon = findViewById(R.id.single_button);
         single_summon.setOnClickListener(this);
-
-        cancel_button = findViewById(R.id.cancel_button_d);
-        cancel_button.setOnClickListener(this);
-
-        stats = findViewById(R.id.stats_dbl);
-        stats.setOnClickListener(this);
-
-        backDrop = findViewById(R.id.slider_backdrop_dbl);
-
-        blurView = findViewById(R.id.blurView1);
-        View decorView = getWindow().getDecorView();
-        ViewGroup rootView = decorView.findViewById(android.R.id.content);
-        Drawable windowBackground = decorView.getBackground();
-        blurView.setupWith(rootView)
-                .setFrameClearDrawable(windowBackground)
-                .setBlurAlgorithm(new RenderScriptBlur(this))
-                .setBlurRadius(22f)
-                .setBlurEnabled(false)
-                .setHasFixedTransformationMatrix(true);
 
         bannerImage = findViewById(R.id.banner_image);
         bannerImage.setImageResource(banners[bannerChoice].getImage());
@@ -270,69 +235,6 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             state = false;
             Dokkan_Summon_History.setLists(cardsPulled, cardsPulledHash);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else if (view == stats) {
-            statsSlots[0].setText(String.valueOf(ssrsPulled));
-            if (ssrsPulled != 0)
-                statsSlots[1].setText(String.valueOf(Math.round((float) stonesUsed / ssrsPulled * 100) / 100f));
-            else
-                statsSlots[1].setText("N/A");
-
-            if (unitsPulled != 0) {
-                statsSlots[2].setText(("%" + String.format(Locale.getDefault(), "%.1f", (float) ssrsPulled / unitsPulled * 100)));
-                statsSlots[3].setText(("%" + String.format(Locale.getDefault(), "%.1f", (float) featuredPulled / unitsPulled * 100)));
-            } else {
-                statsSlots[2].setText("%0");
-                statsSlots[3].setText("%0");
-            }
-            statsSlots[4].setText(String.valueOf(unitsPulled));
-            statsSlots[5].setText(String.valueOf(featuredPulled));
-            if (multiCount != 0)
-                statsSlots[6].setText((String.format(Locale.getDefault(), "%.1f", (float) multiSSRs / multiCount)));
-            else
-                statsSlots[6].setText("0");
-            if (singleCount != 0)
-                statsSlots[7].setText((String.format(Locale.getDefault(), "%.1f", (float) singleSSRs / singleCount)));
-            else
-                statsSlots[7].setText("0");
-
-            multi_summon.setEnabled(false);
-            single_summon.setEnabled(false);
-            resetButton.setEnabled(false);
-            home_button.setEnabled(false);
-            mute_button.setEnabled(false);
-            cancel_button.setEnabled(true);
-            view.setEnabled(false);
-            blurView.setBlurEnabled(true);
-            backDrop.setVisibility(View.VISIBLE);
-            backDrop.setAlpha(0f);
-            backDrop.animate().alpha(0.3f).setDuration(1000);
-            TransitionManager.beginDelayedTransition(constraintLayout, transition);
-            constraintSet2.applyTo(constraintLayout);
-        } else if (view == cancel_button) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    multi_summon.setEnabled(true);
-                    single_summon.setEnabled(true);
-                    resetButton.setEnabled(true);
-                    home_button.setEnabled(true);
-                    mute_button.setEnabled(true);
-                    stats.setEnabled(true);
-                }
-            }, 1000);
-            view.setEnabled(false);
-            backDrop.setAlpha(1f);
-            Animation fadeOut = new AlphaAnimation(0.3f, 0);
-            fadeOut.setDuration(2000);
-            backDrop.startAnimation(fadeOut);
-            TransitionManager.beginDelayedTransition(constraintLayout, transition);
-            constraintSet1.applyTo(constraintLayout);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    blurView.setBlurEnabled(false);
-                }
-            }, 500);
         } else if (view == stoneCount) {
             openDialog();
         }
