@@ -8,10 +8,10 @@ import java.util.Random;
 public class DBLBanner {
     int image, step;
     String name;
+    Boolean isStepUp, isGuranteed;
+    Card zenkaiUnit;
     private static Random rng = new Random();
     private static DecimalFormat df = new DecimalFormat("#.##");
-    Boolean isStepUp;
-    Card zenkaiUnit;
     public ArrayList<Card> featured, unfeatured, banner, legendsLimited;
     public static final Card EX = new Card(R.drawable.dbl_ex_icon, "EX");
     public static final Card HE = new Card(R.drawable.dbl_he_icon, "HE");
@@ -53,13 +53,14 @@ public class DBLBanner {
             new Card(R.drawable.dbl26_02s, 2602), new Card(R.drawable.dbl26_03s, 2603), new Card(R.drawable.dbl26_06s, 2606), new Card(R.drawable.dbl26_08s, 2608),
             new Card(R.drawable.dbl27_05s, 2705), new Card(R.drawable.dbl27_06s, 2706), new Card(R.drawable.dbl28_05s, 2805), new Card(R.drawable.dbl28_06s, 2806)));
 
-    public DBLBanner(int bannerImage, String name, ArrayList<Card> bannerPool, ArrayList<Card> unfeaturedPool, ArrayList<Card> featuredPool, ArrayList<Card> legendsLimitedPool, Boolean stepUp) {
+    public DBLBanner(int bannerImage, String name, ArrayList<Card> bannerPool, ArrayList<Card> unfeaturedPool, ArrayList<Card> featuredPool, ArrayList<Card> legendsLimitedPool, Boolean stepUp, Boolean isGuranteed) {
         image = bannerImage;
         featured = featuredPool;
         unfeatured = unfeaturedPool;
         banner = bannerPool;
         legendsLimited = legendsLimitedPool;
         this.name = name;
+        this.isGuranteed = isGuranteed;
         isStepUp = stepUp;
         if (isStepUp)
             step = 1;
@@ -71,30 +72,133 @@ public class DBLBanner {
         this.zenkaiUnit = zenkaiUnit;
     }
 
-    public Card[] multiSummon() {
-        Card[] results = new Card[10];
+    public ArrayList<Card> multiSummon() {
+        ArrayList<Card> results = new ArrayList<>();
         if (isStepUp) {
             switch (step) {
                 case 1:
                     for (int i = 0; i < 3; i++) {
-                        float num = Integer.parseInt(df.format(rng.nextFloat() * 100));
+                        float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
                         if (num >= 0 && num <= 0.75)
-                            results[i] = legendsLimited.get(rng.nextInt(3));
-//                        else if(num > 0.75 && num <= 8.75)
-
+                            results.add(legendsLimited.get(rng.nextInt(legendsLimited.size())));
+                        else if (num > 0.75 && num <= 2.75)
+                            results.add(featured.get(rng.nextInt(featured.size())));
+                        else if (num > 2.75 && num <= 8.75)
+                            results.add(banner.get(rng.nextInt(banner.size())));
+                        else if (num > 8.75 && num <= 10)
+                            results.add(unfeatured.get(rng.nextInt(unfeatured.size())));
+                        else if (num > 10 && num <= 35)
+                            results.add(DBLBanner.EX);
+                        else
+                            results.add(DBLBanner.HE);
                     }
+                    break;
+                case 2:
+                    for (int i = 0; i < 5; i++) {
+                        float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                        if (num >= 0 && num <= 0.75)
+                            results.add(legendsLimited.get(rng.nextInt(legendsLimited.size())));
+                        else if (num > 0.75 && num <= 2.75)
+                            results.add(featured.get(rng.nextInt(featured.size())));
+                        else if (num > 2.75 && num <= 8.75)
+                            results.add(banner.get(rng.nextInt(banner.size())));
+                        else if (num > 8.75 && num <= 10)
+                            results.add(unfeatured.get(rng.nextInt(unfeatured.size())));
+                        else
+                            results.add(DBLBanner.EX);
+                    }
+                    break;
+                case 3:
+                case 6:
+                case 7:
+                    for (int i = 0; i < 10; i++) {
+                        float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                        if (num >= 0 && num <= 0.75)
+                            results.add(legendsLimited.get(rng.nextInt(legendsLimited.size())));
+                        else if (num > 0.75 && num <= 2.75)
+                            results.add(featured.get(rng.nextInt(featured.size())));
+                        else if (num > 2.75 && num <= 8.75)
+                            results.add(banner.get(rng.nextInt(banner.size())));
+                        else if (num > 8.75 && num <= 10)
+                            results.add(unfeatured.get(rng.nextInt(unfeatured.size())));
+                        else if (num > 10 && num <= 35)
+                            results.add(DBLBanner.EX);
+                        else
+                            results.add(DBLBanner.HE);
+                    }
+                    break;
+                case 4:
+                    for (int i = 0; i < 10; i++) {
+                        float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                        if (num >= 0 && num <= 0.75)
+                            results.add(legendsLimited.get(rng.nextInt(legendsLimited.size())));
+                        else if (num > 0.75 && num <= 2.75)
+                            results.add(featured.get(rng.nextInt(featured.size())));
+                        else if (num > 2.75 && num <= 8.75)
+                            results.add(banner.get(rng.nextInt(banner.size())));
+                        else if (num > 8.75 && num <= 10)
+                            results.add(unfeatured.get(rng.nextInt(unfeatured.size())));
+                        else
+                            results.add(DBLBanner.EX);
+                    }
+                    break;
+                case 5:
+                    df.applyPattern("#.###");
+                    for (int i = 0; i < 10; i++) {
+                        float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                        if (num >= 0 && num <= 0.75)
+                            results.add(legendsLimited.get(rng.nextInt(legendsLimited.size())));
+                        else if (num > 0.75 && num <= 4.75)
+                            results.add(featured.get(rng.nextInt(featured.size())));
+                        else if (num > 4.75 && num <= 10.75)
+                            results.add(banner.get(rng.nextInt(banner.size())));
+                        else if (num > 10.75 && num <= 12.00)
+                            results.add(unfeatured.get(rng.nextInt(unfeatured.size())));
+                        else if (num > 12 && num <= 37.418)
+                            results.add(DBLBanner.EX);
+                        else
+                            results.add(DBLBanner.HE);
+                    }
+                    df.applyPattern("#.##");
+                    break;
                 default:
                     results = null;
+                    break;
+            }
+            step++;
+            if (step > 7)
+                step = 3;
+        } else if (isGuranteed) {
+            for (int i = 0; i < 9; i++) {
+                float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                if (num >= 0 && num <= 10)
+                    results.add(banner.get(rng.nextInt(banner.size())));
+                else if (num > 10 && num <= 35)
+                    results.add(DBLBanner.EX);
+                else results.add(DBLBanner.HE);
+            }
+            results.add(banner.get(rng.nextInt(banner.size())));
+        } else {
+            for (int i = 0; i < 10; i++) {
+                float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                if (num >= 0 && num <= 10)
+                    results.add(banner.get(rng.nextInt(banner.size())));
+                else if (num > 10 && num <= 35)
+                    results.add(DBLBanner.EX);
+                else results.add(DBLBanner.HE);
             }
         }
-        step++;
         return results;
+    }
+
+    public Card singleSummon() {
+        return null;
     }
 
     public int[] zenkaiMulti() {
         int[] results = new int[10];
         for (int i = 0; i < 10; i++) {
-            float num = Integer.parseInt(df.format(rng.nextFloat() * 100));
+            float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
             if (num >= 0 && num <= 27.65)
                 results[i] = 70;
             else if (num > 27.65 && num <= 27.75)
@@ -109,7 +213,7 @@ public class DBLBanner {
 
     public int zenkaiSingle() {
         int result = 0;
-        float num = Integer.parseInt(df.format(rng.nextFloat() * 100));
+        float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
         if (num >= 0 && num <= 27.65)
             result = 70;
         else if (num > 27.65 && num <= 27.75)
@@ -120,5 +224,13 @@ public class DBLBanner {
             result = 100;
 
         return result;
+    }
+
+    public int getStep() {
+        return step;
+    }
+
+    public int getImage() {
+        return image;
     }
 }
