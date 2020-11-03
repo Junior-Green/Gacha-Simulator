@@ -9,11 +9,6 @@ public class Card {
         image = cardImage;
     }
 
-    public Card(int cardImage, String cardID) {
-        id_string = cardID;
-        image = cardImage;
-    }
-
     public int getCardImage() {
         return image;
     }

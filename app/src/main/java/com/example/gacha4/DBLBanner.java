@@ -7,14 +7,13 @@ import java.util.Random;
 
 public class DBLBanner {
     int image, step;
-    String name;
     Boolean isStepUp, isGuranteed;
     Card zenkaiUnit;
     private static Random rng = new Random();
-    private static DecimalFormat df = new DecimalFormat("#.##");
+    private static DecimalFormat df = new DecimalFormat("#.###");
     public ArrayList<Card> featured, unfeatured, banner, legendsLimited;
-    public static final Card EX = new Card(R.drawable.dbl_ex_icon, "EX");
-    public static final Card HE = new Card(R.drawable.dbl_he_icon, "HE");
+    public static final Card EX = new Card(R.drawable.dbl_ex_icon, 0);
+    public static final Card HE = new Card(R.drawable.dbl_he_icon, 1);
     public static final ArrayList<Card> ZENKAIS = new ArrayList<>(Arrays.asList(new Card(R.drawable.dbl06_11s_zenkai_zpower, 611), new Card(R.drawable.dbl06_11s_zenkai_zpower, 613)));
     public static final ArrayList<Card> SPARKINGS = new ArrayList<>(Arrays.asList(new Card(R.drawable.dbl01_04s, 104), new Card(R.drawable.dbl01_05s, 105), new Card(R.drawable.dbl01_07s, 107),
             new Card(R.drawable.dbl01_16s, 116), new Card(R.drawable.dbl01_17s, 117), new Card(R.drawable.dbl01_35s, 135), new Card(R.drawable.dbl01_36s, 136),
@@ -51,28 +50,45 @@ public class DBLBanner {
             new Card(R.drawable.dbl23_01s, 2301), new Card(R.drawable.dbl23_02s, 2302), new Card(R.drawable.dbl23_04s, 2304), new Card(R.drawable.dbl23_05s, 2305),
             new Card(R.drawable.dbl24_01s, 2401), new Card(R.drawable.dbl24_08s, 2408), new Card(R.drawable.dbl24_13s, 2413), new Card(R.drawable.dbl24_15s, 2415),
             new Card(R.drawable.dbl26_02s, 2602), new Card(R.drawable.dbl26_03s, 2603), new Card(R.drawable.dbl26_06s, 2606), new Card(R.drawable.dbl26_08s, 2608),
-            new Card(R.drawable.dbl27_05s, 2705), new Card(R.drawable.dbl27_06s, 2706), new Card(R.drawable.dbl28_05s, 2805), new Card(R.drawable.dbl28_06s, 2806)));
+            new Card(R.drawable.dbl27_05s, 2705), new Card(R.drawable.dbl27_06s, 2706), new Card(R.drawable.dbl28_05s, 2805), new Card(R.drawable.dbl28_06s, 2806),
+            new Card(R.drawable.dbl15_05s, 1505)));
 
-    public DBLBanner(int bannerImage, String name, ArrayList<Card> bannerPool, ArrayList<Card> unfeaturedPool, ArrayList<Card> featuredPool, ArrayList<Card> legendsLimitedPool, Boolean stepUp, Boolean isGuranteed) {
+    public DBLBanner(int bannerImage, ArrayList<Card> bannerPool, ArrayList<Card> unfeaturedPool, ArrayList<Card> featuredPool, ArrayList<Card> legendsLimitedPool, Boolean isStepUp, Boolean isGuranteed) {
         image = bannerImage;
         featured = featuredPool;
         unfeatured = unfeaturedPool;
         banner = bannerPool;
         legendsLimited = legendsLimitedPool;
-        this.name = name;
         this.isGuranteed = isGuranteed;
-        isStepUp = stepUp;
-        if (isStepUp)
+        this.isStepUp = isStepUp;
+        if (this.isStepUp)
             step = 1;
     }
 
-    public DBLBanner(int bannerImage, String name, Card zenkaiUnit) {
+    public DBLBanner(int bannerImage, Card zenkaiUnit) {
         image = bannerImage;
-        this.name = name;
         this.zenkaiUnit = zenkaiUnit;
     }
 
-    public ArrayList<Card> multiSummon() {
+    public static ArrayList<Card> findCardsByID(ArrayList<Integer> ids, ArrayList<Card> pool) {
+        ArrayList<Card> results = new ArrayList<>();
+        for (int id : ids)
+            for (Card card : pool)
+                if (card.getCardID() == id)
+                    results.add(card);
+
+        return results;
+    }
+
+    public static Card findCardByID(int id, ArrayList<Card> pool) {
+        for (Card card : pool)
+            if (card.getCardID() == id)
+                return card;
+
+        return null;
+    }
+
+    public ArrayList<Card> stepUpSummon() {
         ArrayList<Card> results = new ArrayList<>();
         if (isStepUp) {
             switch (step) {
@@ -143,7 +159,6 @@ public class DBLBanner {
                     }
                     break;
                 case 5:
-                    df.applyPattern("#.###");
                     for (int i = 0; i < 10; i++) {
                         float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
                         if (num >= 0 && num <= 0.75)
@@ -159,7 +174,6 @@ public class DBLBanner {
                         else
                             results.add(DBLBanner.HE);
                     }
-                    df.applyPattern("#.##");
                     break;
                 default:
                     results = null;
@@ -168,31 +182,95 @@ public class DBLBanner {
             step++;
             if (step > 7)
                 step = 3;
-        } else if (isGuranteed) {
+        }
+        return results;
+    }
+
+    public Card[] guranteedSummmon() {
+        Card[] results = new Card[10];
+        float num;
+        if (legendsLimited.isEmpty()) {
             for (int i = 0; i < 9; i++) {
-                float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                num = Float.parseFloat(df.format(rng.nextFloat() * 100));
                 if (num >= 0 && num <= 10)
-                    results.add(banner.get(rng.nextInt(banner.size())));
+                    results[i] = (banner.get(rng.nextInt(banner.size())));
                 else if (num > 10 && num <= 35)
-                    results.add(DBLBanner.EX);
-                else results.add(DBLBanner.HE);
+                    results[i] = (DBLBanner.EX);
+                else results[i] = (DBLBanner.HE);
             }
-            results.add(banner.get(rng.nextInt(banner.size())));
+            results[9] = banner.get(rng.nextInt(banner.size()));
+        } else {
+            for (int i = 0; i < 9; i++) {
+                num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                if (num >= 0 && num <= 0.25 * legendsLimited.size())
+                    results[i] = legendsLimited.get(rng.nextInt(legendsLimited.size()));
+                else if (num > legendsLimited.size() * 0.25 && num <= 10)
+                    results[i] = banner.get(rng.nextInt(banner.size()));
+                else if (num > 10 && num <= 35)
+                    results[i] = DBLBanner.EX;
+                else
+                    results[i] = DBLBanner.HE;
+            }
+            num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+            if (num >= 0 && num <= legendsLimited.size() * 2.5)
+                results[9] = legendsLimited.get(rng.nextInt(legendsLimited.size()));
+            else
+                results[9] = banner.get(rng.nextInt(banner.size()));
+        }
+        return results;
+    }
+
+    public Card[] normalSummon() {
+        Card[] results = new Card[10];
+        float num;
+        if (legendsLimited.isEmpty()) {
+            for (int i = 0; i < 10; i++) {
+                num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                if (num >= 0 && num <= 10)
+                    results[i] = (banner.get(rng.nextInt(banner.size())));
+                else if (num > 10 && num <= 35)
+                    results[i] = (DBLBanner.EX);
+                else results[i] = (DBLBanner.HE);
+            }
         } else {
             for (int i = 0; i < 10; i++) {
-                float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
-                if (num >= 0 && num <= 10)
-                    results.add(banner.get(rng.nextInt(banner.size())));
+                num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+                if (num >= 0 && num <= 0.25 * legendsLimited.size())
+                    results[i] = legendsLimited.get(rng.nextInt(legendsLimited.size()));
+                else if (num > 0.25 * legendsLimited.size() && num <= 10)
+                    results[i] = banner.get(rng.nextInt(banner.size()));
                 else if (num > 10 && num <= 35)
-                    results.add(DBLBanner.EX);
-                else results.add(DBLBanner.HE);
+                    results[i] = DBLBanner.EX;
+                else
+                    results[i] = DBLBanner.HE;
             }
         }
         return results;
     }
 
     public Card singleSummon() {
-        return null;
+        Card result = null;
+        float num;
+        if (legendsLimited.isEmpty()) {
+            num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+            if (num >= 0 && num <= 10)
+                result = (banner.get(rng.nextInt(banner.size())));
+            else if (num > 10 && num <= 35)
+                result = (DBLBanner.EX);
+            else result = (DBLBanner.HE);
+
+        } else {
+            num = Float.parseFloat(df.format(rng.nextFloat() * 100));
+            if (num >= 0 && num <= 0.25 * legendsLimited.size())
+                result = legendsLimited.get(rng.nextInt(legendsLimited.size()));
+            else if (num > 0.25 * legendsLimited.size() && num <= 10)
+                result = banner.get(rng.nextInt(banner.size()));
+            else if (num > 10 && num <= 35)
+                result = DBLBanner.EX;
+            else
+                result = DBLBanner.HE;
+        }
+        return result;
     }
 
     public int[] zenkaiMulti() {
@@ -232,5 +310,36 @@ public class DBLBanner {
 
     public int getImage() {
         return image;
+    }
+
+    public int getMultiCost() {
+        if (!isStepUp)
+            return 1000;
+        else {
+            switch (step) {
+                case 1:
+                    return 100;
+                case 2:
+                    return 300;
+                case 3:
+                    return 700;
+                case 7:
+                    return 0;
+                default:
+                    return 1000;
+            }
+        }
+    }
+
+    public ArrayList<Card> getBannerCards() {
+        return banner;
+    }
+
+    public ArrayList<Card> getFeaturedCards() {
+        return featured;
+    }
+
+    public ArrayList<Card> getLegendsLimitedCards() {
+        return legendsLimited;
     }
 }

@@ -5,11 +5,15 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.ChangeBounds;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +25,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.skydoves.elasticviews.ElasticImageView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -29,39 +34,49 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     MediaPlayer background_audio3;
     ElasticImageView single_summon, multi_summon, mute_button, home_button;
     ImageView bannerImage;
-    TextView stoneCount, resetButton, summonHistoryButton, stats;
+    TextView crystalCount, resetButton, summonHistoryButton, bannerSwitch, multiCost, stepNumber;
     ConstraintLayout constraintLayout;
+    Boolean isNormal = true;
     ConstraintSet constraintSet1 = new ConstraintSet();
     ConstraintSet constraintSet2 = new ConstraintSet();
+    Transition transition = new ChangeBounds();
     Toast stoneWarning;
     Boolean state = true;
     private static Boolean budgetEnabled = false;
     static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled = new ArrayList<>();
     static HashSet<Card> cardsPulledHash = new HashSet<>();
-    static ImageView[] unitsSlots;
-    static int bannerChoice = 0, stonesUsed = 0, ssrsPulled = 0, unitsPulled = 0, featuredPulled = 0, multiSSRs = 0, singleSSRs = 0, multiCount = 0, singleCount = 0;
-    DokkanBanner[] normalBanners;
+    static ImageView[] unitSlots;
+    static TextView[] zPowerSlots;
+    static int bannerChoice = 0, crystalsUsed = 0;
+    DBLBanner[] normalBanners;
     DBLBanner[] zenkaiBanners;
     GestureDetector detector;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        /*constraintSet1.clone(this, R.layout.activity_dokkan_summon);
-        constraintSet2.clone(this, R.layout.activity_dokkan_summon_animation);*/
-        setContentView(R.layout.activity_dragon__ball__legends__summon);
+        constraintSet1.clone(this, R.layout.activity_dragon__ball__legends__summon);
+        constraintSet2.clone(this, R.layout.activity_dragon_ball_legends_summon_multi_only);
+        setContentView(R.layout.activity_dragon_ball_legends_summon_multi_only);
 
-        DokkanBanner df_8442 = new DokkanBanner(R.drawable.dokkan_festival_8442, DokkanBanner.findCardsById(new ArrayList<>(Arrays.asList(1020440, 1020270, 1019130, 1018750, 1017880, 1015740, 1015150, 1012880, 1012580, 1008410))),
-                DokkanBanner.customizePool(new ArrayList<>(Arrays.asList(1020520, 1020270)), null, DokkanBanner.NORMALPOOL), "DOKKAN FESTIVAL (A) 8442");
+        DBLBanner legends_justice_against_evil = new DBLBanner(R.drawable.legends_justice_against_evil, DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2408, 1806, 1501, 1703, 1701, 202)), DBLBanner.SPARKINGS),
+                DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2002, 2001, 2209, 1903, 1803, 1601, 1507, 1302, 1301, 909, 1106, 907, 905, 906, 813, 707, 1502, 814, 613, 802, 801, 135, 508, 306, 803)), DBLBanner.SPARKINGS),
+                DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2706, 2705)), DBLBanner.SPARKINGS), DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2205, 1805, 1206)), DBLBanner.SPARKINGS), true, false);
 
-        DokkanBanner ls_8456 = new DokkanBanner(R.drawable.legendary_summon_8460, DokkanBanner.findCardsById(new ArrayList<>(Arrays.asList(1020200, 1018670, 1018570, 1015090, 1013180, 1013170, 1010150, 1008140, 1002460, 1001970, 1001940, 1001930))),
-                DokkanBanner.customizePool(new ArrayList<>(Arrays.asList(1018670, 1018570, 1015090, 1013180, 1013170, 1008140, 1002460, 1001970, 1001940, 1001930)), null, DokkanBanner.NORMALPOOL, new ArrayList<>(Arrays.asList(1020200, 1010150)), null, DokkanBanner.SUMMONABLELRPOOL), "Top Legendary Summon");
+        DBLBanner legends_the_6th_universe = new DBLBanner(R.drawable.legends_the_6th_universe, DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2415, 2413, 2006, 2005, 613, 135)), DBLBanner.SPARKINGS),
+                DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2305, 2002, 2001, 2209, 1903, 1803, 1806, 1703, 1601, 1701, 1508, 1507, 1302, 1301, 909, 903, 813, 709, 707, 704, 904, 814, 215, 901, 116)), DBLBanner.SPARKINGS),
+                DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2805, 2806)), DBLBanner.SPARKINGS), DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2401, 1505, 711)), DBLBanner.SPARKINGS), true, false);
 
-        normalBanners = new DokkanBanner[]{df_8442, ls_8456};
+        DBLBanner zenkai_awakening_goku_black = new DBLBanner(R.drawable.zenkai_awakening_goku_black, DBLBanner.findCardByID(613, DBLBanner.ZENKAIS));
+        DBLBanner zenkai_awakening_super_saiyan_3_goku = new DBLBanner(R.drawable.zenkai_awakening_super_saiyan_3_goku, DBLBanner.findCardByID(611, DBLBanner.ZENKAIS));
+
+        normalBanners = new DBLBanner[]{legends_justice_against_evil, legends_the_6th_universe};
+        zenkaiBanners = new DBLBanner[]{zenkai_awakening_goku_black, zenkai_awakening_super_saiyan_3_goku};
 
         background_audio3 = MediaPlayer.create(Dragon_Ball_Legends_Summon.this, R.raw.dbl_summon_theme_audio);
         background_audio3.setLooping(true);
@@ -82,6 +97,12 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
         bannerImage.setOnTouchListener(this);
 
+        bannerSwitch = findViewById(R.id.bannerSwitch_dbl);
+        bannerSwitch.setOnClickListener(this);
+
+        stepNumber = findViewById(R.id.stepNumber);
+        stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
+
         summonHistoryButton = findViewById(R.id.summon_history_dbl);
         summonHistoryButton.setOnClickListener(this);
 
@@ -90,18 +111,33 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         home_button = findViewById(R.id.home_button);
         home_button.setOnClickListener(this);
 
-        stoneCount = findViewById(R.id.crystals_used);
-        stoneCount.setText(Integer.toString(stonesUsed));
-        stoneCount.setOnClickListener(this);
+        multiCost = findViewById(R.id.multi_prompt_dbl_);
+        multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
 
-        unitsSlots = new ImageView[]{findViewById(R.id.slot1), findViewById(R.id.slot2), findViewById(R.id.slot3), findViewById(R.id.slot4), findViewById(R.id.slot5),
+        transition.setInterpolator(new AnticipateOvershootInterpolator(1.0f));
+        transition.setDuration(1000);
+
+        crystalCount = findViewById(R.id.crystals_used);
+        crystalCount.setText(Integer.toString(crystalsUsed));
+        crystalCount.setOnClickListener(this);
+
+        multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
+
+        unitSlots = new ImageView[]{findViewById(R.id.slot1), findViewById(R.id.slot2), findViewById(R.id.slot3), findViewById(R.id.slot4), findViewById(R.id.slot5),
                 findViewById(R.id.slot6), findViewById(R.id.slot7), findViewById(R.id.slot8), findViewById(R.id.slot9), findViewById(R.id.slot10),};
+
+        zPowerSlots = new TextView[]{findViewById(R.id.slot1A), findViewById(R.id.slot2A), findViewById(R.id.slot3A), findViewById(R.id.slot4A), findViewById(R.id.slot5A),
+                findViewById(R.id.slot6A), findViewById(R.id.slot7A), findViewById(R.id.slot8A), findViewById(R.id.slot9A), findViewById(R.id.slot10A)};
+
+        for (int i = 0; i < 10; i++) {
+            unitSlots[i].setImageResource(android.R.color.transparent);
+            unitSlots[i].setForeground(getDrawable(R.drawable.blank));
+            zPowerSlots[i].setText("");
+        }
         mute_button = findViewById(R.id.volume_control);
         mute_button.setOnClickListener(this);
 
         constraintLayout = findViewById(R.id.dbl_summon_root);
-
-
         if (!volume_state) {
             background_audio3.setVolume(0f, 0f);
             mute_button.setImageResource(R.drawable.ic_mute_icon);
@@ -142,87 +178,69 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             startActivity(i);
             finish();
         } else if (view == multi_summon) {
-            if (!budgetEnabled || stonesUsed >= 50) {
-                Card[] results = normalBanners[bannerChoice].multiSummon();
-                for (int i = 0; i < 10; i++) {
-                    if (results[i] != DokkanBanner.SR && results[i] != DokkanBanner.RARE) {
-                        multiSSRs++;
-                        ssrsPulled++;
-                        if (normalBanners[bannerChoice].featured.contains(results[i]))
-                            featuredPulled++;
+            for (int i = 0; i < 10; i++) {
+                unitSlots[i].setImageResource(android.R.color.transparent);
+                unitSlots[i].setForeground(getDrawable(R.drawable.blank));
+                zPowerSlots[i].setText("");
+            }
+            if (isNormal) {
+                if (normalBanners[bannerChoice].isStepUp) {
+                    ArrayList<Card> results;
+                    results = normalBanners[bannerChoice].stepUpSummon();
+                    multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
+                    stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
+                    for (int i = 0; i < results.size(); i++) {
+                        unitSlots[i].setImageResource(results.get(i).getCardImage());
+                        if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i)) || normalBanners[bannerChoice].getFeaturedCards().contains(results.get(i))) {
+                            unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                            zPowerSlots[i].setText("x600");
+                        } else if (normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
+                            unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                            zPowerSlots[i].setText("x600");
+                        } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
+                            zPowerSlots[i].setText("x600");
+                        }
                     }
-                    unitsSlots[i].setImageResource(results[i].getCardImage());
-                    if (normalBanners[bannerChoice].featured.contains(results[i]))
-                        unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
-                    else if (DokkanBanner.SUMMONABLELRPOOL.contains(results[i]))
-                        unitsSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
-                    else
-                        unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
                 }
-                cardsPulled.addAll(Arrays.asList(results));
-                cardsPulledHash.addAll(Arrays.asList(results));
-                multiCount++;
-                unitsPulled += 10;
-                if (!budgetEnabled)
-                    stonesUsed += 50;
-                else
-                    stonesUsed -= 50;
-                stoneCount.setText(Integer.toString(stonesUsed));
-            } else {
-                stoneWarning.show();
             }
         } else if (view == single_summon) {
-            if (!budgetEnabled || stonesUsed >= 5) {
-                for (ImageView views : unitsSlots) {
+            if (!budgetEnabled || crystalsUsed >= 5) {
+                for (ImageView views : unitSlots) {
                     views.setImageResource(android.R.color.transparent);
                     views.setForeground(getDrawable(R.drawable.blank));
                 }
                 Card result = normalBanners[bannerChoice].singleSummon();
-                if (result != DokkanBanner.SR && result != DokkanBanner.RARE) {
-                    singleSSRs++;
-                    ssrsPulled++;
-                    if (normalBanners[bannerChoice].featured.contains(result))
-                        featuredPulled++;
-                }
-                if (normalBanners[bannerChoice].featured.contains(result))
-                    unitsSlots[0].setForeground(getDrawable(R.drawable.red_border));
-                else if (DokkanBanner.SUMMONABLELRPOOL.contains(result))
-                    unitsSlots[0].setForeground(getDrawable(R.drawable.yellow_border));
-                else
-                    unitsSlots[0].setForeground(getDrawable(R.drawable.blank));
 
-                unitsSlots[0].setImageResource(result.getCardImage());
+                if (normalBanners[bannerChoice].featured.contains(result))
+                    unitSlots[0].setForeground(getDrawable(R.drawable.red_border));
+                else if (DokkanBanner.SUMMONABLELRPOOL.contains(result))
+                    unitSlots[0].setForeground(getDrawable(R.drawable.yellow_border));
+                else
+                    unitSlots[0].setForeground(getDrawable(R.drawable.blank));
+
+                unitSlots[0].setImageResource(result.getCardImage());
                 cardsPulled.add(result);
                 cardsPulledHash.add(result);
-                singleCount++;
-                unitsPulled++;
                 if (!budgetEnabled)
-                    stonesUsed += 5;
+                    crystalsUsed += 5;
                 else
-                    stonesUsed -= 5;
-                stoneCount.setText(Integer.toString(stonesUsed));
+                    crystalsUsed -= 5;
+                crystalCount.setText(Integer.toString(crystalsUsed));
             } else {
                 stoneWarning.show();
             }
-        } else if (view == resetButton) {
+        } else if (view == resetButton) { //FIX
             if (budgetEnabled)
                 budgetEnabled = false;
-            stonesUsed = 0;
-            ssrsPulled = 0;
-            unitsPulled = 0;
-            featuredPulled = 0;
-            multiSSRs = 0;
-            singleSSRs = 0;
-            multiCount = 0;
-            singleCount = 0;
+            crystalsUsed = 0;
             cardsPulledHash.clear();
             cardsPulled.clear();
-            for (ImageView views : unitsSlots) {
-                views.setForeground(getDrawable(R.drawable.blank));
-                views.setImageResource(android.R.color.transparent);
+            for (int i = 0; i < 10; i++) {
+                unitSlots[i].setImageResource(android.R.color.transparent);
+                unitSlots[i].setForeground(getDrawable(R.drawable.blank));
+                zPowerSlots[i].setText("");
             }
-
-            stoneCount.setText(Integer.toString(stonesUsed));
+            crystalCount.setText(Integer.toString(crystalsUsed));
         } else if (view == summonHistoryButton) {
             background_audio3.release();
             Intent i = new Intent(Dragon_Ball_Legends_Summon.this, Dokkan_Summon_History.class);
@@ -230,8 +248,17 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             state = false;
             Dokkan_Summon_History.setLists(cardsPulled, cardsPulledHash);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else if (view == stoneCount) {
+        } else if (view == crystalCount) {
             openDialog();
+        } else if (view == bannerSwitch) //FIX
+        {
+            isNormal = !isNormal;
+            if (isNormal) {
+                bannerSwitch.setText("ZENKAI");
+            } else
+                bannerSwitch.setText("NORMAL");
+            bannerChoice = 0;
+
         }
     }
 
@@ -286,16 +313,52 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         if (Math.abs(motionDown.getX() - motionEnd.getX()) >= 100 && Math.abs(vX) >= 750) {
             if (motionDown.getX() - motionEnd.getX() < 0) {
                 bannerChoice++;
-                if (bannerChoice > normalBanners.length - 1)
-                    bannerChoice = 0;
+                if (isNormal) {
+                    if (bannerChoice > normalBanners.length - 1)
+                        bannerChoice = 0;
+                    bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
+                    if (normalBanners[bannerChoice].isStepUp) {
+                        stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
+                        TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                        constraintSet2.applyTo(constraintLayout);
+                    } else {
 
-                bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
+                        TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                        constraintSet1.applyTo(constraintLayout);
+                    }
+                    multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
+                } else {
+                    if (bannerChoice > zenkaiBanners.length - 1)
+                        bannerChoice = 0;
+                    bannerImage.setImageResource(zenkaiBanners[bannerChoice].getImage());
+                    TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                    constraintSet1.applyTo(constraintLayout);
+                    multiCost.setText(new DecimalFormat(",###").format(zenkaiBanners[bannerChoice].getMultiCost()));
+                }
             } else if (motionDown.getX() - motionEnd.getX() > 0) {
                 bannerChoice--;
-                if (bannerChoice < 0)
-                    bannerChoice = normalBanners.length - 1;
+                if (isNormal) {
+                    if (bannerChoice < 0)
+                        bannerChoice = normalBanners.length - 1;
+                    bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
+                    if (normalBanners[bannerChoice].isStepUp) {
+                        stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
+                        TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                        constraintSet2.applyTo(constraintLayout);
+                    } else {
 
-                bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
+                        TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                        constraintSet1.applyTo(constraintLayout);
+                    }
+                    multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
+                } else {
+                    if (bannerChoice < 0)
+                        bannerChoice = zenkaiBanners.length - 1;
+                    bannerImage.setImageResource(zenkaiBanners[bannerChoice].getImage());
+                    TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                    constraintSet1.applyTo(constraintLayout);
+                    multiCost.setText(new DecimalFormat(",###").format(zenkaiBanners[bannerChoice].getMultiCost()));
+                }
             }
         }
         return true;
@@ -306,11 +369,11 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         resetButton.performClick();
         budgetEnabled = true;
         if (budget > 9999) {
-            stonesUsed = 9999;
-            stoneCount.setText(String.valueOf(9999));
+            crystalsUsed = 9999;
+            crystalCount.setText(String.valueOf(9999));
         } else {
-            stonesUsed = budget;
-            stoneCount.setText(String.valueOf(budget));
+            crystalsUsed = budget;
+            crystalCount.setText(String.valueOf(budget));
         }
 
     }

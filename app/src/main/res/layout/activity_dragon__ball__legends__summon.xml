@@ -283,6 +283,7 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
+        android:layout_marginEnd="50dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
@@ -290,8 +291,8 @@
         android:scaleType="fitCenter"
         app:imageview_duration="200"
         app:imageview_scale="0.9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintEnd_toStartOf="@+id/dbl_anchor2"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/banner_image"
         app:srcCompat="@drawable/dbl_single_summon" />
@@ -357,7 +358,7 @@
         app:layout_constraintTop_toBottomOf="@+id/slot8" />
 
     <TextView
-        android:id="@+id/stats_dbl"
+        android:id="@+id/bannerSwitch_dbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
@@ -370,21 +371,6 @@
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slot8" />
-
-    <TextView
-        android:id="@+id/step_count_dbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@android:string/untitled"
-        android:fontFamily="@font/archivo_black"
-        android:text="STEP:"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/banner_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/crystals_used"
@@ -540,5 +526,56 @@
         app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon3"
         app:layout_constraintStart_toEndOf="@+id/single_prompt_dbl"
         app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon3" />
+
+    <TextView
+        android:id="@+id/step_count_dbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:text="STEP:"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/stepNumber"
+        app:layout_constraintEnd_toStartOf="@+id/stepNumber"
+        app:layout_constraintTop_toTopOf="@+id/stepNumber"
+        app:layout_constraintVertical_bias="0.16000003" />
+
+    <TextView
+        android:id="@+id/stepNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="1"
+        android:textColor="#E09816"
+        android:textSize="72sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/multi_button"
+        app:layout_constraintEnd_toStartOf="@+id/dbl_anchor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/multi_button" />
+
+    <TextView
+        android:id="@+id/dbl_anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dbl_anchor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
