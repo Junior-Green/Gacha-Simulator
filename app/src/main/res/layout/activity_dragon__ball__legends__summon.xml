@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/dbl_summon_background"
     android:configChanges="keyboardHidden"
-    android:screenOrientation="portrait"
     tools:context=".Dokkan_Summon">
 
     <ImageView
@@ -354,21 +353,6 @@
         app:layout_constraintBottom_toTopOf="@+id/home_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slot8" />
-
-    <TextView
-        android:id="@+id/bannerSwitch_dbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@android:string/untitled"
-        android:fontFamily="@font/archivo_black"
-        android:text="ZENKAI"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/home_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/slot8" />
 

@@ -9,8 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DBL_Summon_History"></activity>
-        <activity android:name=".Dragon_Ball_Legends_Summon" />
+        <activity
+            android:name=".DBL_Summon_History"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Dragon_Ball_Legends_Summon"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ViewHolderLayout"
             android:screenOrientation="portrait" />

@@ -7,14 +7,14 @@ import java.util.Random;
 
 public class DBLBanner {
     int image, step;
-    Boolean isStepUp, isGuranteed;
-    Card zenkaiUnit;
+    Boolean isStepUp = false, isGuranteed = false;
+    private Card zenkaiUnit;
     private static Random rng = new Random();
     private static DecimalFormat df = new DecimalFormat("#.###");
     public ArrayList<Card> featured, unfeatured, banner, legendsLimited;
     public static final Card EX = new Card(R.drawable.dbl_ex_icon, 0);
     public static final Card HE = new Card(R.drawable.dbl_he_icon, 1);
-    public static final ArrayList<Card> ZENKAIS = new ArrayList<>(Arrays.asList(new Card(R.drawable.dbl06_11s_zenkai_zpower, 611), new Card(R.drawable.dbl06_11s_zenkai_zpower, 613)));
+    public static final ArrayList<Card> ZENKAIS = new ArrayList<>(Arrays.asList(new Card(R.drawable.dbl06_11s_zenkai_zpower, 611), new Card(R.drawable.dbl06_13s_zenkai_zpower, 613)));
     public static final ArrayList<Card> SPARKINGS = new ArrayList<>(Arrays.asList(new Card(R.drawable.dbl01_04s, 104), new Card(R.drawable.dbl01_05s, 105), new Card(R.drawable.dbl01_07s, 107),
             new Card(R.drawable.dbl01_16s, 116), new Card(R.drawable.dbl01_17s, 117), new Card(R.drawable.dbl01_35s, 135), new Card(R.drawable.dbl01_36s, 136),
             new Card(R.drawable.dbl01_41s, 141), new Card(R.drawable.dbl01_44s, 144), new Card(R.drawable.dbl02_01s, 201), new Card(R.drawable.dbl02_02s, 202),
@@ -308,6 +308,10 @@ public class DBLBanner {
         return step;
     }
 
+    public void setStep(int step) {
+        this.step = step;
+    }
+
     public int getImage() {
         return image;
     }
@@ -329,6 +333,10 @@ public class DBLBanner {
                     return 1000;
             }
         }
+    }
+
+    public Card getZenkaiUnit() {
+        return zenkaiUnit;
     }
 
     public ArrayList<Card> getBannerCards() {

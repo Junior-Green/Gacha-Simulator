@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,6 +30,8 @@ import com.skydoves.elasticviews.ElasticImageView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener, BudgetDialog.BudgetDialogListener {
@@ -37,6 +41,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     TextView crystalCount, resetButton, summonHistoryButton, bannerSwitch, multiCost, stepNumber;
     ConstraintLayout constraintLayout;
     Boolean isNormal = true;
+    HashMap<Card, Integer> zenkaiPoints;
     ConstraintSet constraintSet1 = new ConstraintSet();
     ConstraintSet constraintSet2 = new ConstraintSet();
     Transition transition = new ChangeBounds();
@@ -107,6 +112,8 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         summonHistoryButton.setOnClickListener(this);
 
         detector = new GestureDetector(this, this);
+
+        zenkaiPoints = new HashMap<>();
 
         home_button = findViewById(R.id.home_button);
         home_button.setOnClickListener(this);
@@ -184,8 +191,9 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                 zPowerSlots[i].setText("");
             }
             if (isNormal) {
+                ArrayList<Card> results = new ArrayList<>();
                 if (normalBanners[bannerChoice].isStepUp) {
-                    ArrayList<Card> results;
+                    crystalsUsed += normalBanners[bannerChoice].getMultiCost();
                     results = normalBanners[bannerChoice].stepUpSummon();
                     multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
                     stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
@@ -201,8 +209,65 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                             zPowerSlots[i].setText("x600");
                         }
                     }
+                } else if (normalBanners[bannerChoice].isGuranteed) {
+                    crystalsUsed += 1000;
+                    Collections.addAll(results, normalBanners[bannerChoice].guranteedSummmon());
+                    for (int i = 0; i < results.size(); i++) {
+                        unitSlots[i].setImageResource(results.get(i).getCardImage());
+                        if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i)) || normalBanners[bannerChoice].getFeaturedCards().contains(results.get(i))) {
+                            unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                            zPowerSlots[i].setText("x600");
+                        } else if (normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
+                            unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                            zPowerSlots[i].setText("x600");
+                        } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
+                            zPowerSlots[i].setText("x600");
+                        }
+                    }
+                } else {
+                    crystalsUsed += 1000;
+                    Collections.addAll(results, normalBanners[bannerChoice].normalSummon());
+                    for (int i = 0; i < results.size(); i++) {
+                        unitSlots[i].setImageResource(results.get(i).getCardImage());
+                        if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i)) || normalBanners[bannerChoice].getFeaturedCards().contains(results.get(i))) {
+                            unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                            zPowerSlots[i].setText("x600");
+                        } else if (normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
+                            unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                            zPowerSlots[i].setText("x600");
+                        } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
+                            zPowerSlots[i].setText("x600");
+                        }
+                    }
+                }
+                cardsPulled.addAll(results);
+                cardsPulledHash.addAll(results);
+            } else {
+                int[] zenkaiScores = zenkaiBanners[bannerChoice].zenkaiMulti();
+                crystalsUsed += zenkaiBanners[bannerChoice].getMultiCost();
+                for (int i = 0; i < zenkaiScores.length; i++) {
+                    if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + zenkaiScores[i]);
+                        }
+                    }
+                    Log.d("Zenkai Image", zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage() + " " + bannerChoice);
+                    unitSlots[i].setImageResource(zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage());
+                    zPowerSlots[i].setText(String.valueOf(zenkaiScores[i]));
+                    if (i == 9) {
+                        if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + 100);
+                            }
+                        }
+                        zPowerSlots[i].setText(zenkaiScores[i] + "+(100)");
+                    }
+                    if (zenkaiScores[i] == 1500) {
+                        unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                    }
                 }
             }
+            crystalCount.setText(String.valueOf(crystalsUsed));
         } else if (view == single_summon) {
             if (!budgetEnabled || crystalsUsed >= 5) {
                 for (ImageView views : unitSlots) {
@@ -229,7 +294,28 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             } else {
                 stoneWarning.show();
             }
-        } else if (view == resetButton) { //FIX
+        } else if (view == resetButton) {
+            for (DBLBanner banner : normalBanners)
+                if (banner.isStepUp)
+                    banner.setStep(1);
+            if (isNormal) {
+                if (normalBanners[bannerChoice].isStepUp) {
+                    stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
+                    TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                    constraintSet2.applyTo(constraintLayout);
+                } else {
+
+                    TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                    constraintSet1.applyTo(constraintLayout);
+                }
+                multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
+                bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
+            } else {
+                bannerImage.setImageResource(zenkaiBanners[bannerChoice].getImage());
+                TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                constraintSet1.applyTo(constraintLayout);
+                multiCost.setText(new DecimalFormat(",###").format(zenkaiBanners[bannerChoice].getMultiCost()));
+            }
             if (budgetEnabled)
                 budgetEnabled = false;
             crystalsUsed = 0;
@@ -252,13 +338,40 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             openDialog();
         } else if (view == bannerSwitch) //FIX
         {
+            bannerSwitch.setEnabled(false);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bannerSwitch.setEnabled(true);
+                }
+            }, 1500);
+            for (int i = 0; i < 10; i++) {
+                unitSlots[i].setImageResource(android.R.color.transparent);
+                unitSlots[i].setForeground(getDrawable(R.drawable.blank));
+                zPowerSlots[i].setText("");
+            }
+            bannerChoice = 0;
             isNormal = !isNormal;
             if (isNormal) {
-                bannerSwitch.setText("ZENKAI");
-            } else
-                bannerSwitch.setText("NORMAL");
-            bannerChoice = 0;
+                if (normalBanners[bannerChoice].isStepUp) {
+                    stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
+                    TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                    constraintSet2.applyTo(constraintLayout);
+                } else {
 
+                    TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                    constraintSet1.applyTo(constraintLayout);
+                }
+                multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
+                bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
+                bannerSwitch.setText("ZENKAI");
+            } else {
+                bannerImage.setImageResource(zenkaiBanners[bannerChoice].getImage());
+                TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                constraintSet1.applyTo(constraintLayout);
+                multiCost.setText(new DecimalFormat(",###").format(zenkaiBanners[bannerChoice].getMultiCost()));
+                bannerSwitch.setText("NORMAL");
+            }
         }
     }
 
