@@ -308,6 +308,12 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             else
                 statsSlots[7].setText("0");
 
+            blurView.setBlurEnabled(true);
+            backDrop.setVisibility(View.VISIBLE);
+            backDrop.setAlpha(0f);
+            backDrop.animate().alpha(0.3f).setDuration(1000);
+            TransitionManager.beginDelayedTransition(constraintLayout, transition);
+            constraintSet2.applyTo(constraintLayout);
             multi_summon.setEnabled(false);
             single_summon.setEnabled(false);
             resetButton.setEnabled(false);
@@ -315,12 +321,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             mute_button.setEnabled(false);
             cancel_button.setEnabled(true);
             view.setEnabled(false);
-            blurView.setBlurEnabled(true);
-            backDrop.setVisibility(View.VISIBLE);
-            backDrop.setAlpha(0f);
-            backDrop.animate().alpha(0.3f).setDuration(1000);
-            TransitionManager.beginDelayedTransition(constraintLayout, transition);
-            constraintSet2.applyTo(constraintLayout);
+
         } else if (view == cancel_button) {
             new Handler().postDelayed(new Runnable() {
                 @Override

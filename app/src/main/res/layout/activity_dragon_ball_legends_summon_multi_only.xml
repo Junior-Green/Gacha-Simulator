@@ -398,6 +398,7 @@
         android:layout_width="64dp"
         android:layout_height="78dp"
         android:adjustViewBounds="true"
+        android:alpha="0.75"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/banner_image"
@@ -410,6 +411,7 @@
         android:layout_width="64dp"
         android:layout_height="78dp"
         android:adjustViewBounds="true"
+        android:alpha="0.75"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
         android:scaleX="-1"
@@ -578,5 +580,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/zenkai_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/banner_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/dbl06_11s_zenkai_zpower" />
 
+    <TextView
+        android:id="@+id/total_zenkai"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="start|center_vertical"
+        android:maxWidth="90dp"
+        android:maxLines="1"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/zenkai_image"
+        app:layout_constraintStart_toEndOf="@+id/zenkai_image"
+        app:layout_constraintTop_toTopOf="@+id/zenkai_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>

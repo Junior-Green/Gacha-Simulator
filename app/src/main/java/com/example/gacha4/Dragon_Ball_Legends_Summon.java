@@ -2,6 +2,7 @@ package com.example.gacha4;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.os.Handler;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,11 +37,11 @@ import java.util.HashSet;
 public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener, BudgetDialog.BudgetDialogListener {
     MediaPlayer background_audio3;
     ElasticImageView single_summon, multi_summon, mute_button, home_button;
-    ImageView bannerImage;
-    TextView crystalCount, resetButton, summonHistoryButton, bannerSwitch, multiCost, stepNumber;
+    ImageView bannerImage, zenkaiImage;
+    TextView crystalCount, resetButton, summonHistoryButton, bannerSwitch, multiCost, stepNumber, zenkaiTotal;
     ConstraintLayout constraintLayout;
     Boolean isNormal = true;
-    HashMap<Card, Integer> zenkaiPoints;
+    static HashMap<Card, Integer> zenkaiPoints = new HashMap<>();
     ConstraintSet constraintSet1 = new ConstraintSet();
     ConstraintSet constraintSet2 = new ConstraintSet();
     Transition transition = new ChangeBounds();
@@ -111,10 +111,15 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         summonHistoryButton = findViewById(R.id.summon_history_dbl);
         summonHistoryButton.setOnClickListener(this);
 
+        zenkaiImage = findViewById(R.id.zenkai_image);
+        zenkaiTotal = findViewById(R.id.total_zenkai);
+
         detector = new GestureDetector(this, this);
 
-        zenkaiPoints = new HashMap<>();
-
+        for (DBLBanner banners : zenkaiBanners) {
+            if (!zenkaiPoints.containsKey(banners.getZenkaiUnit()))
+                zenkaiPoints.put(banners.getZenkaiUnit(), 0);
+        }
         home_button = findViewById(R.id.home_button);
         home_button.setOnClickListener(this);
 
@@ -250,8 +255,8 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                             zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + zenkaiScores[i]);
                         }
-                    }
-                    Log.d("Zenkai Image", zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage() + " " + bannerChoice);
+                    } else
+                        zenkaiPoints.put(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiScores[i]);
                     unitSlots[i].setImageResource(zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage());
                     zPowerSlots[i].setText(String.valueOf(zenkaiScores[i]));
                     if (i == 9) {
@@ -266,35 +271,49 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                         unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
                     }
                 }
+                updateZenkaiState();
             }
             crystalCount.setText(String.valueOf(crystalsUsed));
         } else if (view == single_summon) {
-            if (!budgetEnabled || crystalsUsed >= 5) {
-                for (ImageView views : unitSlots) {
-                    views.setImageResource(android.R.color.transparent);
-                    views.setForeground(getDrawable(R.drawable.blank));
-                }
-                Card result = normalBanners[bannerChoice].singleSummon();
-
-                if (normalBanners[bannerChoice].featured.contains(result))
-                    unitSlots[0].setForeground(getDrawable(R.drawable.red_border));
-                else if (DokkanBanner.SUMMONABLELRPOOL.contains(result))
-                    unitSlots[0].setForeground(getDrawable(R.drawable.yellow_border));
-                else
-                    unitSlots[0].setForeground(getDrawable(R.drawable.blank));
-
-                unitSlots[0].setImageResource(result.getCardImage());
-                cardsPulled.add(result);
-                cardsPulledHash.add(result);
-                if (!budgetEnabled)
-                    crystalsUsed += 5;
-                else
-                    crystalsUsed -= 5;
-                crystalCount.setText(Integer.toString(crystalsUsed));
-            } else {
-                stoneWarning.show();
+            for (int i = 0; i < 10; i++) {
+                unitSlots[i].setImageResource(android.R.color.transparent);
+                unitSlots[i].setForeground(getDrawable(R.drawable.blank));
+                zPowerSlots[i].setText("");
             }
+            if (isNormal) {
+                Card result = normalBanners[bannerChoice].singleSummon();
+                if (normalBanners[bannerChoice].getBannerCards().contains(result) || normalBanners[bannerChoice].getFeaturedCards().contains(result)) {
+                    unitSlots[0].setForeground(getDrawable(R.drawable.red_border));
+                    zPowerSlots[0].setText("x600");
+                } else if (normalBanners[bannerChoice].getLegendsLimitedCards().contains(result)) {
+                    unitSlots[0].setForeground(getDrawable(R.drawable.yellow_border));
+                    zPowerSlots[0].setText("x600");
+                } else if (result != DBLBanner.HE && result != DBLBanner.EX) {
+                    zPowerSlots[0].setText("x600");
+                }
+                unitSlots[0].setImageResource(result.getCardImage());
+                cardsPulledHash.add(result);
+                cardsPulled.add(result);
+            } else {
+                unitSlots[0].setImageResource(zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage());
+                int num = zenkaiBanners[bannerChoice].zenkaiSingle();
+                zPowerSlots[0].setText(String.valueOf(num));
+                if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + num);
+                    }
+                }
+                updateZenkaiState();
+            }
+            crystalsUsed += 100;
+            crystalCount.setText(String.valueOf(crystalsUsed));
         } else if (view == resetButton) {
+            for (DBLBanner banner : zenkaiBanners) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    zenkaiPoints.replace(banner.getZenkaiUnit(), 0);
+                }
+            }
+            updateZenkaiState();
             for (DBLBanner banner : normalBanners)
                 if (banner.isStepUp)
                     banner.setStep(1);
@@ -353,6 +372,8 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             bannerChoice = 0;
             isNormal = !isNormal;
             if (isNormal) {
+                zenkaiTotal.setVisibility(View.INVISIBLE);
+                zenkaiImage.setVisibility(View.INVISIBLE);
                 if (normalBanners[bannerChoice].isStepUp) {
                     stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
                     TransitionManager.beginDelayedTransition(constraintLayout, transition);
@@ -366,6 +387,9 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                 bannerImage.setImageResource(normalBanners[bannerChoice].getImage());
                 bannerSwitch.setText("ZENKAI");
             } else {
+                zenkaiTotal.setVisibility(View.VISIBLE);
+                zenkaiImage.setVisibility(View.VISIBLE);
+                updateZenkaiState();
                 bannerImage.setImageResource(zenkaiBanners[bannerChoice].getImage());
                 TransitionManager.beginDelayedTransition(constraintLayout, transition);
                 constraintSet1.applyTo(constraintLayout);
@@ -435,14 +459,15 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                         TransitionManager.beginDelayedTransition(constraintLayout, transition);
                         constraintSet2.applyTo(constraintLayout);
                     } else {
-
                         TransitionManager.beginDelayedTransition(constraintLayout, transition);
                         constraintSet1.applyTo(constraintLayout);
                     }
                     multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
                 } else {
+
                     if (bannerChoice > zenkaiBanners.length - 1)
                         bannerChoice = 0;
+                    updateZenkaiState();
                     bannerImage.setImageResource(zenkaiBanners[bannerChoice].getImage());
                     TransitionManager.beginDelayedTransition(constraintLayout, transition);
                     constraintSet1.applyTo(constraintLayout);
@@ -465,8 +490,10 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                     }
                     multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
                 } else {
+
                     if (bannerChoice < 0)
                         bannerChoice = zenkaiBanners.length - 1;
+                    updateZenkaiState();
                     bannerImage.setImageResource(zenkaiBanners[bannerChoice].getImage());
                     TransitionManager.beginDelayedTransition(constraintLayout, transition);
                     constraintSet1.applyTo(constraintLayout);
@@ -475,6 +502,15 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             }
         }
         return true;
+    }
+
+    public void updateZenkaiState() {
+        if (zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) >= 7000)
+            zenkaiTotal.setTextColor(Color.YELLOW);
+        else
+            zenkaiTotal.setTextColor(Color.WHITE);
+        zenkaiTotal.setText(String.valueOf(zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit())));
+        zenkaiImage.setImageResource(zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage());
     }
 
     @Override
