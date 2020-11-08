@@ -76,7 +76,7 @@ public class Dokkan_Summon_History extends AppCompatActivity implements View.OnC
 
         recyclerView = findViewById(R.id.recycler_dokkan);
         recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(cardsHash, frequencies);
+        DokkanRecyclerViewAdapter adapter = new DokkanRecyclerViewAdapter(cardsHash, frequencies);
         recyclerView.setAdapter(adapter);
     }
 

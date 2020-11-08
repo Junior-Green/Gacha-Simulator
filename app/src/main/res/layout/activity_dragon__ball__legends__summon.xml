@@ -463,7 +463,7 @@
 
     <TextView
         android:id="@+id/multi_prompt_dbl_"
-        android:layout_width="wrap_content"
+        android:layout_width="55dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
         android:paddingStart="20dp"
@@ -569,7 +569,7 @@
         android:layout_height="60dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/banner_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
@@ -587,7 +587,7 @@
         android:maxLines="1"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:autoSizeMinTextSize="5sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/zenkai_image"

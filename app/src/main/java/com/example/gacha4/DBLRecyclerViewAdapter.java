@@ -13,19 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class DBLRecyclerViewAdapter extends RecyclerView.Adapter<DBLRecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<Card> cards;
-    private ArrayList<String> imageNames;
+    private final ArrayList<Card> cards;
+    private final ArrayList<String> imageNames;
 
-    public RecyclerViewAdapter(ArrayList<Card> images, ArrayList<String> frequencies) {
+    public DBLRecyclerViewAdapter(ArrayList<Card> images, ArrayList<String> frequencies) {
         imageNames = frequencies;
         cards = images;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_view_holder_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_dbl_view_holder_layout, parent, false);
         return new ViewHolder(view);
     }
 
@@ -39,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return imageNames.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView cardImage;
         TextView cardCount;

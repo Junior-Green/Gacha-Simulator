@@ -9,8 +9,8 @@ public class DBLBanner {
     int image, step;
     Boolean isStepUp = false, isGuranteed = false;
     private Card zenkaiUnit;
-    private static Random rng = new Random();
-    private static DecimalFormat df = new DecimalFormat("#.###");
+    private static final Random rng = new Random();
+    private static final DecimalFormat df = new DecimalFormat("#.###");
     public ArrayList<Card> featured, unfeatured, banner, legendsLimited;
     public static final Card EX = new Card(R.drawable.dbl_ex_icon, 0);
     public static final Card HE = new Card(R.drawable.dbl_he_icon, 1);
@@ -51,7 +51,8 @@ public class DBLBanner {
             new Card(R.drawable.dbl24_01s, 2401), new Card(R.drawable.dbl24_08s, 2408), new Card(R.drawable.dbl24_13s, 2413), new Card(R.drawable.dbl24_15s, 2415),
             new Card(R.drawable.dbl26_02s, 2602), new Card(R.drawable.dbl26_03s, 2603), new Card(R.drawable.dbl26_06s, 2606), new Card(R.drawable.dbl26_08s, 2608),
             new Card(R.drawable.dbl27_05s, 2705), new Card(R.drawable.dbl27_06s, 2706), new Card(R.drawable.dbl28_05s, 2805), new Card(R.drawable.dbl28_06s, 2806),
-            new Card(R.drawable.dbl15_05s, 1505)));
+            new Card(R.drawable.dbl15_05s, 1505), new Card(R.drawable.dbl25_04s, 2504), new Card(R.drawable.dbl25_05s, 2505), new Card(R.drawable.dbl28_01s, 2801),
+            new Card(R.drawable.dbl28_02s, 2802), new Card(R.drawable.dbl28_03s, 2803)));
 
     public DBLBanner(int bannerImage, ArrayList<Card> bannerPool, ArrayList<Card> unfeaturedPool, ArrayList<Card> featuredPool, ArrayList<Card> legendsLimitedPool, Boolean isStepUp, Boolean isGuranteed) {
         image = bannerImage;
@@ -186,10 +187,10 @@ public class DBLBanner {
         return results;
     }
 
-    public Card[] guranteedSummmon() {
+    public Card[] guaranteedSummon() {
         Card[] results = new Card[10];
         float num;
-        if (legendsLimited.isEmpty()) {
+        if (legendsLimited == null) {
             for (int i = 0; i < 9; i++) {
                 num = Float.parseFloat(df.format(rng.nextFloat() * 100));
                 if (num >= 0 && num <= 10)
@@ -223,7 +224,7 @@ public class DBLBanner {
     public Card[] normalSummon() {
         Card[] results = new Card[10];
         float num;
-        if (legendsLimited.isEmpty()) {
+        if (legendsLimited == null) {
             for (int i = 0; i < 10; i++) {
                 num = Float.parseFloat(df.format(rng.nextFloat() * 100));
                 if (num >= 0 && num <= 10)
@@ -251,7 +252,7 @@ public class DBLBanner {
     public Card singleSummon() {
         Card result = null;
         float num;
-        if (legendsLimited.isEmpty()) {
+        if (legendsLimited == null) {
             num = Float.parseFloat(df.format(rng.nextFloat() * 100));
             if (num >= 0 && num <= 10)
                 result = (banner.get(rng.nextInt(banner.size())));

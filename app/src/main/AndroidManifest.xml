@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".DBLViewHolderLayout"
+            android:label="@string/title_activity_d_b_l_view_holder_layout"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".DBL_Summon_History"
             android:screenOrientation="portrait" />
         <activity
