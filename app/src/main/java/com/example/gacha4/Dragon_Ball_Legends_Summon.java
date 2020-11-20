@@ -45,7 +45,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     ConstraintSet constraintSet1 = new ConstraintSet();
     ConstraintSet constraintSet2 = new ConstraintSet();
     Transition transition = new ChangeBounds();
-    Toast stoneWarning;
+    Toast crystalWarning;
     Boolean state = true;
     private static Boolean budgetEnabled = false;
     static Boolean volume_state = true;
@@ -91,7 +91,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
 
         bannerChoice = 0;
 
-        stoneWarning = Toast.makeText(this, "Insufficient Dragonstones. Reset or set new budget", Toast.LENGTH_SHORT);
+        crystalWarning = Toast.makeText(this, "Insufficient Chrono Crystals. Reset or set new budget", Toast.LENGTH_SHORT);
 
         resetButton = findViewById(R.id.reset);
         resetButton.setOnClickListener(this);
@@ -200,116 +200,134 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                 zPowerSlots[i].setText("");
             }
             if (isNormal) {
-                ArrayList<Card> results = new ArrayList<>();
-                if (normalBanners[bannerChoice].isStepUp) {
-                    crystalsUsed += normalBanners[bannerChoice].getMultiCost();
-                    results = normalBanners[bannerChoice].stepUpSummon();
-                    multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
-                    stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
-                    for (int i = 0; i < results.size(); i++) {
-                        unitSlots[i].setImageResource(results.get(i).getCardImage());
-                        if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i)) || normalBanners[bannerChoice].getFeaturedCards().contains(results.get(i))) {
-                            unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
-                            zPowerSlots[i].setText("x600");
-                        } else if (normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
-                            unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
-                            zPowerSlots[i].setText("x600");
-                        } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
-                            zPowerSlots[i].setText("x600");
-                        }
-                    }
-                } else if (normalBanners[bannerChoice].isGuranteed) {
-                    crystalsUsed += 1000;
-                    Collections.addAll(results, normalBanners[bannerChoice].guaranteedSummon());
-                    for (int i = 0; i < results.size(); i++) {
-                        unitSlots[i].setImageResource(results.get(i).getCardImage());
-                        if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i)) || normalBanners[bannerChoice].getFeaturedCards().contains(results.get(i))) {
-                            unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
-                            zPowerSlots[i].setText("x600");
-                        } else if (normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
-                            unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
-                            zPowerSlots[i].setText("x600");
-                        } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
-                            zPowerSlots[i].setText("x600");
-                        }
-                    }
-                } else {
-                    crystalsUsed += 1000;
-                    Collections.addAll(results, normalBanners[bannerChoice].normalSummon());
-                    for (int i = 0; i < results.size(); i++) {
-                        unitSlots[i].setImageResource(results.get(i).getCardImage());
-                        if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i))) {
-                            unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
-                            zPowerSlots[i].setText("x600");
-                        } else if (normalBanners[bannerChoice].getLegendsLimitedCards() != null && normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
-                            unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
-                            zPowerSlots[i].setText("x600");
-                        } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
-                            zPowerSlots[i].setText("x600");
-                        }
-                    }
-                }
-                cardsPulled.addAll(results);
-                cardsPulledHash.addAll(results);
-            } else {
-                int[] zenkaiScores = zenkaiBanners[bannerChoice].zenkaiMulti();
-                crystalsUsed += zenkaiBanners[bannerChoice].getMultiCost();
-                for (int i = 0; i < zenkaiScores.length; i++) {
-                    if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + zenkaiScores[i]);
-                        }
-                    } else
-                        zenkaiPoints.put(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiScores[i]);
-                    unitSlots[i].setImageResource(zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage());
-                    zPowerSlots[i].setText(String.valueOf(zenkaiScores[i]));
-                    if (i == 9) {
-                        if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + 100);
+                if (!budgetEnabled || crystalsUsed >= normalBanners[bannerChoice].getMultiCost()) {
+                    if (budgetEnabled)
+                        crystalsUsed -= normalBanners[bannerChoice].getMultiCost();
+                    else
+                        crystalsUsed += normalBanners[bannerChoice].getMultiCost();
+                    ArrayList<Card> results = new ArrayList<>();
+                    if (normalBanners[bannerChoice].isStepUp) {
+                        results = normalBanners[bannerChoice].stepUpSummon();
+                        multiCost.setText(new DecimalFormat(",###").format(normalBanners[bannerChoice].getMultiCost()));
+                        stepNumber.setText(String.valueOf(normalBanners[bannerChoice].getStep()));
+                        for (int i = 0; i < results.size(); i++) {
+                            unitSlots[i].setImageResource(results.get(i).getCardImage());
+                            if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i)) || normalBanners[bannerChoice].getFeaturedCards().contains(results.get(i))) {
+                                unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                                zPowerSlots[i].setText("x600");
+                            } else if (normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
+                                unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                                zPowerSlots[i].setText("x600");
+                            } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
+                                zPowerSlots[i].setText("x600");
                             }
                         }
-                        zPowerSlots[i].setText(zenkaiScores[i] + "+(100)");
+                    } else if (normalBanners[bannerChoice].isGuranteed) {
+                        Collections.addAll(results, normalBanners[bannerChoice].guaranteedSummon());
+                        for (int i = 0; i < results.size(); i++) {
+                            unitSlots[i].setImageResource(results.get(i).getCardImage());
+                            if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i)) || normalBanners[bannerChoice].getFeaturedCards().contains(results.get(i))) {
+                                unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                                zPowerSlots[i].setText("x600");
+                            } else if (normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
+                                unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                                zPowerSlots[i].setText("x600");
+                            } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
+                                zPowerSlots[i].setText("x600");
+                            }
+                        }
+                    } else {
+                        Collections.addAll(results, normalBanners[bannerChoice].normalSummon());
+                        for (int i = 0; i < results.size(); i++) {
+                            unitSlots[i].setImageResource(results.get(i).getCardImage());
+                            if (normalBanners[bannerChoice].getBannerCards().contains(results.get(i))) {
+                                unitSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                                zPowerSlots[i].setText("x600");
+                            } else if (normalBanners[bannerChoice].getLegendsLimitedCards() != null && normalBanners[bannerChoice].getLegendsLimitedCards().contains(results.get(i))) {
+                                unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                                zPowerSlots[i].setText("x600");
+                            } else if (results.get(i) != DBLBanner.HE && results.get(i) != DBLBanner.EX) {
+                                zPowerSlots[i].setText("x600");
+                            }
+                        }
                     }
-                    if (zenkaiScores[i] == 1500) {
-                        unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                    cardsPulled.addAll(results);
+                    cardsPulledHash.addAll(results);
+                } else
+                    crystalWarning.show();
+            } else {
+                if (!budgetEnabled || crystalsUsed >= zenkaiBanners[bannerChoice].getMultiCost()) {
+                    int[] zenkaiScores = zenkaiBanners[bannerChoice].zenkaiMulti();
+                    crystalsUsed += zenkaiBanners[bannerChoice].getMultiCost();
+                    for (int i = 0; i < zenkaiScores.length; i++) {
+                        if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + zenkaiScores[i]);
+                            }
+                        } else
+                            zenkaiPoints.put(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiScores[i]);
+                        unitSlots[i].setImageResource(zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage());
+                        zPowerSlots[i].setText(String.valueOf(zenkaiScores[i]));
+                        if (i == 9) {
+                            if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                    zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + 100);
+                                }
+                            }
+                            zPowerSlots[i].setText(zenkaiScores[i] + "+(100)");
+                        }
+                        if (zenkaiScores[i] == 1500) {
+                            unitSlots[i].setForeground(getDrawable(R.drawable.yellow_border));
+                        }
                     }
-                }
-                updateZenkaiState();
+                    updateZenkaiState();
+                    if (budgetEnabled)
+                        crystalsUsed -= zenkaiBanners[bannerChoice].getMultiCost();
+                    else
+                        crystalsUsed += zenkaiBanners[bannerChoice].getMultiCost();
+                } else
+                    crystalWarning.show();
+
             }
             crystalCount.setText(String.valueOf(crystalsUsed));
         } else if (view == single_summon) {
-            for (int i = 0; i < 10; i++) {
-                unitSlots[i].setImageResource(android.R.color.transparent);
-                unitSlots[i].setForeground(getDrawable(R.drawable.blank));
-                zPowerSlots[i].setText("");
-            }
-            if (isNormal) {
-                Card result = normalBanners[bannerChoice].singleSummon();
-                if (normalBanners[bannerChoice].getBannerCards().contains(result)) {
-                    unitSlots[0].setForeground(getDrawable(R.drawable.red_border));
-                    zPowerSlots[0].setText("x600");
-                } else if (normalBanners[bannerChoice].getLegendsLimitedCards() != null && normalBanners[bannerChoice].getLegendsLimitedCards().contains(result)) {
-                    unitSlots[0].setForeground(getDrawable(R.drawable.yellow_border));
-                    zPowerSlots[0].setText("x600");
-                } else if (result != DBLBanner.HE && result != DBLBanner.EX) {
-                    zPowerSlots[0].setText("x600");
+            if (!budgetEnabled || crystalsUsed >= 100) {
+                for (int i = 0; i < 10; i++) {
+                    unitSlots[i].setImageResource(android.R.color.transparent);
+                    unitSlots[i].setForeground(getDrawable(R.drawable.blank));
+                    zPowerSlots[i].setText("");
                 }
-                unitSlots[0].setImageResource(result.getCardImage());
-                cardsPulledHash.add(result);
-                cardsPulled.add(result);
-            } else {
-                unitSlots[0].setImageResource(zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage());
-                int num = zenkaiBanners[bannerChoice].zenkaiSingle();
-                zPowerSlots[0].setText(String.valueOf(num));
-                if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + num);
+                if (isNormal) {
+                    Card result = normalBanners[bannerChoice].singleSummon();
+                    if (normalBanners[bannerChoice].getBannerCards().contains(result)) {
+                        unitSlots[0].setForeground(getDrawable(R.drawable.red_border));
+                        zPowerSlots[0].setText("x600");
+                    } else if (normalBanners[bannerChoice].getLegendsLimitedCards() != null && normalBanners[bannerChoice].getLegendsLimitedCards().contains(result)) {
+                        unitSlots[0].setForeground(getDrawable(R.drawable.yellow_border));
+                        zPowerSlots[0].setText("x600");
+                    } else if (result != DBLBanner.HE && result != DBLBanner.EX) {
+                        zPowerSlots[0].setText("x600");
                     }
+                    unitSlots[0].setImageResource(result.getCardImage());
+                    cardsPulledHash.add(result);
+                    cardsPulled.add(result);
+                } else {
+                    unitSlots[0].setImageResource(zenkaiBanners[bannerChoice].getZenkaiUnit().getCardImage());
+                    int num = zenkaiBanners[bannerChoice].zenkaiSingle();
+                    zPowerSlots[0].setText(String.valueOf(num));
+                    if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            zenkaiPoints.replace(zenkaiBanners[bannerChoice].getZenkaiUnit(), zenkaiPoints.get(zenkaiBanners[bannerChoice].getZenkaiUnit()) + num);
+                        }
+                    }
+                    updateZenkaiState();
                 }
-                updateZenkaiState();
-            }
-            crystalsUsed += 100;
+                if (budgetEnabled)
+                    crystalsUsed -= 100;
+                else
+                    crystalsUsed += 100;
+            } else
+                crystalWarning.show();
             crystalCount.setText(String.valueOf(crystalsUsed));
         } else if (view == resetButton) {
             for (DBLBanner banner : zenkaiBanners) {
@@ -341,8 +359,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
                 zenkaiTotal.setVisibility(View.VISIBLE);
                 zenkaiImage.setVisibility(View.VISIBLE);
             }
-            if (budgetEnabled)
-                budgetEnabled = false;
+            budgetEnabled = false;
             crystalsUsed = 0;
             cardsPulledHash.clear();
             cardsPulled.clear();
