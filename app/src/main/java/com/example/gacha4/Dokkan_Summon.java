@@ -422,9 +422,9 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
     public void getBudget(int budget) {
         resetButton.performClick();
         budgetEnabled = true;
-        if (budget > 9999) {
-            stonesUsed = 9999;
-            stoneCount.setText(String.valueOf(9999));
+        if (budget > 999999) {
+            stonesUsed = 999999;
+            stoneCount.setText(String.valueOf(999999));
         } else {
             stonesUsed = budget;
             stoneCount.setText(String.valueOf(budget));

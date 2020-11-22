@@ -56,7 +56,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     static int bannerChoice, crystalsUsed = 0;
     GestureDetector detector;
 
-    //-----------------------------------------------------------------------------BANNERS-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------BANNERS---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     static DBLBanner legends_justice_against_evil = new DBLBanner(R.drawable.legends_justice_against_evil, DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2408, 1806, 1501, 1703, 1701, 202)), DBLBanner.SPARKINGS),
             DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2002, 2001, 2209, 1903, 1803, 1601, 1507, 1302, 1301, 909, 1106, 907, 905, 906, 813, 707, 1502, 814, 613, 802, 801, 135, 508, 306, 803)), DBLBanner.SPARKINGS),
             DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2706, 2705)), DBLBanner.SPARKINGS), DBLBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(2205, 1805, 1206)), DBLBanner.SPARKINGS), true, false);
@@ -73,7 +73,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     static DBLBanner[] normalBanners = new DBLBanner[]{legends_justice_against_evil, legends_the_6th_universe, legends_all_star_vol2};
     static DBLBanner[] zenkaiBanners = new DBLBanner[]{zenkai_awakening_goku_black, zenkai_awakening_super_saiyan_3_goku};
 
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -258,7 +258,6 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             } else {
                 if (!budgetEnabled || crystalsUsed >= zenkaiBanners[bannerChoice].getMultiCost()) {
                     int[] zenkaiScores = zenkaiBanners[bannerChoice].zenkaiMulti();
-                    crystalsUsed += zenkaiBanners[bannerChoice].getMultiCost();
                     for (int i = 0; i < zenkaiScores.length; i++) {
                         if (zenkaiPoints.containsKey(zenkaiBanners[bannerChoice].getZenkaiUnit())) {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -472,6 +471,15 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
 
     @Override
     public boolean onFling(MotionEvent motionDown, MotionEvent motionEnd, float vX, float v1) {
+        multi_summon.setClickable(false);
+        single_summon.setClickable(false);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                multi_summon.setClickable(true);
+                single_summon.setClickable(true);
+            }
+        }, 500);
         if (Math.abs(motionDown.getX() - motionEnd.getX()) >= 100 && Math.abs(vX) >= 750) {
             if (motionDown.getX() - motionEnd.getX() < 0) {
                 bannerChoice++;
@@ -542,9 +550,9 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     public void getBudget(int budget) {
         resetButton.performClick();
         budgetEnabled = true;
-        if (budget > 9999) {
-            crystalsUsed = 9999;
-            crystalCount.setText(String.valueOf(9999));
+        if (budget > 999999) {
+            crystalsUsed = 999999;
+            crystalCount.setText(String.valueOf(999999));
         } else {
             crystalsUsed = budget;
             crystalCount.setText(String.valueOf(budget));

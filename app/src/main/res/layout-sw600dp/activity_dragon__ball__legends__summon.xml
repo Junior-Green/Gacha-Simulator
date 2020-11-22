@@ -11,21 +11,22 @@
 
     <ImageView
         android:id="@+id/dbl_bck"
-        android:layout_width="398dp"
-        android:layout_height="350dp"
+        android:layout_width="0dp"
+        android:layout_height="555dp"
         android:layout_marginTop="150dp"
         android:adjustViewBounds="true"
         android:alpha="0.25"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/banner_image"
         app:srcCompat="@drawable/dbl_legends_summonbck" />
 
     <ImageView
         android:id="@+id/slot1"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
         android:text="x0"
+        android:textSize="24sp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/slot1"
@@ -49,8 +51,8 @@
 
     <ImageView
         android:id="@+id/slot2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -67,14 +69,15 @@
         android:text="x0"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/slot2"
         app:layout_constraintStart_toStartOf="@+id/slot2"
         app:layout_constraintTop_toBottomOf="@+id/slot2" />
 
     <ImageView
         android:id="@+id/slot3"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="30dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -88,6 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
+        android:textSize="24sp"
         android:text="x0"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -97,8 +101,8 @@
 
     <ImageView
         android:id="@+id/slot4"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -114,6 +118,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="x0"
         android:textAlignment="center"
+        android:textSize="24sp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/slot4"
         app:layout_constraintStart_toStartOf="@+id/slot4"
@@ -121,8 +126,8 @@
 
     <ImageView
         android:id="@+id/slot5"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -138,6 +143,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="x0"
         android:textAlignment="center"
+        android:textSize="24sp"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/slot5"
         app:layout_constraintStart_toStartOf="@+id/slot5"
@@ -145,8 +151,8 @@
 
     <ImageView
         android:id="@+id/slot6"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -163,14 +169,15 @@
         android:text="x0"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/slot6"
         app:layout_constraintStart_toStartOf="@+id/slot6"
         app:layout_constraintTop_toBottomOf="@+id/slot6" />
 
     <ImageView
         android:id="@+id/slot7"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -187,14 +194,15 @@
         android:text="x0"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/slot7"
         app:layout_constraintStart_toStartOf="@+id/slot7"
         app:layout_constraintTop_toBottomOf="@+id/slot7" />
 
     <ImageView
         android:id="@+id/slot8"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginTop="10dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -211,14 +219,15 @@
         android:text="x0"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/slot8"
         app:layout_constraintStart_toStartOf="@+id/slot8"
         app:layout_constraintTop_toBottomOf="@+id/slot8" />
 
     <ImageView
         android:id="@+id/slot9"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -235,14 +244,15 @@
         android:text="x0"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/slot9"
         app:layout_constraintStart_toStartOf="@+id/slot9"
         app:layout_constraintTop_toBottomOf="@+id/slot9" />
 
     <ImageView
         android:id="@+id/slot10"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="15dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -257,16 +267,17 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
         android:text="x0"
-        android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/slot10"
         app:layout_constraintStart_toStartOf="@+id/slot10"
         app:layout_constraintTop_toBottomOf="@+id/slot10" />
 
     <ImageView
         android:id="@+id/banner_image"
-        android:layout_width="0dp"
-        android:layout_height="244dp"
+        android:layout_width="609dp"
+        android:layout_height="356dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
         android:scaleType="centerCrop"
@@ -274,14 +285,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175"
+        app:layout_constraintVertical_bias="0.120000005"
         app:srcCompat="@drawable/legends_justice_against_evil" />
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/single_button"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="375dp"
         android:layout_marginEnd="50dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
@@ -291,14 +302,14 @@
         app:imageview_duration="200"
         app:imageview_scale="0.9"
         app:layout_constraintEnd_toStartOf="@+id/dbl_anchor2"
-        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/banner_image"
         app:srcCompat="@drawable/dbl_single_summon" />
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/multi_button"
-        android:layout_width="125dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
@@ -315,8 +326,8 @@
 
     <ImageView
         android:id="@+id/chronoCrystalIcon"
-        android:layout_width="37dp"
-        android:layout_height="42dp"
+        android:layout_width="42dp"
+        android:layout_height="59dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
         android:adjustViewBounds="true"
@@ -337,7 +348,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="Reset"
         android:textColor="#FF0000"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -349,27 +360,26 @@
         android:fontFamily="@font/archivo_black"
         android:text="History"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/home_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slot8" />
+        app:layout_constraintTop_toBottomOf="@+id/slot8A" />
 
     <TextView
         android:id="@+id/crystals_used"
-        android:layout_width="100dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
         android:fontFamily="@font/archivo_black"
-        android:gravity="center"
-        android:maxWidth="100dp"
+        android:maxWidth="200dp"
         android:maxLines="1"
         android:text="0"
         android:textAlignment="textStart"
         android:textColor="#F4F4F4"
         android:textColorLink="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:autoSizeMinTextSize="5sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/chronoCrystalIcon"
@@ -405,8 +415,8 @@
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/volume_control"
-        android:layout_width="46dp"
-        android:layout_height="38dp"
+        android:layout_width="67dp"
+        android:layout_height="52dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:adjustViewBounds="true"
@@ -421,8 +431,8 @@
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/home_button"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
+        android:layout_width="115dp"
+        android:layout_height="80dp"
         android:layout_marginBottom="10dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
@@ -437,8 +447,8 @@
 
     <ImageView
         android:id="@+id/chronoCyrstalIcon2"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="20dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -456,28 +466,28 @@
         android:paddingStart="5dp"
         android:text="x"
         android:textColor="#FFFFFF"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon2"
         app:layout_constraintStart_toEndOf="@+id/chronoCyrstalIcon2"
         app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon2" />
 
     <TextView
         android:id="@+id/multi_prompt_dbl_"
-        android:layout_width="55dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
         android:paddingStart="20dp"
         android:text="1,000"
         android:textColor="#FFFFFF"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon2"
         app:layout_constraintStart_toEndOf="@+id/multi_prompt_dbl2"
         app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon2" />
 
     <ImageView
         android:id="@+id/chronoCyrstalIcon3"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="20dp"
         android:adjustViewBounds="true"
         android:contentDescription="@android:string/untitled"
@@ -495,20 +505,20 @@
         android:paddingStart="5dp"
         android:text="x"
         android:textColor="#FFFFFF"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon3"
         app:layout_constraintStart_toEndOf="@+id/chronoCyrstalIcon3"
         app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon3" />
 
     <TextView
         android:id="@+id/single_prompt_dbl_2"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
         android:paddingStart="20dp"
         android:text="100"
         android:textColor="#FFFFFF"
-        android:textSize="10sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/chronoCyrstalIcon3"
         app:layout_constraintStart_toEndOf="@+id/single_prompt_dbl"
         app:layout_constraintTop_toTopOf="@+id/chronoCyrstalIcon3" />
@@ -521,7 +531,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="STEP:"
         android:textColor="#FFFFFF"
-        android:textSize="14sp"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/stepNumber"
         app:layout_constraintEnd_toStartOf="@+id/stepNumber"
@@ -532,7 +542,7 @@
         android:id="@+id/stepNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="60dp"
         android:fontFamily="@font/archivo_black"
         android:text="1"
         android:textColor="#E09816"
@@ -578,12 +588,12 @@
 
     <TextView
         android:id="@+id/total_zenkai"
-        android:layout_width="90dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
         android:fontFamily="@font/archivo_black"
         android:gravity="start|center_vertical"
-        android:maxWidth="90dp"
+        android:maxWidth="80dp"
         android:maxLines="1"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
