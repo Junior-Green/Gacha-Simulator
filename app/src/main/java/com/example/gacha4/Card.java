@@ -8,6 +8,12 @@ public class Card {
         id = cardID;
         image = cardImage;
     }
+    public Card(int cardImage, String cardID)
+    {
+        id_string = cardID;
+        image = cardImage;
+    }
+
 
     public int getCardImage() {
         return image;

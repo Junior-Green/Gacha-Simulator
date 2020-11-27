@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sds_summon_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sds_summon_background"
+    android:configChanges="keyboardHidden"
+    android:screenOrientation="portrait"
+    tools:context=".Dokkan_Summon">
+
+    <ImageView
+        android:id="@+id/diamondIcon2"
+        android:layout_width="57dp"
+        android:layout_height="62dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/sds_diamond" />
+
+    <TextView
+        android:id="@+id/diamonds_used"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="center"
+        android:maxWidth="100dp"
+        android:maxLines="1"
+        android:text="0"
+        android:textAlignment="textStart"
+        android:textColor="#F4F4F4"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/diamondIcon2"
+        app:layout_constraintStart_toEndOf="@+id/diamondIcon2"
+        app:layout_constraintTop_toTopOf="@+id/diamondIcon2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="103dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:srcCompat="@drawable/ic_ios_arrow"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="215dp"
+        android:layout_height="380dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/sds_banner_bg_pickup_0038"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="103dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:srcCompat="@drawable/ic_ios_arrow"
+        tools:layout_editor_absoluteX="308dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="0dp"
+        android:layout_height="223dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.80"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/sds_summon_results_bck"
+        tools:layout_editor_absoluteY="338dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="54dp"
+        android:layout_height="40dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/no_mute"
+        tools:layout_editor_absoluteX="341dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="67dp"
+        android:layout_height="64dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_home_button"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="664dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

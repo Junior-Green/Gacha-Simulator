@@ -40,7 +40,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         detector = new GestureDetector(this, this);
 
-        audio_id = new int[]{R.raw.dokkan_theme_audio, R.raw.legends_theme_audio, R.raw.genshin_impact_audio, R.raw.seven_deadly_sins_theme_audio};
+        audio_id = new int[]{R.raw.dokkan_theme_audio, R.raw.dbl_theme_audio, R.raw.genshin_impact_audio, R.raw.sds_theme_audio};
         background_icon_id = new int[]{R.drawable.dokkan_home, R.drawable.legends_home, R.drawable.genshin_impact_home, R.drawable.sds_home_};
         app_icon_id = new int[]{R.drawable.dokkan_app_icon, R.drawable.legends_app_icon, R.drawable.genshin_impact_app, R.drawable.seven_deadly_sins_app_icon};
 
