@@ -308,7 +308,7 @@
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:cropToPadding="false"
-        android:rotation="0"
+        android:rotation="180"
         android:scaleType="centerCrop"
         app:imageview_duration="200"
         app:imageview_scale="0.9"
@@ -369,6 +369,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.32999998" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

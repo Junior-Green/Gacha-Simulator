@@ -60,8 +60,6 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         background_audio = MediaPlayer.create(HomeScreen.this, audio_id[selection]);
         background_audio.setLooping(true);
         background_audio.start();
-
-
     }
 
     public void selectRight(View v) {
@@ -124,6 +122,14 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     break;
                 case 1:
                     i = new Intent(HomeScreen.this, Dragon_Ball_Legends_Summon.class);
+                    background_audio.release();
+                    state = false;
+                    startActivity(i);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    finish();
+                    break;
+                case 3:
+                    i = new Intent(HomeScreen.this, SDS_Summon.class);
                     background_audio.release();
                     state = false;
                     startActivity(i);
