@@ -73,6 +73,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         constraintSet1.clone(this, R.layout.activity_dokkan_summon);
         constraintSet2.clone(this, R.layout.activity_dokkan_summon_animation);
         setContentView(R.layout.activity_dokkan_summon);
+        //---------------------------------------------------------------------------------------------------------BANNERS---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         DokkanBanner df_8442 = new DokkanBanner(R.drawable.dokkan_festival_8442, DokkanBanner.findCardsById(new ArrayList<>(Arrays.asList(1020440, 1020270, 1019130, 1018750, 1017880, 1015740, 1015150, 1012880, 1012580, 1008410))),
                 DokkanBanner.customizePool(new ArrayList<>(Arrays.asList(1020520, 1020270)), null, DokkanBanner.NORMALPOOL), "DOKKAN FESTIVAL (A) 8442");
@@ -80,6 +81,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
         DokkanBanner ls_8456 = new DokkanBanner(R.drawable.legendary_summon_8460, DokkanBanner.findCardsById(new ArrayList<>(Arrays.asList(1020200, 1018670, 1018570, 1015090, 1013180, 1013170, 1010150, 1008140, 1002460, 1001970, 1001940, 1001930))),
                 DokkanBanner.customizePool(new ArrayList<>(Arrays.asList(1018670, 1018570, 1015090, 1013180, 1013170, 1008140, 1002460, 1001970, 1001940, 1001930)), null, DokkanBanner.NORMALPOOL, new ArrayList<>(Arrays.asList(1020200, 1010150)), null, DokkanBanner.SUMMONABLELRPOOL), "Top Legendary Summon");
 
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         banners = new DokkanBanner[]{df_8442, ls_8456};
 
         statsSlots = new TextView[]{findViewById(R.id.stat_1A_d), findViewById(R.id.stat_2A_d), findViewById(R.id.stat_3A_d), findViewById(R.id.stat_4A_d),
@@ -216,15 +218,6 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             }
         } else if (view == single_summon) {
             DecimalFormat df = new DecimalFormat("#.##");
-            while (true) {
-                Random rng = new Random();
-                float num = Float.parseFloat(df.format(rng.nextFloat() * 100));
-                if (num >= 0 && num <= 27.65) {
-                    Log.d("Random Test", String.valueOf(num));
-                    break;
-                }
-            }
-
             if (!budgetEnabled || stonesUsed >= 5) {
                 for (ImageView views : unitsSlots) {
                     views.setImageResource(android.R.color.transparent);

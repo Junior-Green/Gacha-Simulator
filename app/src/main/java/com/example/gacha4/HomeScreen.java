@@ -121,7 +121,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     finish();
                     break;
                 case 1:
-                    i = new Intent(HomeScreen.this, Dragon_Ball_Legends_Summon.class);
+                    i = new Intent(HomeScreen.this, DBL_Summon.class);
                     background_audio.release();
                     state = false;
                     startActivity(i);

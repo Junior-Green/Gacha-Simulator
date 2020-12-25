@@ -54,23 +54,62 @@ public class SDSBanner {
         return results;
     }
 
-    public Card[] multiSummon() {Card[] results = new Card[10];
+    public Card[] multiSummon() {
+        Card[] results = new Card[11];
 
         if (rateUp == null)
         {
-            for (int i = 0; i < 10;i++)
+            for (int i = 0; i < 11;i++)
             {
-
+                int num = rng.nextInt(101);
+                if (num >=0 && num <= 3)
+                    results[i] = banner.get(rng.nextInt(banner.size()));
+                else if (num > 3 && num <= 40)
+                    results[i] = SR;
+                else
+                    results[i] = RARE;
             }
         }
         else
         {
-            for (int i = 0; i < 10;i++)
+            for (int i = 0; i < 11;i++)
             {
-
+                int num = rng.nextInt(101);
+                if (num >= 0 && num <= 0.5 * rateUp.size())
+                    results[i] = rateUp.get(rng.nextInt(rateUp.size()));
+                else if (num > 0.5 * rateUp.size() && num <= 3)
+                    results[i] = banner.get(rng.nextInt(banner.size()));
+                else if (num > 3 && num <= 40)
+                    results[i] = SR;
+                else
+                    results[i] = RARE;
             }
         }
         return results;
+    }
+
+    public Card singleSummon(){
+        int num = rng.nextInt(101);
+        if (rateUp == null)
+        {
+            if (num >=0 && num <= 3)
+                return banner.get(rng.nextInt(banner.size()));
+            else if (num > 3 && num <= 40)
+                return SR;
+            else
+                return RARE;
+        }
+        else
+        {
+            if (num >= 0 && num <= 0.5 * rateUp.size())
+                return rateUp.get(rng.nextInt(rateUp.size()));
+            else if (num > 0.5 * rateUp.size() && num <= 3)
+                return banner.get(rng.nextInt(banner.size()));
+            else if (num > 3 && num <= 40)
+                return SR;
+            else
+                return RARE;
+        }
     }
     public int getImage() {
         return image;

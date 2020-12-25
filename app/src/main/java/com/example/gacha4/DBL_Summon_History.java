@@ -91,7 +91,7 @@ public class DBL_Summon_History extends AppCompatActivity implements View.OnClic
             }
         } else if (view == back || view == back_arrow) {
             background_audio3.release();
-            Intent i = new Intent(DBL_Summon_History.this, Dragon_Ball_Legends_Summon.class);
+            Intent i = new Intent(DBL_Summon_History.this, DBL_Summon.class);
             startActivity(i);
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             state = false;

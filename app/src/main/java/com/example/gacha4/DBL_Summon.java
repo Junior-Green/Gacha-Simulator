@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener, BudgetDialog.BudgetDialogListener {
+public class DBL_Summon extends AppCompatActivity implements View.OnClickListener, GestureDetector.OnGestureListener, View.OnTouchListener, BudgetDialog.BudgetDialogListener {
     MediaPlayer background_audio3;
     ElasticImageView single_summon, multi_summon, mute_button, home_button;
     ImageView bannerImage, zenkaiImage;
@@ -85,7 +85,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         constraintSet2.clone(this, R.layout.activity_dragon_ball_legends_summon_multi_only);
         setContentView(R.layout.activity_dragon_ball_legends_summon_multi_only);
 
-        background_audio3 = MediaPlayer.create(Dragon_Ball_Legends_Summon.this, R.raw.dbl_summon_theme_audio);
+        background_audio3 = MediaPlayer.create(DBL_Summon.this, R.raw.dbl_summon_theme_audio);
         background_audio3.setLooping(true);
         background_audio3.start();
 
@@ -190,7 +190,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
         } else if (view == home_button) {
             background_audio3.release();
             state = false;
-            Intent i = new Intent(Dragon_Ball_Legends_Summon.this, HomeScreen.class);
+            Intent i = new Intent(DBL_Summon.this, HomeScreen.class);
             startActivity(i);
             finish();
         } else if (view == multi_summon) {
@@ -370,7 +370,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
             crystalCount.setText(Integer.toString(crystalsUsed));
         } else if (view == summonHistoryButton) {
             background_audio3.release();
-            Intent i = new Intent(Dragon_Ball_Legends_Summon.this, DBL_Summon_History.class);
+            Intent i = new Intent(DBL_Summon.this, DBL_Summon_History.class);
             startActivity(i);
             state = false;
             DBL_Summon_History.setLists(cardsPulled, cardsPulledHash);
@@ -464,7 +464,7 @@ public class Dragon_Ball_Legends_Summon extends AppCompatActivity implements Vie
     public void onBackPressed() {
         background_audio3.release();
         state = false;
-        Intent i = new Intent(Dragon_Ball_Legends_Summon.this, HomeScreen.class);
+        Intent i = new Intent(DBL_Summon.this, HomeScreen.class);
         startActivity(i);
         finish();
     }

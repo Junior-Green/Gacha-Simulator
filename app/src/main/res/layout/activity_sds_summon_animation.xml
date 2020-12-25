@@ -58,7 +58,7 @@
         app:imageview_duration="200"
         app:imageview_scale="0.9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sds_summon_bck"
         app:srcCompat="@drawable/sds_multi_summon" />
@@ -76,7 +76,7 @@
         app:imageview_duration="200"
         app:imageview_scale="0.9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sds_summon_bck"
         app:srcCompat="@drawable/sds_single_summon" />
@@ -264,6 +264,18 @@
          />
 
     <ImageView
+        android:id="@+id/sds_slot11"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_summon_bck" />
+
+    <ImageView
         android:id="@+id/volume_button"
         android:layout_width="54dp"
         android:layout_height="40dp"
@@ -274,17 +286,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/no_mute" />
-
-    <View
-        android:id="@+id/slider_backdrop_sds"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#c7c7cc"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <eightbitlab.com.blurview.BlurView
         android:id="@+id/blurViewSDS"

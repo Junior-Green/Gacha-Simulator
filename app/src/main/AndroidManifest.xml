@@ -18,7 +18,7 @@
             android:name=".DBL_Summon_History"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Dragon_Ball_Legends_Summon"
+            android:name=".DBL_Summon"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ViewHolderLayout"
