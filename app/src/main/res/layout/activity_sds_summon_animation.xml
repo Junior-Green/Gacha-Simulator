@@ -82,21 +82,6 @@
         app:srcCompat="@drawable/sds_single_summon" />
 
     <ImageView
-        android:id="@+id/sds_summon_bck"
-        android:layout_width="0dp"
-        android:layout_height="223dp"
-        android:adjustViewBounds="true"
-        android:alpha="0.75"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sds_right_arrow"
-        app:layout_constraintVertical_bias="0.41000003"
-        app:srcCompat="@drawable/sds_summon_results_bck" />
-
-    <ImageView
         android:id="@+id/diamondIcon2"
         android:layout_width="57dp"
         android:layout_height="62dp"
@@ -130,13 +115,28 @@
         android:id="@+id/sds_banner_image"
         android:layout_width="215dp"
         android:layout_height="380dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sds_banner_bg_pickup_0038" />
+
+    <ImageView
+        android:id="@+id/sds_summon_bck"
+        android:layout_width="0dp"
+        android:layout_height="223dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.75"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_right_arrow"
+        app:layout_constraintVertical_bias="0.41000003"
+        app:srcCompat="@drawable/sds_summon_results_bck" />
 
     <ImageView
         android:id="@+id/sds_slot1"
@@ -147,8 +147,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/sds_slot3"
         app:layout_constraintEnd_toStartOf="@+id/sds_slot2"
-        app:layout_constraintTop_toTopOf="@+id/sds_slot3"
-         />
+        app:layout_constraintTop_toTopOf="@+id/sds_slot3" />
 
     <ImageView
         android:id="@+id/sds_slot2"
@@ -159,8 +158,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/sds_slot3"
         app:layout_constraintEnd_toStartOf="@+id/sds_slot3"
-        app:layout_constraintTop_toTopOf="@+id/sds_slot3"
-         />
+        app:layout_constraintTop_toTopOf="@+id/sds_slot3" />
 
     <ImageView
         android:id="@+id/sds_slot3"
@@ -172,8 +170,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@+id/sds_summon_bck"
         app:layout_constraintStart_toStartOf="@+id/sds_summon_bck"
-        app:layout_constraintTop_toTopOf="@+id/sds_summon_bck"
-         />
+        app:layout_constraintTop_toTopOf="@+id/sds_summon_bck" />
 
     <ImageView
         android:id="@+id/sds_slot4"
@@ -184,8 +181,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/sds_slot3"
         app:layout_constraintStart_toEndOf="@+id/sds_slot3"
-        app:layout_constraintTop_toTopOf="@+id/sds_slot3"
-         />
+        app:layout_constraintTop_toTopOf="@+id/sds_slot3" />
 
     <ImageView
         android:id="@+id/sds_slot5"
@@ -196,8 +192,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/sds_slot3"
         app:layout_constraintStart_toEndOf="@+id/sds_slot4"
-        app:layout_constraintTop_toTopOf="@+id/sds_slot3"
-         />
+        app:layout_constraintTop_toTopOf="@+id/sds_slot3" />
 
     <ImageView
         android:id="@+id/sds_slot6"
@@ -209,8 +204,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/sds_slot8"
         app:layout_constraintEnd_toStartOf="@+id/sds_slot7"
         app:layout_constraintTop_toTopOf="@+id/sds_slot8"
-        app:layout_constraintVertical_bias="0.0"
-         />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/sds_slot7"
@@ -221,8 +215,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/sds_slot8"
         app:layout_constraintEnd_toStartOf="@+id/sds_slot8"
-        app:layout_constraintTop_toTopOf="@+id/sds_slot8"
-         />
+        app:layout_constraintTop_toTopOf="@+id/sds_slot8" />
 
     <ImageView
         android:id="@+id/sds_slot8"
@@ -234,8 +227,7 @@
         app:layout_constraintEnd_toEndOf="@+id/sds_slot3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/sds_slot3"
-        app:layout_constraintTop_toBottomOf="@+id/sds_slot3"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/sds_slot3" />
 
     <ImageView
         android:id="@+id/sds_slot9"
@@ -247,8 +239,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/sds_slot8"
         app:layout_constraintStart_toEndOf="@+id/sds_slot8"
         app:layout_constraintTop_toTopOf="@+id/sds_slot8"
-        app:layout_constraintVertical_bias="1.0"
-         />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/sds_slot10"
@@ -260,8 +251,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/sds_slot8"
         app:layout_constraintStart_toEndOf="@+id/sds_slot9"
         app:layout_constraintTop_toTopOf="@+id/sds_slot8"
-        app:layout_constraintVertical_bias="1.0"
-         />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/sds_slot11"
@@ -275,15 +265,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sds_summon_bck" />
 
-    <ImageView
+    <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/volume_button"
         android:layout_width="54dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:adjustViewBounds="true"
+        android:alpha="0.90"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:rotation="0"
         android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_multi_summon"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/no_mute" />
 
@@ -370,6 +368,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32999998" />
+        app:layout_constraintVertical_bias="0.35000002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

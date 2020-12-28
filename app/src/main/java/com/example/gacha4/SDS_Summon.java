@@ -1,21 +1,26 @@
 package com.example.gacha4;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
-import android.view.GestureDetector;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.skydoves.elasticviews.ElasticImageView;
 
@@ -28,7 +33,7 @@ import eightbitlab.com.blurview.RenderScriptBlur;
 
 public class SDS_Summon extends AppCompatActivity implements View.OnClickListener,BudgetDialog.BudgetDialogListener{
     MediaPlayer background_audio;
-    ElasticImageView single_summon, multi_summon, mute_button, home_button,right_arrow,left_arrow;
+    ElasticImageView single_summon, multi_summon, mute_button, home_button, right_arrow, left_arrow;
     ImageView bannerImage;
     TextView homeScreenButton, resetButton, summonHistoryButton, diamondCount;
     ConstraintLayout constraintLayout;
@@ -37,8 +42,8 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
     Transition transition = new ChangeBounds();
     BlurView blurView;
     Toast diamondWarning;
-    Boolean state = true;
-    private static Boolean budgetEnabled = false;
+    Boolean state = true, homeMenu = false;
+    private static final Boolean budgetEnabled = false;
     View backDrop;
     static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled = new ArrayList<>();
@@ -49,12 +54,18 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         constraintSet1.clone(this, R.layout.activity_sds_summon);
         constraintSet2.clone(this, R.layout.activity_sds_summon_animation);
         setContentView(R.layout.activity_sds_summon);
 
         //---------------------------------------------------------------------------------------------------------BANNERS---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        SDSBanner pickup_0039 = new SDSBanner(R.drawable.sds_banner_bg_pickup_0039, SDSBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(12, 71, 6, 68, 81, 80, 73, 70, 55, 58, 23, 18, 33, 30, 53, 4, 1, 59))), SDSBanner.findCardsByID(new ArrayList<Integer>(Arrays.asList(12, 71))));
+
+        banners = new SDSBanner[]{pickup_0039};
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         background_audio = MediaPlayer.create(SDS_Summon.this, R.raw.sds_summon_theme_audio);
@@ -90,10 +101,10 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
         bannerImage = findViewById(R.id.sds_banner_image);
         bannerImage.setImageResource(banners[bannerChoice].getImage());
 
-        summonHistoryButton = findViewById(R.id.summon_history_dokkan);
+        summonHistoryButton = findViewById(R.id.sds_summon_history);
         summonHistoryButton.setOnClickListener(this);
 
-        home_button = findViewById(R.id.home_button);
+        home_button = findViewById(R.id.sds_openclose);
         home_button.setOnClickListener(this);
 
         diamondCount = findViewById(R.id.diamonds_used);
@@ -106,8 +117,17 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
         left_arrow = findViewById(R.id.sds_left_arrow);
         left_arrow.setOnClickListener(this);
 
+        homeScreenButton = findViewById(R.id.sds_home_screen);
+        homeScreenButton.setOnClickListener(this);
+
+        resetButton = findViewById(R.id.sds_reset);
+        resetButton.setOnClickListener(this);
+
+        summonHistoryButton = findViewById(R.id.sds_summon_history);
+        summonHistoryButton.setOnClickListener(this);
+
         unitsSlots = new ImageView[]{findViewById(R.id.sds_slot1), findViewById(R.id.sds_slot2), findViewById(R.id.sds_slot3), findViewById(R.id.sds_slot4), findViewById(R.id.sds_slot5),
-                findViewById(R.id.sds_slot6), findViewById(R.id.sds_slot7), findViewById(R.id.sds_slot8), findViewById(R.id.sds_slot9), findViewById(R.id.sds_slot10),};
+                findViewById(R.id.sds_slot6), findViewById(R.id.sds_slot7), findViewById(R.id.sds_slot8), findViewById(R.id.sds_slot9), findViewById(R.id.sds_slot10), findViewById(R.id.sds_slot11)};
 
         mute_button = findViewById(R.id.volume_button);
         mute_button.setOnClickListener(this);
@@ -125,22 +145,17 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
     }
     @Override
     public void onClick(View view) {
-        if (view == right_arrow)
-        {
+        if (view == right_arrow) {
             bannerChoice++;
             if (bannerChoice >= banners.length)
                 bannerChoice = 0;
             bannerImage.setImageResource(banners[bannerChoice].image);
-        }
-        else if(view == left_arrow)
-        {
+        } else if (view == left_arrow) {
             bannerChoice--;
             if (bannerChoice < 0)
-                bannerChoice = banners.length-1;
+                bannerChoice = banners.length - 1;
             bannerImage.setImageResource(banners[bannerChoice].image);
-        }
-        else if(view == mute_button)
-        {
+        } else if (view == mute_button) {
             if (mute_button.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.no_mute).getConstantState())) {
                 mute_button.setImageResource(R.drawable.ic_mute_icon);
                 background_audio.setVolume(0, 0);
@@ -150,23 +165,21 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
                 background_audio.setVolume(1.0f, 1.0f);
                 volume_state = true;
             }
-        }
-        else if(view == multi_summon)
-        {
+        } else if (view == multi_summon) {
             Card[] results = banners[bannerChoice].multiSummon();
             for (int i = 0; i < 11; i++) {
                 unitsSlots[i].setImageResource(results[i].getCardImage());
                 if (banners[bannerChoice].rateUp.contains(results[i]))
                     unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                else
+                    unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
             }
             cardsPulled.addAll(Arrays.asList(results));
             cardsPulledHash.addAll(Arrays.asList(results));
             diamondsUsed += 30;
             diamondCount.setText(String.valueOf(diamondsUsed));
 
-        }
-        else if(view == single_summon)
-        {
+        } else if (view == single_summon) {
             Card result = banners[bannerChoice].singleSummon();
             for (ImageView views : unitsSlots) {
                 views.setImageResource(android.R.color.transparent);
@@ -177,10 +190,51 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
                 unitsSlots[0].setForeground(getDrawable((R.drawable.red_border)));
             diamondsUsed += 3;
             diamondCount.setText(String.valueOf(diamondsUsed));
-        }
-        else if(view == home_button)
-        {
+        } else if (view == home_button) {
+            if (!homeMenu) {
+                homeMenu = true;
+                blurView.setBlurEnabled(true);
+                backDrop.setVisibility(View.VISIBLE);
+                backDrop.setAlpha(0f);
+                backDrop.animate().alpha(0.3f).setDuration(1000);
+                TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                constraintSet2.applyTo(constraintLayout);
+                single_summon.setEnabled(false);
+                multi_summon.setEnabled(false);
+                mute_button.setEnabled(false);
+                home_button.setEnabled(false);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        home_button.setEnabled(true);
+                        homeScreenButton.setEnabled(true);
+                        summonHistoryButton.setEnabled(true);
+                        resetButton.setEnabled(true);
+                    }
+                }, 1000);
+            } else {
+                homeMenu = false;
+                home_button.setEnabled(false);
+                homeScreenButton.setEnabled(false);
+                summonHistoryButton.setEnabled(false);
+                resetButton.setEnabled(false);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        single_summon.setEnabled(true);
+                        multi_summon.setEnabled(true);
+                        home_button.setEnabled(true);
 
+                    }
+                }, 1000);
+                blurView.setBlurEnabled(false);
+                backDrop.setAlpha(1f);
+                Animation fadeOut = new AlphaAnimation(0.3f, 0);
+                fadeOut.setDuration(2000);
+                backDrop.startAnimation(fadeOut);
+                TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                constraintSet1.applyTo(constraintLayout);
+            }
         }
     }
 

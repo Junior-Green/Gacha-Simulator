@@ -82,21 +82,6 @@
         app:srcCompat="@drawable/sds_single_summon" />
 
     <ImageView
-        android:id="@+id/sds_summon_bck"
-        android:layout_width="0dp"
-        android:layout_height="223dp"
-        android:adjustViewBounds="true"
-        android:alpha="0.75"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sds_right_arrow"
-        app:layout_constraintVertical_bias="0.41000003"
-        app:srcCompat="@drawable/sds_summon_results_bck" />
-
-    <ImageView
         android:id="@+id/diamondIcon2"
         android:layout_width="57dp"
         android:layout_height="62dp"
@@ -130,13 +115,28 @@
         android:id="@+id/sds_banner_image"
         android:layout_width="215dp"
         android:layout_height="380dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sds_banner_bg_pickup_0038" />
+
+    <ImageView
+        android:id="@+id/sds_summon_bck"
+        android:layout_width="0dp"
+        android:layout_height="223dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.75"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_right_arrow"
+        app:layout_constraintVertical_bias="0.41000003"
+        app:srcCompat="@drawable/sds_summon_results_bck" />
 
     <ImageView
         android:id="@+id/sds_slot1"
