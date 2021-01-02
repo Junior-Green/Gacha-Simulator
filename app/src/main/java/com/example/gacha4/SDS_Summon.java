@@ -1,5 +1,6 @@
 package com.example.gacha4;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -145,17 +146,17 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
     }
     @Override
     public void onClick(View view) {
-        if (view == right_arrow) {
+        if (view == right_arrow && !homeMenu) {
             bannerChoice++;
             if (bannerChoice >= banners.length)
                 bannerChoice = 0;
             bannerImage.setImageResource(banners[bannerChoice].image);
-        } else if (view == left_arrow) {
+        } else if (view == left_arrow && !homeMenu) {
             bannerChoice--;
             if (bannerChoice < 0)
                 bannerChoice = banners.length - 1;
             bannerImage.setImageResource(banners[bannerChoice].image);
-        } else if (view == mute_button) {
+        } else if (view == mute_button && !homeMenu) {
             if (mute_button.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.no_mute).getConstantState())) {
                 mute_button.setImageResource(R.drawable.ic_mute_icon);
                 background_audio.setVolume(0, 0);
@@ -165,9 +166,11 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
                 background_audio.setVolume(1.0f, 1.0f);
                 volume_state = true;
             }
-        } else if (view == multi_summon) {
+        } else if (view == multi_summon && !homeMenu) {
             Card[] results = banners[bannerChoice].multiSummon();
             for (int i = 0; i < 11; i++) {
+                cardsPulled.add(results[i]);
+                cardsPulledHash.add(results[i]);
                 unitsSlots[i].setImageResource(results[i].getCardImage());
                 if (banners[bannerChoice].rateUp.contains(results[i]))
                     unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
@@ -179,8 +182,10 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
             diamondsUsed += 30;
             diamondCount.setText(String.valueOf(diamondsUsed));
 
-        } else if (view == single_summon) {
+        } else if (view == single_summon && !homeMenu) {
             Card result = banners[bannerChoice].singleSummon();
+            cardsPulled.add(result);
+            cardsPulledHash.add(result);
             for (ImageView views : unitsSlots) {
                 views.setImageResource(android.R.color.transparent);
                 views.setForeground(getDrawable(R.drawable.blank));
@@ -192,39 +197,23 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
             diamondCount.setText(String.valueOf(diamondsUsed));
         } else if (view == home_button) {
             if (!homeMenu) {
-                homeMenu = true;
                 blurView.setBlurEnabled(true);
                 backDrop.setVisibility(View.VISIBLE);
                 backDrop.setAlpha(0f);
                 backDrop.animate().alpha(0.3f).setDuration(1000);
                 TransitionManager.beginDelayedTransition(constraintLayout, transition);
                 constraintSet2.applyTo(constraintLayout);
-                single_summon.setEnabled(false);
-                multi_summon.setEnabled(false);
-                mute_button.setEnabled(false);
-                home_button.setEnabled(false);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        home_button.setEnabled(true);
-                        homeScreenButton.setEnabled(true);
-                        summonHistoryButton.setEnabled(true);
-                        resetButton.setEnabled(true);
+                        homeMenu = true;
                     }
                 }, 1000);
             } else {
-                homeMenu = false;
-                home_button.setEnabled(false);
-                homeScreenButton.setEnabled(false);
-                summonHistoryButton.setEnabled(false);
-                resetButton.setEnabled(false);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        single_summon.setEnabled(true);
-                        multi_summon.setEnabled(true);
-                        home_button.setEnabled(true);
-
+                        homeMenu = false;
                     }
                 }, 1000);
                 blurView.setBlurEnabled(false);
@@ -235,6 +224,28 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
                 TransitionManager.beginDelayedTransition(constraintLayout, transition);
                 constraintSet1.applyTo(constraintLayout);
             }
+        } else if (view == homeScreenButton) {
+            background_audio.release();
+            state = false;
+            Intent i = new Intent(SDS_Summon.this, HomeScreen.class);
+            startActivity(i);
+            finish();
+        } else if (view == resetButton) {
+            cardsPulledHash.clear();
+            cardsPulled.clear();
+            for (ImageView views : unitsSlots) {
+                views.setForeground(getDrawable(R.drawable.blank));
+                views.setImageResource(android.R.color.transparent);
+            }
+            diamondsUsed = 0;
+            diamondCount.setText(Integer.toString(diamondsUsed));
+        } else if (view == summonHistoryButton) {
+            background_audio.release();
+            Intent i = new Intent(SDS_Summon.this, SDS_Summon_History.class);
+            startActivity(i);
+            state = false;
+            SDS_Summon_History.setLists(cardsPulled, cardsPulledHash);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 
@@ -250,8 +261,6 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
         if (!background_audio.isPlaying())
             background_audio.start();
     }
-
-
     @Override
     public void getBudget(int budget) {
 

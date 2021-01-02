@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Random;
 
 import eightbitlab.com.blurview.BlurView;
 import eightbitlab.com.blurview.RenderScriptBlur;
@@ -53,7 +51,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
     Transition transition = new ChangeBounds();
     BlurView blurView;
     Toast stoneWarning;
-    Boolean state = true;
+    Boolean state = true, blurPresent = false;
     private static Boolean budgetEnabled = false;
     View backDrop;
     static Boolean volume_state = true;
@@ -170,7 +168,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onClick(View view) {
-        if (view == mute_button) {
+        if (view == mute_button && !blurPresent) {
             if (mute_button.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.no_mute).getConstantState())) {
                 mute_button.setImageResource(R.drawable.ic_mute_icon);
                 background_audio2.setVolume(0, 0);
@@ -180,13 +178,13 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                 background_audio2.setVolume(1.0f, 1.0f);
                 volume_state = true;
             }
-        } else if (view == home_button) {
+        } else if (view == home_button && !blurPresent) {
             background_audio2.release();
             state = false;
             Intent i = new Intent(Dokkan_Summon.this, HomeScreen.class);
             startActivity(i);
             finish();
-        } else if (view == multi_summon) {
+        } else if (view == multi_summon && !blurPresent) {
             if (!budgetEnabled || stonesUsed >= 50) {
                 Card[] results = banners[bannerChoice].multiSummon();
                 for (int i = 0; i < 10; i++) {
@@ -216,7 +214,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             } else {
                 stoneWarning.show();
             }
-        } else if (view == single_summon) {
+        } else if (view == single_summon && !blurPresent) {
             DecimalFormat df = new DecimalFormat("#.##");
             if (!budgetEnabled || stonesUsed >= 5) {
                 for (ImageView views : unitsSlots) {
@@ -250,7 +248,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             } else {
                 stoneWarning.show();
             }
-        } else if (view == resetButton) {
+        } else if (view == resetButton && !blurPresent) {
             if (budgetEnabled)
                 budgetEnabled = false;
             stonesUsed = 0;
@@ -269,14 +267,20 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             }
 
             stoneCount.setText(Integer.toString(stonesUsed));
-        } else if (view == summonHistoryButton) {
+        } else if (view == summonHistoryButton && !blurPresent) {
             background_audio2.release();
             Intent i = new Intent(Dokkan_Summon.this, Dokkan_Summon_History.class);
             startActivity(i);
             state = false;
             Dokkan_Summon_History.setLists(cardsPulled, cardsPulledHash);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else if (view == stats) {
+        } else if (view == stats && !blurPresent) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    blurPresent = true;
+                }
+            }, 1000);
             statsSlots[0].setText(String.valueOf(ssrsPulled));
             if (ssrsPulled != 0)
                 statsSlots[1].setText(String.valueOf(Math.round((float) stonesUsed / ssrsPulled * 100) / 100f));
@@ -307,27 +311,13 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
             backDrop.animate().alpha(0.3f).setDuration(1000);
             TransitionManager.beginDelayedTransition(constraintLayout, transition);
             constraintSet2.applyTo(constraintLayout);
-            multi_summon.setEnabled(false);
-            single_summon.setEnabled(false);
-            resetButton.setEnabled(false);
-            home_button.setEnabled(false);
-            mute_button.setEnabled(false);
-            cancel_button.setEnabled(true);
-            view.setEnabled(false);
-
-        } else if (view == cancel_button) {
+        } else if (view == cancel_button && blurPresent) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    multi_summon.setEnabled(true);
-                    single_summon.setEnabled(true);
-                    resetButton.setEnabled(true);
-                    home_button.setEnabled(true);
-                    mute_button.setEnabled(true);
-                    stats.setEnabled(true);
+                    blurPresent = false;
                 }
             }, 1000);
-            view.setEnabled(false);
             backDrop.setAlpha(1f);
             Animation fadeOut = new AlphaAnimation(0.3f, 0);
             fadeOut.setDuration(2000);
@@ -340,7 +330,7 @@ public class Dokkan_Summon extends AppCompatActivity implements View.OnClickList
                     blurView.setBlurEnabled(false);
                 }
             }, 500);
-        } else if (view == stoneCount) {
+        } else if (view == stoneCount && !blurPresent) {
             openDialog();
         }
     }
