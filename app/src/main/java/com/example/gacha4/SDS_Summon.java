@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,8 +45,9 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
     Transition transition = new ChangeBounds();
     BlurView blurView;
     Toast diamondWarning;
-    Boolean state = true, homeMenu = false;
-    private static final Boolean budgetEnabled = false;
+    RotateAnimation rotateDown, rotateUp;
+    Boolean state = true, homeMenu = false, isAnimationRunning = false;
+    private static Boolean budgetEnabled = false;
     View backDrop;
     static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled = new ArrayList<>();
@@ -74,6 +77,48 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
         background_audio.start();
 
         bannerChoice = 0;
+
+        rotateDown = new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotateDown.setDuration(500);
+        rotateDown.setInterpolator(new AccelerateDecelerateInterpolator());
+        rotateDown.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                home_button.setRotation(180);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
+        rotateUp = new RotateAnimation(180, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotateUp.setDuration(500);
+        rotateUp.setInterpolator(new AccelerateDecelerateInterpolator());
+        rotateUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                home_button.setRotation(0);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
 
         diamondWarning = Toast.makeText(this, "Insufficient Diamonds. Reset or set new budget", Toast.LENGTH_SHORT);
 
@@ -167,70 +212,94 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
                 volume_state = true;
             }
         } else if (view == multi_summon && !homeMenu) {
-            Card[] results = banners[bannerChoice].multiSummon();
-            for (int i = 0; i < 11; i++) {
-                cardsPulled.add(results[i]);
-                cardsPulledHash.add(results[i]);
-                unitsSlots[i].setImageResource(results[i].getCardImage());
-                if (banners[bannerChoice].rateUp.contains(results[i]))
-                    unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
-                else
-                    unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
-            }
-            cardsPulled.addAll(Arrays.asList(results));
-            cardsPulledHash.addAll(Arrays.asList(results));
-            diamondsUsed += 30;
-            diamondCount.setText(String.valueOf(diamondsUsed));
+            if (!budgetEnabled || diamondsUsed >= 30) {
+                Card[] results = banners[bannerChoice].multiSummon();
+                for (int i = 0; i < 11; i++) {
+                    cardsPulled.add(results[i]);
+                    cardsPulledHash.add(results[i]);
+                    unitsSlots[i].setImageResource(results[i].getCardImage());
+                    if (banners[bannerChoice].rateUp.contains(results[i]))
+                        unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                    else
+                        unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
+                }
+                cardsPulled.addAll(Arrays.asList(results));
+                cardsPulledHash.addAll(Arrays.asList(results));
+                if (!budgetEnabled)
+                    diamondsUsed += 30;
+                else if (budgetEnabled)
+                    diamondsUsed -= 30;
+                diamondCount.setText(String.valueOf(diamondsUsed));
+            } else
+                diamondWarning.show();
 
         } else if (view == single_summon && !homeMenu) {
-            Card result = banners[bannerChoice].singleSummon();
-            cardsPulled.add(result);
-            cardsPulledHash.add(result);
-            for (ImageView views : unitsSlots) {
-                views.setImageResource(android.R.color.transparent);
-                views.setForeground(getDrawable(R.drawable.blank));
-            }
-            unitsSlots[0].setImageResource(result.image);
-            if (banners[bannerChoice].rateUp.contains(result))
-                unitsSlots[0].setForeground(getDrawable((R.drawable.red_border)));
-            diamondsUsed += 3;
-            diamondCount.setText(String.valueOf(diamondsUsed));
+            if (!budgetEnabled || diamondsUsed >= 3) {
+                Card result = banners[bannerChoice].singleSummon();
+                cardsPulled.add(result);
+                cardsPulledHash.add(result);
+                for (ImageView views : unitsSlots) {
+                    views.setImageResource(android.R.color.transparent);
+                    views.setForeground(getDrawable(R.drawable.blank));
+                }
+                unitsSlots[0].setImageResource(result.image);
+                if (banners[bannerChoice].rateUp.contains(result))
+                    unitsSlots[0].setForeground(getDrawable((R.drawable.red_border)));
+
+                if (budgetEnabled)
+                    diamondsUsed -= 3;
+                else if (!budgetEnabled)
+                    diamondsUsed += 3;
+                diamondCount.setText(String.valueOf(diamondsUsed));
+            } else
+                diamondWarning.show();
         } else if (view == home_button) {
             if (!homeMenu) {
-                blurView.setBlurEnabled(true);
-                backDrop.setVisibility(View.VISIBLE);
-                backDrop.setAlpha(0f);
-                backDrop.animate().alpha(0.3f).setDuration(1000);
-                TransitionManager.beginDelayedTransition(constraintLayout, transition);
-                constraintSet2.applyTo(constraintLayout);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        homeMenu = true;
-                    }
-                }, 1000);
-            } else {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        homeMenu = false;
-                    }
-                }, 1000);
-                blurView.setBlurEnabled(false);
-                backDrop.setAlpha(1f);
-                Animation fadeOut = new AlphaAnimation(0.3f, 0);
-                fadeOut.setDuration(2000);
-                backDrop.startAnimation(fadeOut);
-                TransitionManager.beginDelayedTransition(constraintLayout, transition);
-                constraintSet1.applyTo(constraintLayout);
+                if (!isAnimationRunning) {
+                    isAnimationRunning = true;
+                    blurView.setBlurEnabled(true);
+                    backDrop.setVisibility(View.VISIBLE);
+                    backDrop.setAlpha(0f);
+                    backDrop.animate().alpha(0.3f).setDuration(1000);
+                    TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                    constraintSet2.applyTo(constraintLayout);
+                    home_button.startAnimation(rotateDown);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            homeMenu = true;
+                            isAnimationRunning = false;
+                        }
+                    }, 1100);
+                }
+            } else if (homeMenu) {
+                if (!isAnimationRunning) {
+                    isAnimationRunning = true;
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            homeMenu = false;
+                            isAnimationRunning = false;
+                        }
+                    }, 1100);
+
+                    home_button.startAnimation(rotateUp);
+                    blurView.setBlurEnabled(false);
+                    backDrop.setAlpha(1f);
+                    Animation fadeOut = new AlphaAnimation(0.3f, 0);
+                    fadeOut.setDuration(2000);
+                    backDrop.startAnimation(fadeOut);
+                    TransitionManager.beginDelayedTransition(constraintLayout, transition);
+                    constraintSet1.applyTo(constraintLayout);
+                }
             }
-        } else if (view == homeScreenButton) {
+        } else if (view == homeScreenButton && homeMenu) {
             background_audio.release();
             state = false;
             Intent i = new Intent(SDS_Summon.this, HomeScreen.class);
             startActivity(i);
             finish();
-        } else if (view == resetButton) {
+        } else if (view == resetButton && homeMenu) {
             cardsPulledHash.clear();
             cardsPulled.clear();
             for (ImageView views : unitsSlots) {
@@ -239,14 +308,21 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
             }
             diamondsUsed = 0;
             diamondCount.setText(Integer.toString(diamondsUsed));
-        } else if (view == summonHistoryButton) {
+        } else if (view == summonHistoryButton && homeMenu) {
             background_audio.release();
             Intent i = new Intent(SDS_Summon.this, SDS_Summon_History.class);
             startActivity(i);
             state = false;
             SDS_Summon_History.setLists(cardsPulled, cardsPulledHash);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        } else if (view == diamondCount && !homeMenu) {
+            openDialog();
         }
+    }
+
+    private void openDialog() {
+        BudgetDialog budgetDialog = new BudgetDialog();
+        budgetDialog.show(getSupportFragmentManager(), "Set Budget Dialog");
     }
 
     public void onPause() {
@@ -261,8 +337,23 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
         if (!background_audio.isPlaying())
             background_audio.start();
     }
-    @Override
     public void getBudget(int budget) {
+        cardsPulledHash.clear();
+        cardsPulled.clear();
+        for (ImageView views : unitsSlots) {
+            views.setForeground(getDrawable(R.drawable.blank));
+            views.setImageResource(android.R.color.transparent);
+        }
+        diamondsUsed = 0;
+        diamondCount.setText(Integer.toString(diamondsUsed));
+        budgetEnabled = true;
+        if (budget > 999999) {
+            diamondsUsed = 999999;
+            diamondCount.setText(String.valueOf(999999));
+        } else {
+            diamondsUsed = budget;
+            diamondCount.setText(String.valueOf(budget));
+        }
 
     }
 }
