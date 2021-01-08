@@ -297,6 +297,7 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
             startActivity(i);
             finish();
         } else if (view == resetButton && homeMenu) {
+            budgetEnabled = false;
             cardsPulledHash.clear();
             cardsPulled.clear();
             for (ImageView views : unitsSlots) {

@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SDS_Summon_History"></activity>
-        <activity android:name=".SDS_Summon" />
+        <activity android:name=".SDS_Summon_History"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SDS_Summon"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DBLViewHolderLayout"
             android:label="@string/title_activity_d_b_l_view_holder_layout" />
