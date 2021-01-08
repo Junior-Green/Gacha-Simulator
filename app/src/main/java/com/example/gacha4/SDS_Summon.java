@@ -86,7 +86,6 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
             public void onAnimationStart(Animation animation) {
 
             }
-
             @Override
             public void onAnimationEnd(Animation animation) {
                 home_button.setRotation(180);
@@ -223,8 +222,6 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
                     else
                         unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
                 }
-                cardsPulled.addAll(Arrays.asList(results));
-                cardsPulledHash.addAll(Arrays.asList(results));
                 if (!budgetEnabled)
                     diamondsUsed += 30;
                 else if (budgetEnabled)

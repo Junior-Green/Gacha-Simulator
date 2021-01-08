@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sds_summon_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sds_summon_background"
+    android:configChanges="keyboardHidden"
+    android:screenOrientation="portrait"
+    tools:context=".Dokkan_Summon">
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/sds_left_arrow"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.75"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        android:scaleX="-1"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_banner_image"
+        app:layout_constraintEnd_toStartOf="@+id/sds_banner_image"
+        app:layout_constraintTop_toTopOf="@+id/sds_banner_image"
+        app:srcCompat="@drawable/ic_ios_arrow" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/sds_right_arrow"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.75"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_banner_image"
+        app:layout_constraintStart_toEndOf="@+id/sds_banner_image"
+        app:layout_constraintTop_toTopOf="@+id/sds_banner_image"
+        app:srcCompat="@drawable/ic_ios_arrow" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/sds_multi_summon"
+        android:layout_width="159dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_summon_bck"
+        app:srcCompat="@drawable/sds_multi_summon" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/sds_single_summon"
+        android:layout_width="159dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_summon_bck"
+        app:srcCompat="@drawable/sds_single_summon" />
+
+    <ImageView
+        android:id="@+id/diamondIcon2"
+        android:layout_width="57dp"
+        android:layout_height="62dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/sds_diamond" />
+
+    <TextView
+        android:id="@+id/diamonds_used"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:maxWidth="100dp"
+        android:maxLines="1"
+        android:text="0"
+        android:textAlignment="textStart"
+        android:textColor="#F4F4F4"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/diamondIcon2"
+        app:layout_constraintStart_toEndOf="@+id/diamondIcon2"
+        app:layout_constraintTop_toTopOf="@+id/diamondIcon2" />
+
+    <ImageView
+        android:id="@+id/sds_banner_image"
+        android:layout_width="215dp"
+        android:layout_height="380dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sds_banner_bg_pickup_0038" />
+
+    <ImageView
+        android:id="@+id/sds_summon_bck"
+        android:layout_width="0dp"
+        android:layout_height="223dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.75"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_right_arrow"
+        app:layout_constraintVertical_bias="0.41000003"
+        app:srcCompat="@drawable/sds_summon_results_bck" />
+
+    <ImageView
+        android:id="@+id/sds_slot1"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_slot3"
+        app:layout_constraintEnd_toStartOf="@+id/sds_slot2"
+        app:layout_constraintTop_toTopOf="@+id/sds_slot3" />
+
+    <ImageView
+        android:id="@+id/sds_slot2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_slot3"
+        app:layout_constraintEnd_toStartOf="@+id/sds_slot3"
+        app:layout_constraintTop_toTopOf="@+id/sds_slot3" />
+
+    <ImageView
+        android:id="@+id/sds_slot3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/sds_summon_bck"
+        app:layout_constraintStart_toStartOf="@+id/sds_summon_bck"
+        app:layout_constraintTop_toTopOf="@+id/sds_summon_bck" />
+
+    <ImageView
+        android:id="@+id/sds_slot4"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_slot3"
+        app:layout_constraintStart_toEndOf="@+id/sds_slot3"
+        app:layout_constraintTop_toTopOf="@+id/sds_slot3" />
+
+    <ImageView
+        android:id="@+id/sds_slot5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_slot3"
+        app:layout_constraintStart_toEndOf="@+id/sds_slot4"
+        app:layout_constraintTop_toTopOf="@+id/sds_slot3" />
+
+    <ImageView
+        android:id="@+id/sds_slot6"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_slot8"
+        app:layout_constraintEnd_toStartOf="@+id/sds_slot7"
+        app:layout_constraintTop_toTopOf="@+id/sds_slot8"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/sds_slot7"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_slot8"
+        app:layout_constraintEnd_toStartOf="@+id/sds_slot8"
+        app:layout_constraintTop_toTopOf="@+id/sds_slot8" />
+
+    <ImageView
+        android:id="@+id/sds_slot8"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/sds_slot3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sds_slot3"
+        app:layout_constraintTop_toBottomOf="@+id/sds_slot3" />
+
+    <ImageView
+        android:id="@+id/sds_slot9"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_slot8"
+        app:layout_constraintStart_toEndOf="@+id/sds_slot8"
+        app:layout_constraintTop_toTopOf="@+id/sds_slot8"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/sds_slot10"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/sds_slot8"
+        app:layout_constraintStart_toEndOf="@+id/sds_slot9"
+        app:layout_constraintTop_toTopOf="@+id/sds_slot8"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/sds_slot11"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_summon_bck" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/volume_button"
+        android:layout_width="54dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.90"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:rotation="0"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_multi_summon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/no_mute" />
+
+    <View
+        android:id="@+id/slider_backdrop_sds"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#c7c7cc"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewSDS"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </eightbitlab.com.blurview.BlurView>
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/sds_openclose"
+        android:layout_width="129dp"
+        android:layout_height="108dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.90"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:rotation="0"
+        android:scaleType="centerCrop"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_multi_summon"
+        app:srcCompat="@drawable/sds_open_close" />
+
+    <TextView
+        android:id="@+id/sds_home_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Home Screen"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_anchor" />
+
+    <TextView
+        android:id="@+id/sds_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Reset"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/sds_home_screen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/sds_summon_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Summon History"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sds_home_screen" />
+
+    <TextView
+        android:id="@+id/sds_anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
