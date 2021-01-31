@@ -146,7 +146,7 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
         bannerImage = findViewById(R.id.sds_banner_image);
         bannerImage.setImageResource(banners[bannerChoice].getImage());
 
-        summonHistoryButton = findViewById(R.id.sds_summon_history);
+        summonHistoryButton = findViewById(R.id.gi_summon_history);
         summonHistoryButton.setOnClickListener(this);
 
         home_button = findViewById(R.id.sds_openclose);
@@ -168,7 +168,7 @@ public class SDS_Summon extends AppCompatActivity implements View.OnClickListene
         resetButton = findViewById(R.id.sds_reset);
         resetButton.setOnClickListener(this);
 
-        summonHistoryButton = findViewById(R.id.sds_summon_history);
+        summonHistoryButton = findViewById(R.id.gi_summon_history);
         summonHistoryButton.setOnClickListener(this);
 
         unitsSlots = new ImageView[]{findViewById(R.id.sds_slot1), findViewById(R.id.sds_slot2), findViewById(R.id.sds_slot3), findViewById(R.id.sds_slot4), findViewById(R.id.sds_slot5),

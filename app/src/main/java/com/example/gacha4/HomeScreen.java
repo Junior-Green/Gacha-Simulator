@@ -40,7 +40,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
 
         detector = new GestureDetector(this, this);
 
-        audio_id = new int[]{R.raw.dokkan_theme_audio, R.raw.dbl_theme_audio, R.raw.genshin_impact_audio, R.raw.sds_theme_audio};
+        audio_id = new int[]{R.raw.dokkan_theme_audio, R.raw.dbl_theme_audio, R.raw.gi_theme_audio, R.raw.sds_theme_audio};
         background_icon_id = new int[]{R.drawable.dokkan_home, R.drawable.legends_home, R.drawable.genshin_impact_home, R.drawable.sds_home_};
         app_icon_id = new int[]{R.drawable.dokkan_app_icon, R.drawable.legends_app_icon, R.drawable.genshin_impact_app, R.drawable.seven_deadly_sins_app_icon};
 
@@ -130,6 +130,14 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     break;
                 case 3:
                     i = new Intent(HomeScreen.this, SDS_Summon.class);
+                    background_audio.release();
+                    state = false;
+                    startActivity(i);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    finish();
+                    break;
+                case 4:
+                    i = new Intent(HomeScreen.this, GI_Summon.class);
                     background_audio.release();
                     state = false;
                     startActivity(i);

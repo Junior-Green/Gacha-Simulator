@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gi_summon_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/genshin_impact_summoon_background"
+    android:configChanges="keyboardHidden"
+    android:screenOrientation="portrait"
+    tools:context=".Dokkan_Summon">
+
+    <ImageView
+        android:id="@+id/gi_banner_image"
+        android:layout_width="389dp"
+        android:layout_height="233dp"
+        android:layout_marginTop="75dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/volume_button"
+        tools:srcCompat="@drawable/gi_adrift_in_the_harbor" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/gi_right_arrow"
+        android:layout_width="73dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.50"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintBottom_toTopOf="@+id/gi_banner_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_ios_arrow" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/gi_left_arrow"
+        android:layout_width="73dp"
+        android:layout_height="70dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.50"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        android:scaleX="-1"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintBottom_toTopOf="@+id/gi_banner_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_ios_arrow" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/gi_multi_summon"
+        android:layout_width="159dp"
+        android:layout_height="65dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/sds_multi_summon"
+        tools:layout_editor_absoluteY="690dp" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/gi_single_summon"
+        android:layout_width="159dp"
+        android:layout_height="65dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/sds_single_summon"
+        tools:layout_editor_absoluteY="690dp" />
+
+    <ImageView
+        android:id="@+id/primogem_Icon2"
+        android:layout_width="53dp"
+        android:layout_height="57dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@android:string/untitled"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/gi_primo_gem" />
+
+    <TextView
+        android:id="@+id/diamonds_used"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/untitled"
+        android:fontFamily="@font/archivo_black"
+        android:maxWidth="100dp"
+        android:maxLines="1"
+        android:text="0"
+        android:textAlignment="textStart"
+        android:textColor="#F4F4F4"
+        android:textColorLink="#FFFFFF"
+        android:textSize="24sp"
+        app:autoSizeMinTextSize="5sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/primogem_Icon2"
+        app:layout_constraintStart_toEndOf="@+id/primogem_Icon2"
+        app:layout_constraintTop_toTopOf="@+id/primogem_Icon2" />
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/volume_button"
+        android:layout_width="54dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.90"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:rotation="0"
+        android:scaleType="fitCenter"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gi_multi_summon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/no_mute" />
+
+    <View
+        android:id="@+id/slider_backdrop_sds"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#c7c7cc"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurViewGI"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </eightbitlab.com.blurview.BlurView>
+
+    <com.skydoves.elasticviews.ElasticImageView
+        android:id="@+id/gi_openclose"
+        android:layout_width="129dp"
+        android:layout_height="108dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.90"
+        android:background="#00FFFFFF"
+        android:contentDescription="@android:string/untitled"
+        android:cropToPadding="false"
+        android:rotation="0"
+        android:scaleType="centerCrop"
+        app:imageview_duration="200"
+        app:imageview_scale="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gi_multi_summon"
+        app:srcCompat="@drawable/sds_open_close" />
+
+    <TextView
+        android:id="@+id/gi_home_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Home Screen"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gi_anchor" />
+
+    <TextView
+        android:id="@+id/gi_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Reset"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/gi_home_screen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/gi_summon_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="Summon History"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gi_home_screen" />
+
+    <TextView
+        android:id="@+id/gi_anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

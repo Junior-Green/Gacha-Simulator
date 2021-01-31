@@ -326,7 +326,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sds_anchor" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_anchor" />
 
     <TextView
         android:id="@+id/sds_reset"
@@ -343,7 +343,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/sds_summon_history"
+        android:id="@+id/gi_summon_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -357,7 +357,7 @@
         app:layout_constraintTop_toBottomOf="@+id/sds_home_screen" />
 
     <TextView
-        android:id="@+id/sds_anchor"
+        android:id="@+id/gi_anchor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
