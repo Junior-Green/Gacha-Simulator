@@ -297,21 +297,21 @@
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/sds_openclose"
-        android:layout_width="129dp"
-        android:layout_height="108dp"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
         android:adjustViewBounds="true"
         android:alpha="0.90"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:cropToPadding="false"
         android:rotation="0"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         app:imageview_duration="200"
         app:imageview_scale="0.9"
+        app:layout_constraintBottom_toBottomOf="@+id/slider_backdrop_sds"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sds_multi_summon"
         app:srcCompat="@drawable/sds_open_close" />
 
     <TextView
@@ -352,7 +352,7 @@
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sds_home_screen" />
 
