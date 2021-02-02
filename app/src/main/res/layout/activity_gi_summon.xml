@@ -11,6 +11,20 @@
     tools:context=".Dokkan_Summon">
 
     <ImageView
+        android:id="@+id/gi_summon_backdrop"
+        android:layout_width="0dp"
+        android:layout_height="210dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.6"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/gi_openclose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gi_multi_summon"
+        app:srcCompat="@drawable/gi_backdrop" />
+
+    <ImageView
         android:id="@+id/gi_banner_image"
         android:layout_width="389dp"
         android:layout_height="233dp"
@@ -64,6 +78,7 @@
         android:id="@+id/gi_multi_summon"
         android:layout_width="159dp"
         android:layout_height="65dp"
+        android:layout_marginTop="200dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
@@ -72,15 +87,16 @@
         app:imageview_duration="200"
         app:imageview_scale="0.9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/sds_multi_summon"
-        tools:layout_editor_absoluteY="690dp" />
+        app:layout_constraintTop_toTopOf="@+id/gi_banner_image"
+        app:srcCompat="@drawable/gi_multi_summon" />
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/gi_single_summon"
         android:layout_width="159dp"
         android:layout_height="65dp"
+        android:layout_marginTop="200dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
@@ -89,13 +105,13 @@
         app:imageview_duration="200"
         app:imageview_scale="0.9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/sds_single_summon"
-        tools:layout_editor_absoluteY="690dp" />
+        app:layout_constraintTop_toTopOf="@+id/gi_banner_image"
+        app:srcCompat="@drawable/gi_single_summon" />
 
     <ImageView
-        android:id="@+id/primogem_Icon2"
+        android:id="@+id/acquaintfate_Icon2"
         android:layout_width="53dp"
         android:layout_height="57dp"
         android:adjustViewBounds="true"
@@ -103,10 +119,10 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/gi_primo_gem" />
+        app:srcCompat="@drawable/gi_acquaint_fate" />
 
     <TextView
-        android:id="@+id/diamonds_used"
+        android:id="@+id/af_used"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:contentDescription="@android:string/untitled"
@@ -120,9 +136,9 @@
         android:textSize="24sp"
         app:autoSizeMinTextSize="5sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="@+id/primogem_Icon2"
-        app:layout_constraintStart_toEndOf="@+id/primogem_Icon2"
-        app:layout_constraintTop_toTopOf="@+id/primogem_Icon2" />
+        app:layout_constraintBottom_toBottomOf="@+id/acquaintfate_Icon2"
+        app:layout_constraintStart_toEndOf="@+id/acquaintfate_Icon2"
+        app:layout_constraintTop_toTopOf="@+id/acquaintfate_Icon2" />
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/volume_button"
@@ -144,8 +160,209 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/no_mute" />
 
+    <ImageView
+        android:id="@+id/gi_slot1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gi_slot3"
+        app:layout_constraintEnd_toStartOf="@+id/gi_slot2"
+        app:layout_constraintTop_toTopOf="@+id/gi_slot3"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gi_slot3"
+        app:layout_constraintEnd_toStartOf="@+id/gi_slot3"
+        app:layout_constraintTop_toTopOf="@+id/gi_slot3"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gi_summon_backdrop"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gi_slot3"
+        app:layout_constraintStart_toEndOf="@+id/gi_slot3"
+        app:layout_constraintTop_toTopOf="@+id/gi_slot3"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gi_slot3"
+        app:layout_constraintStart_toEndOf="@+id/gi_slot4"
+        app:layout_constraintTop_toTopOf="@+id/gi_slot3"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gi_slot8"
+        app:layout_constraintEnd_toStartOf="@+id/gi_slot7"
+        app:layout_constraintTop_toTopOf="@+id/gi_slot8"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gi_slot8"
+        app:layout_constraintEnd_toStartOf="@+id/gi_slot8"
+        app:layout_constraintTop_toTopOf="@+id/gi_slot8"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot8"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot3"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot3"
+        app:layout_constraintTop_toBottomOf="@+id/gi_rarity3"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot9"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gi_slot8"
+        app:layout_constraintStart_toEndOf="@+id/gi_slot8"
+        app:layout_constraintTop_toTopOf="@+id/gi_slot8"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_slot10"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gi_slot8"
+        app:layout_constraintStart_toEndOf="@+id/gi_slot9"
+        app:layout_constraintTop_toTopOf="@+id/gi_slot8"
+        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+
+    <ImageView
+        android:id="@+id/gi_rarity1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot1"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot1"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot1"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity2"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot2"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot2"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot2"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity3"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot3"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot3"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot3"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity4"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot4"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot4"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot4"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity5"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot5"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot5"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot5"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity6"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot6"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot6"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot6"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity7"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot7"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot7"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot7"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity8"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot8"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot8"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot8"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity9"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot9"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot9"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot9"
+        app:srcCompat="@drawable/gi_5stars" />
+
+    <ImageView
+        android:id="@+id/gi_rarity10"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/gi_slot10"
+        app:layout_constraintStart_toStartOf="@+id/gi_slot10"
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot10"
+        app:srcCompat="@drawable/gi_5stars" />
+
     <View
-        android:id="@+id/slider_backdrop_sds"
+        android:id="@+id/slider_backdrop_gi"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#c7c7cc"
@@ -170,21 +387,21 @@
 
     <com.skydoves.elasticviews.ElasticImageView
         android:id="@+id/gi_openclose"
-        android:layout_width="129dp"
-        android:layout_height="108dp"
+        android:layout_width="80dp"
+        android:layout_height="71dp"
         android:adjustViewBounds="true"
         android:alpha="0.90"
         android:background="#00FFFFFF"
         android:contentDescription="@android:string/untitled"
         android:cropToPadding="false"
         android:rotation="0"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         app:imageview_duration="200"
         app:imageview_scale="0.9"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gi_multi_summon"
         app:srcCompat="@drawable/sds_open_close" />
 
     <TextView

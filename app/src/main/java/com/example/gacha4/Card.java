@@ -1,17 +1,19 @@
 package com.example.gacha4;
 
 public class Card {
-    int id, image;
-    String id_string;
+    final int id, image, rarity;
+
 
     public Card(int cardImage, int cardID) {
         id = cardID;
         image = cardImage;
+        rarity = 0;
     }
-    public Card(int cardImage, String cardID)
-    {
-        id_string = cardID;
+
+    public Card(int cardImage, int cardID, int rarity) {
+        this.id = cardID;
         image = cardImage;
+        this.rarity = rarity;
     }
 
 
@@ -21,10 +23,6 @@ public class Card {
 
     public int getCardID() {
         return id;
-    }
-
-    public String getCardIDString() {
-        return id_string;
     }
 
 }
