@@ -9,8 +9,8 @@ public class SDSBanner {
     int image;
     private static final Random rng = new Random();
     public ArrayList<Card> banner, rateUp;
-    public static final Card RARE = new Card(R.drawable.sds_rare,"0");
-    public static final Card SR = new Card(R.drawable.sds_sr,"0");
+    public static final Card RARE = new Card(R.drawable.sds_rare,0);
+    public static final Card SR = new Card(R.drawable.sds_sr,0);
     public static final ArrayList<Card> SSRS = new ArrayList<>(Arrays.asList(new Card(R.drawable.sds_a_new_adventure_elizabeth,1), new Card(R.drawable.sds_ale_collector_ban,2),
             new Card(R.drawable.sds_bringer_of_disaster_lillia,3), new Card(R.drawable.sds_creation_diane,4), new Card(R.drawable.sds_deathbringer_mono,5),
             new Card(R.drawable.sds_destined_heir_arthur,6), new Card(R.drawable.sds_dungeon_raider_shin,7), new Card(R.drawable.sds_earthshaker_valenti,8),

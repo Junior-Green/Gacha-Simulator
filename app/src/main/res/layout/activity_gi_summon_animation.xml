@@ -51,7 +51,7 @@
         app:imageview_scale="0.9"
         app:layout_constraintBottom_toTopOf="@+id/gi_banner_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_ios_arrow" />
 
@@ -70,7 +70,7 @@
         app:imageview_scale="0.9"
         app:layout_constraintBottom_toTopOf="@+id/gi_banner_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_ios_arrow" />
 
@@ -455,6 +455,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.35000002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

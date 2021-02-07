@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -70,6 +71,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
             setMedia();
             app_logo.setImageResource(app_icon_id[selection]);
             main.setBackgroundResource(background_icon_id[selection]);
+        Log.d("HERE",String.valueOf(selection));
     }
     public void selectLeft(View v) {
         if(selection == 0)
@@ -136,7 +138,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     finish();
                     break;
-                case 4:
+                case 2:
                     i = new Intent(HomeScreen.this, GI_Summon.class);
                     background_audio.release();
                     state = false;
@@ -226,6 +228,4 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
         }
         return false;
     }
-
-
 }
