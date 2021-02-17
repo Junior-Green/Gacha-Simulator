@@ -29,6 +29,7 @@ import com.skydoves.elasticviews.ElasticImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 
 import eightbitlab.com.blurview.BlurView;
@@ -52,7 +53,7 @@ public class GI_Summon extends AppCompatActivity implements View.OnClickListener
     static Boolean volume_state = true;
     static ArrayList<Card> cardsPulled = new ArrayList<>();
     static HashSet<Card> cardsPulledHash = new HashSet<>();
-    static ImageView[] unitsSlots;
+    static ImageView[] unitsSlots, raritySlots;
     static int bannerChoice = 0, afUsed = 0;
     GIBanner[] banners;
 
@@ -67,7 +68,12 @@ public class GI_Summon extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_gi_summon);
 
         //---------------------------------------------------------------------------------------------------------BANNERS---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        GIBanner adrift_in_the_harbour = new GIBanner(R.drawable.gi_adrift_in_the_harbor, GIBanner.findCardsById(new ArrayList<Integer>(Collections.singletonList(11))),
+                GIBanner.findCardsById(new ArrayList<Integer>(Arrays.asList(19, 27, 25))), GIBanner.findCardsById(new ArrayList<Integer>(Arrays.asList(14, 17, 20, 8, 12))),
+                GIBanner.findCardsById(new ArrayList<Integer>(Arrays.asList(28, 22, 9, 7, 6, 10, 18, 5, 21, 4, 105, 106, 110, 66, 80, 99, 117, 44, 79, 89, 92, 125, 49, 51, 39, 122, 56, 32))),
+                GIBanner.findCardsById(new ArrayList<Integer>(Arrays.asList(109, 107, 102, 78, 93, 83, 61, 43, 42, 45, 33, 120, 115, 33))), false);
 
+        banners = new GIBanner[]{adrift_in_the_harbour};
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         background_audio = MediaPlayer.create(GI_Summon.this, R.raw.gi_summon_theme_audio);
@@ -172,6 +178,10 @@ public class GI_Summon extends AppCompatActivity implements View.OnClickListener
         unitsSlots = new ImageView[]{findViewById(R.id.gi_slot1), findViewById(R.id.gi_slot2), findViewById(R.id.gi_slot3), findViewById(R.id.gi_slot4), findViewById(R.id.gi_slot5),
                 findViewById(R.id.gi_slot6), findViewById(R.id.gi_slot7), findViewById(R.id.gi_slot8), findViewById(R.id.gi_slot9), findViewById(R.id.gi_slot10)};
 
+        raritySlots = new ImageView[]{findViewById(R.id.gi_rarity1), findViewById(R.id.gi_rarity2), findViewById(R.id.gi_rarity3), findViewById(R.id.gi_rarity4),
+                findViewById(R.id.gi_rarity5), findViewById(R.id.gi_rarity6), findViewById(R.id.gi_rarity7), findViewById(R.id.gi_rarity8), findViewById(R.id.gi_rarity9),
+                findViewById(R.id.gi_rarity10),};
+
         mute_button = findViewById(R.id.volume_button);
         mute_button.setOnClickListener(this);
 
@@ -192,12 +202,12 @@ public class GI_Summon extends AppCompatActivity implements View.OnClickListener
             bannerChoice++;
             if (bannerChoice >= banners.length)
                 bannerChoice = 0;
-            bannerImage.setImageResource(banners[bannerChoice].image);
+            bannerImage.setImageResource(banners[bannerChoice].bannerImage);
         } else if (view == left_arrow && !homeMenu) {
             bannerChoice--;
             if (bannerChoice < 0)
                 bannerChoice = banners.length - 1;
-            bannerImage.setImageResource(banners[bannerChoice].image);
+            bannerImage.setImageResource(banners[bannerChoice].bannerImage);
         } else if (view == mute_button && !homeMenu) {
             if (mute_button.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.no_mute).getConstantState())) {
                 mute_button.setImageResource(R.drawable.ic_mute_icon);
@@ -209,8 +219,22 @@ public class GI_Summon extends AppCompatActivity implements View.OnClickListener
                 volume_state = true;
             }
         } else if (view == multi_summon && !homeMenu) {
-
-
+            Card[] results = banners[bannerChoice].multiSummon();
+            for (int i = 0; i < 10; i++) {
+                cardsPulled.add(results[i]);
+                cardsPulledHash.add(results[i]);
+                unitsSlots[i].setImageResource(results[i].getCardImage());
+                if (banners[bannerChoice].fiveStarBanner.contains(results[i]) || banners[bannerChoice].fiveStarPool.contains(results[i])) {
+                    unitsSlots[i].setForeground(getDrawable(R.drawable.red_border));
+                    raritySlots[i].setImageResource(GIBanner.FIVE_STAR);
+                } else if (banners[bannerChoice].fourStarBanner.contains(results[i]) || banners[bannerChoice].fourStarPool.contains(results[i])) {
+                    unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
+                    unitsSlots[i].setImageResource(GIBanner.FOUR_STAR);
+                } else {
+                    unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
+                    unitsSlots[i].setImageResource(GIBanner.THREE_STARS);
+                }
+            }
         } else if (view == single_summon && !homeMenu) {
 
         } else if (view == home_button) {
