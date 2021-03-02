@@ -1,7 +1,6 @@
 package com.example.gacha4;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +8,6 @@ import android.transition.ChangeBounds;
 import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -33,7 +31,6 @@ import java.util.Collections;
 import java.util.HashSet;
 
 import eightbitlab.com.blurview.BlurView;
-import eightbitlab.com.blurview.RenderScriptBlur;
 
 public class GI_Summon extends AppCompatActivity implements View.OnClickListener,BudgetDialog.BudgetDialogListener{
     MediaPlayer background_audio;
@@ -68,10 +65,10 @@ public class GI_Summon extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_gi_summon);
 
         //---------------------------------------------------------------------------------------------------------BANNERS---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        GIBanner adrift_in_the_harbour = new GIBanner(R.drawable.gi_adrift_in_the_harbor, GIBanner.findCardsById(new ArrayList<Integer>(Collections.singletonList(11))),
-                GIBanner.findCardsById(new ArrayList<Integer>(Arrays.asList(19, 27, 25))), GIBanner.findCardsById(new ArrayList<Integer>(Arrays.asList(14, 17, 20, 8, 12))),
-                GIBanner.findCardsById(new ArrayList<Integer>(Arrays.asList(28, 22, 9, 7, 6, 10, 18, 5, 21, 4, 105, 106, 110, 66, 80, 99, 117, 44, 79, 89, 92, 125, 49, 51, 39, 122, 56, 32))),
-                GIBanner.findCardsById(new ArrayList<Integer>(Arrays.asList(109, 107, 102, 78, 93, 83, 61, 43, 42, 45, 33, 120, 115, 33))), false);
+        GIBanner adrift_in_the_harbour = new GIBanner(R.drawable.gi_adrift_in_the_harbor, GIBanner.findCardsById(new ArrayList<>(Collections.singletonList(11))),
+                GIBanner.findCardsById(new ArrayList<>(Arrays.asList(19, 27, 25))), GIBanner.findCardsById(new ArrayList<>(Arrays.asList(14, 17, 20, 8, 12))),
+                GIBanner.findCardsById(new ArrayList<>(Arrays.asList(28, 22, 9, 7, 6, 10, 18, 5, 21, 4, 105, 106, 110, 66, 80, 99, 117, 44, 79, 89, 92, 125, 49, 51, 39, 122, 56, 32))),
+                GIBanner.findCardsById(new ArrayList<>(Arrays.asList(109, 107, 102, 78, 93, 83, 61, 43, 42, 45, 33, 120, 115, 33))), false);
 
         banners = new GIBanner[]{adrift_in_the_harbour};
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -136,16 +133,16 @@ public class GI_Summon extends AppCompatActivity implements View.OnClickListener
 
         backDrop = findViewById(R.id.slider_backdrop_gi);
 
-        blurView = findViewById(R.id.blurViewGI);
-        View decorView = getWindow().getDecorView();
-        ViewGroup rootView = decorView.findViewById(android.R.id.content);
-        Drawable windowBackground = decorView.getBackground();
-        blurView.setupWith(rootView)
-                .setFrameClearDrawable(windowBackground)
-                .setBlurAlgorithm(new RenderScriptBlur(this))
-                .setBlurRadius(22f)
-                .setBlurEnabled(false)
-                .setHasFixedTransformationMatrix(true);
+//        blurView = findViewById(R.id.blurViewGI);
+//        View decorView = getWindow().getDecorView();
+//        ViewGroup rootView = decorView.findViewById(android.R.id.content);
+//        Drawable windowBackground = decorView.getBackground();
+//        blurView.setupWith(rootView)
+//                .setFrameClearDrawable(windowBackground)
+//                .setBlurAlgorithm(new RenderScriptBlur(this))
+//                .setBlurRadius(22f)
+//                .setBlurEnabled(false)
+//                .setHasFixedTransformationMatrix(true);
 
         bannerImage = findViewById(R.id.gi_banner_image);
         bannerImage.setImageResource(banners[bannerChoice].getImage());
@@ -229,13 +226,14 @@ public class GI_Summon extends AppCompatActivity implements View.OnClickListener
                     raritySlots[i].setImageResource(GIBanner.FIVE_STAR);
                 } else if (banners[bannerChoice].fourStarBanner.contains(results[i]) || banners[bannerChoice].fourStarPool.contains(results[i])) {
                     unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
-                    unitsSlots[i].setImageResource(GIBanner.FOUR_STAR);
+                    raritySlots[i].setImageResource(GIBanner.FOUR_STAR);
                 } else {
                     unitsSlots[i].setForeground(getDrawable(R.drawable.blank));
-                    unitsSlots[i].setImageResource(GIBanner.THREE_STARS);
+                    raritySlots[i].setImageResource(GIBanner.THREE_STAR);
                 }
             }
         } else if (view == single_summon && !homeMenu) {
+
 
         } else if (view == home_button) {
             if (!homeMenu) {

@@ -168,7 +168,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/gi_slot3"
         app:layout_constraintEnd_toStartOf="@+id/gi_slot2"
         app:layout_constraintTop_toTopOf="@+id/gi_slot3"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+         />
 
     <ImageView
         android:id="@+id/gi_slot2"
@@ -177,8 +177,7 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/gi_slot3"
         app:layout_constraintEnd_toStartOf="@+id/gi_slot3"
-        app:layout_constraintTop_toTopOf="@+id/gi_slot3"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toTopOf="@+id/gi_slot3" />
 
     <ImageView
         android:id="@+id/gi_slot3"
@@ -188,8 +187,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gi_summon_backdrop"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toTopOf="@+id/gi_summon_backdrop" />
 
     <ImageView
         android:id="@+id/gi_slot4"
@@ -198,8 +196,7 @@
         android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/gi_slot3"
         app:layout_constraintStart_toEndOf="@+id/gi_slot3"
-        app:layout_constraintTop_toTopOf="@+id/gi_slot3"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toTopOf="@+id/gi_slot3" />
 
     <ImageView
         android:id="@+id/gi_slot5"
@@ -208,8 +205,7 @@
         android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/gi_slot3"
         app:layout_constraintStart_toEndOf="@+id/gi_slot4"
-        app:layout_constraintTop_toTopOf="@+id/gi_slot3"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toTopOf="@+id/gi_slot3" />
 
     <ImageView
         android:id="@+id/gi_slot6"
@@ -218,8 +214,7 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/gi_slot8"
         app:layout_constraintEnd_toStartOf="@+id/gi_slot7"
-        app:layout_constraintTop_toTopOf="@+id/gi_slot8"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toTopOf="@+id/gi_slot8" />
 
     <ImageView
         android:id="@+id/gi_slot7"
@@ -228,8 +223,7 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/gi_slot8"
         app:layout_constraintEnd_toStartOf="@+id/gi_slot8"
-        app:layout_constraintTop_toTopOf="@+id/gi_slot8"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toTopOf="@+id/gi_slot8" />
 
     <ImageView
         android:id="@+id/gi_slot8"
@@ -238,8 +232,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot3"
         app:layout_constraintStart_toStartOf="@+id/gi_slot3"
-        app:layout_constraintTop_toBottomOf="@+id/gi_rarity3"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_rarity3" />
 
     <ImageView
         android:id="@+id/gi_slot9"
@@ -248,8 +241,7 @@
         android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/gi_slot8"
         app:layout_constraintStart_toEndOf="@+id/gi_slot8"
-        app:layout_constraintTop_toTopOf="@+id/gi_slot8"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toTopOf="@+id/gi_slot8" />
 
     <ImageView
         android:id="@+id/gi_slot10"
@@ -258,8 +250,7 @@
         android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/gi_slot8"
         app:layout_constraintStart_toEndOf="@+id/gi_slot9"
-        app:layout_constraintTop_toTopOf="@+id/gi_slot8"
-        app:srcCompat="@drawable/gi_character_albedo_thumb" />
+        app:layout_constraintTop_toTopOf="@+id/gi_slot8" />
 
     <ImageView
         android:id="@+id/gi_rarity1"
@@ -268,8 +259,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot1"
         app:layout_constraintStart_toStartOf="@+id/gi_slot1"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot1"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot1" />
 
     <ImageView
         android:id="@+id/gi_rarity2"
@@ -278,8 +268,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot2"
         app:layout_constraintStart_toStartOf="@+id/gi_slot2"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot2"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot2" />
 
     <ImageView
         android:id="@+id/gi_rarity3"
@@ -288,8 +277,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot3"
         app:layout_constraintStart_toStartOf="@+id/gi_slot3"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot3"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot3" />
 
     <ImageView
         android:id="@+id/gi_rarity4"
@@ -298,8 +286,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot4"
         app:layout_constraintStart_toStartOf="@+id/gi_slot4"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot4"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot4" />
 
     <ImageView
         android:id="@+id/gi_rarity5"
@@ -308,8 +295,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot5"
         app:layout_constraintStart_toStartOf="@+id/gi_slot5"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot5"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot5" />
 
     <ImageView
         android:id="@+id/gi_rarity6"
@@ -318,8 +304,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot6"
         app:layout_constraintStart_toStartOf="@+id/gi_slot6"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot6"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot6" />
 
     <ImageView
         android:id="@+id/gi_rarity7"
@@ -328,8 +313,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot7"
         app:layout_constraintStart_toStartOf="@+id/gi_slot7"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot7"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot7" />
 
     <ImageView
         android:id="@+id/gi_rarity8"
@@ -338,8 +322,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot8"
         app:layout_constraintStart_toStartOf="@+id/gi_slot8"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot8"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot8" />
 
     <ImageView
         android:id="@+id/gi_rarity9"
@@ -348,8 +331,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot9"
         app:layout_constraintStart_toStartOf="@+id/gi_slot9"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot9"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot9" />
 
     <ImageView
         android:id="@+id/gi_rarity10"
@@ -358,8 +340,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/gi_slot10"
         app:layout_constraintStart_toStartOf="@+id/gi_slot10"
-        app:layout_constraintTop_toBottomOf="@+id/gi_slot10"
-        app:srcCompat="@drawable/gi_5stars" />
+        app:layout_constraintTop_toBottomOf="@+id/gi_slot10" />
 
     <View
         android:id="@+id/slider_backdrop_gi"

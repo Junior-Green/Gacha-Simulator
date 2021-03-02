@@ -74,7 +74,7 @@ public class SDS_Summon_History extends AppCompatActivity implements View.OnClic
 
         recyclerView = findViewById(R.id.recycler_sds);
         recyclerView.setLayoutManager(layoutManager);
-        DokkanRecyclerViewAdapter adapter = new DokkanRecyclerViewAdapter(cardsHash, frequencies);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(cardsHash, frequencies);
         recyclerView.setAdapter(adapter);
     }
 

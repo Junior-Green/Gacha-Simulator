@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class DokkanRecyclerViewAdapter extends RecyclerView.Adapter<DokkanRecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private final ArrayList<Card> cards;
     private final ArrayList<String> imageNames;
 
-    public DokkanRecyclerViewAdapter(ArrayList<Card> images, ArrayList<String> frequencies) {
+    public RecyclerViewAdapter(ArrayList<Card> images, ArrayList<String> frequencies) {
         imageNames = frequencies;
         cards = images;
     }
